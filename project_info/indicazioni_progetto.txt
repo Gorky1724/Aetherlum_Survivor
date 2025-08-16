@@ -1,0 +1,201 @@
+-- Indicazioni fornite in data 22 / 05 / 2025 
+-- {Registrazione} presente su "Tablet Samsung 9FE" > "Samsung Notes" > "Università" > "II Anno" > "PIGDM" > "Indicazioni Progetto"
+
+___________________________________________________________________________________________________________________________________
+            <INDICAZIONI SU COME STRUTTURARE IL PROGETTO>  
+
+ - apri con VisualStudio per grafica migliorata
+
+>>>>SCELTA DEL PROGETTO e ASSEGNAZIONE
+  >>> 
+  -- presentare tramite mail l'idea progettuale che si desidera realizzare prima di iniziarne lo sviluppo
+  -- evitare scelte troppo tradizionali e noti giochi classici arcade
+  -- è bene che ci siano parti in movimento con collisioni
+  -- si possono usare le librerie fatte a lezione o, dichiarandolo, utilizzare altre librerie non trattate
+
+  -- vanno inviati i PRIMI 2 capitoli della tesina e attesa la risposta del docente; solo così il progetto sarà ritenuto assegnato
+  
+  -- dopo che il progetto è stato assegnato, questo NON SCADE
+     Si consiglia di non superare i 6 mesi e consegnarlo almeno dopo 20 giorni dall'assegnazione
+
+  -- viene effettuata una STIMA del livello di difficoltà, da cui dipende una stima del voto.
+     Poi questo verrà confermato o meno a seconda di ciò che viene consegnato.
+     <Normale> - si può puntare al 30
+     <Difficile o +> - si può puntare più facilmente al 30 e alla lode
+
+
+  -NB- si può chiedere un'incontro preliminare per avere suggerimenti, dritte o correzioni dal prof
+
+>>>> SCRITTURA TESINA
+  >>>
+  -- è consigliato tramite [overleaf.com] scriverla in 'LaTeX'; per la richiesta di assegnazione basta il pdf
+  -> _IN FASE DI CONSEGNA_: va consegnata anche la sorgente (codice sorgente) della tesina
+
+  -- requisiti, scritti sinteticamente, in modo telegrafico, come elenco puntato _e_ suddivisi in:
+    - 'funzionali' [viste dal player] (salvare punteggio partita e riprenderla, pausa, ecc.)
+    - 'non funzionali' [ad esempio l'architettura di progettazione dell'applicazione] (es. monolitica, o di altro tipo di design pattern)
+    - altri ancora; come ad esempio 'di gioco' (n° livelli presenti, meccaniche, ecc.)
+
+
+
+>>>> CONSEGNA
+  >>>
+  -- va consegnato tramite [Unistudium] > 'Svolgimento e Consegna del Progetto'
+     Una pagina viene aperta con tutte le spiegazioni necessarie di requisiti di consegna in prossimità delle date d'esame
+     Se il .zip eccede i 100MB andrà consegnato poi con OneDrive - in tal caso va inserito un README su Unistudium con spiegazioni, ecc.
+  -- andrà provato sul proprio dispositivo
+
+  >>> <PUNTEGGIO> (PER TUTTA LA SEZIONE riascolta audio) (circa 1:03:00)
+  -> Punteggio: (riascolta audio) e vedi su [Unistudium] a cosa sono associati tot. punti e punteggio
+     Anche la tesina viene valutata - vi deve essere inserita SOLO la verità e solo feature o informazioni che sono effettivamente state inserite
+
+     >> accuratezza:
+     (riascolta)
+     >> completezza: non vuol dire che deve essere
+
+     >> software:
+
+     >> efficacia: se il progetto, per quanto possa essere difficile, funziona e fa quanto deve fare
+        - se ci sono malfunzionamenti vengono ridotti punti
+        - bug possono essere presenti e sono più tollerati
+
+    >> pulizia: se il codice è ben comprensibile (riasc.)
+
+    >> scomposizione architetturale:
+        - è BEN VALUTATO un software che abbia una scomposizione architetturale
+        - è invece poco gradita un'architettura monolitica
+      è ad esempio suggerita "Model - View - Controller" (vedi Unistudium > Tetris) o "Logic View"
+
+  
+>>>> STRUTTURA
+  >>>
+  >> scomposizione architetturale:
+        - è BEN VALUTATO un software che abbia una scomposizione architetturale
+        - è invece POCO GRADITA un'architettura monolitica
+      -> è ad esempio suggerita "Model - View - Controller" (vedi Unistudium > progetto Tetris) o "Logic View"
+
+  >>      
+    -- tutto il codice Java deve essere contenuto in un UNICO PACKAGE Java
+     Dunque vi ha sede anche il bitecode
+
+    --> OSSERVA
+       gli ide mettono tutto in una cartella Source: questo NON VA bene
+       Source è una cartella del FileSystem, non si riflette nel codice sorgente
+
+       -avremmo in questo caso un architetturea del tipo
+       - NON VA BENE
+       Source
+       |
+       +-- model
+       |
+       +-- view
+       |
+       +-- controller
+
+       package model
+       package view
+       package controller
+
+       -Noi dobbiamo avere package come nel seguente esempio:
+       - VA BENE
+       Source
+       |
+       +-- javapp
+            |
+            +-- model
+            |
+            +-- view
+            |
+            +-- controller
+        
+        
+        package javapp.model
+        package javapp.view
+        package javapp.controller
+        
+
+  -- si può anche fare un'architettura monolitica.
+     Se però si riesce a fare ed essere fedeli ad un tipo di architettura Model-View-Controller o Logic-View
+     Il punteggio sarà ovviamente migliore.
+     E' BENE però, in questo caso, ESSERE POI COMPLETAMENTE FEDELI ALLA SCELTA FATTA
+
+  -- SE SI FA UN ARCHITETTURA ad esempio LOGIC VIEW, a quel punto non si può ragionare solo con coordinate grafiche,
+     poiché non avrebbe senso aver inserito questa suddivisione.
+     A quel punto si deve ragionare suddividendo COORDINATE LOGICHE e GRAFICHE
+
+  >>> ARCHITETTURA "Model - View - Controller"
+  -- va descritta al CAPITOLO 3 della TESINA
+
+  -- devono essere presenti almeno 3 sottopacchetti <Model>, <View>, <Controller>
+     Ovviamente, se faccio ciò, DEVO rispettare il ruolo delle classi che si trovano nei vari package
+     E' a questo punto fondamentale essere coerenti.
+
+  -> <MODEL>
+    gestisce lo STATO dell'applicazione (riascolta)
+    Strutture dati periodicamente riaggiornate
+
+  -> <VIEW>
+    tutto quello che riguarda l'interfaccia grafica, coordinate grafiche, (riasc)
+    TUTTE le classi che dipendono/usano componenti grafiche si trovano nel VIEW.
+    Il model, ad esempio, NON AVRA' alcun import o utilizzo di classi grafiche.
+     - fare ciò porterebbe a PENALIZZAZIONI
+
+     - ad esempio, la RICERCA DELLE COLLISIONI NON potrà essere effettuate qua nel VIEW in coordinate grafiche, bensì nel (controller??) in coordinate grafiche
+
+  -> <CONTROLLER>
+    gestisce la logica di evoluzione
+
+  -> _COMUNICAZIONE_: doppiamo anche scegliere quale pacchetto interagisce con quale altro
+     (su uno dei template 'LaTeX-template-PIGDM.pdf' di consegna della tesina si trova uno schema riguardo ciò nel capitolo 3.1)
+     (riasc) 
+     ))In questo schema il MODEL è 'slave' e viene solamente interpellato da altri senza mai interagire
+     Se ne possono inventare altri, ma questo è quasi universalmente valido
+     
+     -OSS- le frecce indicano che le classi di X possono inviare messaggi a Y
+        questo potrebbe creare un forte ACCOPPIAMENTO 
+         - non va bene
+        Per aumentare il livello di DISACCOPPIAMENTO è utilizzare il pattern 'Facade'.
+        X (es. Controller) espone un <interfaccia IX> (IController): la lista di metodi che le classi di Y (View) possono inviare a X (Controller) 
+        Tutte le classi di Y (VIEW) dipenderanno solamente dall'implementazione di IX (IController)
+        Così facendo ho DISACCOPPIAMENTO: se modifico una classe di X (Controller), Y (View) non ne risentirà
+
+     -ESEMPIO- vedi su [Unistudium] lo sviluppo del gioco 'Tetris'. Qua si trova ad esempio "IModel"
+
+     - BUONE CARATTERISTICHE: numero minimo di metodi, con nomi e parametri semplici (riasc)
+
+     -OSS- nel precedente schema le classi (ad esempio) del Controller, dovranno dipendere idealmente solo da IView
+     A tale fine, si può utilizzare il pattern 'Singleton'
+
+  -> _SINGLETON_ (riasc)
+    -- si può usare (asc)
+
+    -- un'altra soluzione abbastanza pulita è quella che il professore ha utilizzato per "jball"
+      Questo è in architettura "Logic - View"
+
+
+  >>> ARCHITETTURA "Logic - View"
+    -- Model e Controller sono stati uniti nel -> Logic
+
+    -- l'architettura è così molto semplificata poiché ora devono semplicemente interagire il Logic e il View con interfaccie ILogic e IView 
+
+    -- in java un
+
+>>> SOLUZIONE PER DISACCOPPIAMENTO (riasc) -- vista con l'architettura Logic-View
+     (dovrebbe averla caricata online {vedi online})
+  -- un interface può avere una lista di metodi privi di implementazione
+
+  -- ma anche METODI STATICI che hanno implementazione
+    -> quindi si può ad esempio scrivere un metodo
+    
+    public static ILogic getInstance() {
+        return Logic.getInstance();
+    }
+
+
+    > così facendo se una qualunque classe esterna al logic importa solamente ILogic
+      Questa potrà interagire con l'interezza del Logic tramite il metodo getInstance() che mi fornisce un istanza di Logic
+      In questo modo non devo interagire con le classi concrete del Logic, ma solo con l'interfaccia ILogic
+
+  
+>>>>
+  >>>
