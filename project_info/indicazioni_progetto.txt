@@ -1,5 +1,5 @@
 -- Indicazioni fornite in data 22 / 05 / 2025 
--- {Registrazione} presente su "Tablet Samsung 9FE" > "Samsung Notes" > "Università" > "II Anno" > "PIGDM" > "Indicazioni Progetto"
+-- {Registrazione} presente su 'Tablet Samsung 9FE' > "Samsung Notes" > "Università" > "II Anno" > "PIGDM" > "Indicazioni Progetto"
 
 ___________________________________________________________________________________________________________________________________
             <INDICAZIONI SU COME STRUTTURARE IL PROGETTO>  
@@ -32,7 +32,7 @@ ________________________________________________________________________________
   -> _IN FASE DI CONSEGNA_: va consegnata anche la sorgente (codice sorgente) della tesina
 
   -- requisiti, scritti sinteticamente, in modo telegrafico, come elenco puntato _e_ suddivisi in:
-    - 'funzionali' [viste dal player] (salvare punteggio partita e riprenderla, pausa, ecc.)
+    - 'funzionali' [viste dal player] (salvare punteggio partita e riprenderla, pausa, presenza di audio disattivabile, ecc.)
     - 'non funzionali' [ad esempio l'architettura di progettazione dell'applicazione] (es. monolitica, o di altro tipo di design pattern)
     - altri ancora; come ad esempio 'di gioco' (n° livelli presenti, meccaniche, ecc.)
 
@@ -45,26 +45,35 @@ ________________________________________________________________________________
      Se il .zip eccede i 100MB andrà consegnato poi con OneDrive - in tal caso va inserito un README su Unistudium con spiegazioni, ecc.
   -- andrà provato sul proprio dispositivo
 
-  >>> <PUNTEGGIO> (PER TUTTA LA SEZIONE riascolta audio) (circa 1:03:00)
-  -> Punteggio: (riascolta audio) e vedi su [Unistudium] a cosa sono associati tot. punti e punteggio
-     Anche la tesina viene valutata - vi deve essere inserita SOLO la verità e solo feature o informazioni che sono effettivamente state inserite
-
-     >> accuratezza:
-     (riascolta)
-     >> completezza: non vuol dire che deve essere
-
-     >> software:
-
-     >> efficacia: se il progetto, per quanto possa essere difficile, funziona e fa quanto deve fare
+  >>> <PUNTEGGIO> (su audio - circa 1:03:00)
+  -> Punteggio:
+     Anche la tesina viene valutata {12/30isimi} - vi deve essere inserita SOLO la verità e solo feature o informazioni che sono effettivamente state inserite
+     La suddivisione dei punteggi è:
+     
+     __12/30 : tesina
+     >> accuratezza: dire solo cose che riflettono quanto è stato fatto, senza inventare nulla o dire cose errate
+     >> completezza: non omettere cose importanti - descrivere le parti più importanti e essenziali di un software complicato
+     >> sinteticità: non scrivere troppo - 10 /massimo 20 pagine se con molte immagini 
+     >> leggibilità:
+     >> estetica: inserire ad esempio DIAGAMMI UML e IMMAGINI per aiutare nella lettura e comprensione
+     
+     __20/30 : sistema softwarw, suddiviso in
+        < livello di difficoltà {8/30} >
+        < efficacia {8/30} >
+        >> efficacia {8/30}: se il progetto, per quanto possa essere difficile, funziona e fa quanto deve fare
         - se ci sono malfunzionamenti vengono ridotti punti
         - bug possono essere presenti e sono più tollerati
 
-    >> pulizia: se il codice è ben comprensibile (riasc.)
-
-    >> scomposizione architetturale:
+        < qualità {4/30} >
+        >> software:
+        >> pulizia: se il codice è ben comprensibile e scritto in maniera pulita
+        - metodi con nomi autoesplicativi e con lunghezza contenuta
+        - leggendo il codice si capisce subito la logica
+        - niente istruzioni complicate o numeri magici
+        >> scomposizione architetturale:
         - è BEN VALUTATO un software che abbia una scomposizione architetturale
         - è invece poco gradita un'architettura monolitica
-      è ad esempio suggerita "Model - View - Controller" (vedi Unistudium > Tetris) o "Logic View"
+          è ad esempio suggerita "Model - View - Controller" (vedi Unistudium > progetto Tetris) o "Logic View"
 
   
 >>>> STRUTTURA
@@ -79,7 +88,7 @@ ________________________________________________________________________________
      Dunque vi ha sede anche il bitecode
 
     --> OSSERVA
-       gli ide mettono tutto in una cartella Source: questo NON VA bene
+       gli IDE mettono tutto in una cartella Source: questo NON VA bene
        Source è una cartella del FileSystem, non si riflette nel codice sorgente
 
        -avremmo in questo caso un architetturea del tipo
@@ -131,23 +140,34 @@ ________________________________________________________________________________
      E' a questo punto fondamentale essere coerenti.
 
   -> <MODEL>
-    gestisce lo STATO dell'applicazione (riascolta)
-    Strutture dati periodicamente riaggiornate
+    gestisce lo STATO dell'applicazione
+    Contiene tutte le informazioni e strutture dati che servono a sapere lo stato attuale dell'applicazione e come questa dovrà evolvere
+    Tali strutture dati saranno periodicamente riaggiornate, ma sempre custodite nel Model
 
   -> <VIEW>
-    tutto quello che riguarda l'interfaccia grafica, coordinate grafiche, (riasc)
+    tutto quello che riguarda il rendering grafico - l'interfaccia grafica, coordinate grafiche, pannelli, ecc.
     TUTTE le classi che dipendono/usano componenti grafiche si trovano nel VIEW.
     Il model, ad esempio, NON AVRA' alcun import o utilizzo di classi grafiche.
      - fare ciò porterebbe a PENALIZZAZIONI
 
-     - ad esempio, la RICERCA DELLE COLLISIONI NON potrà essere effettuate qua nel VIEW in coordinate grafiche, bensì nel (controller??) in coordinate grafiche
+     - ad esempio
+       > se ho un oggetto collidente (come un astronave) questo sarà descritto nel Model da coordinate logiche
+         e poi renderizzata nel View con coordinate grafiche
+       > la RICERCA DELLE COLLISIONI dunque va effettuata in coordinate logiche nel Model
+         e NON potrà essere effettuate qua nel VIEW in coordinate grafiche
+         se così fosse infatti nel View ci sarebbe logica di gioco, mentre questa deve essere presente SOLO nel Model
 
   -> <CONTROLLER>
-    gestisce la logica di evoluzione
+    gestisce la logica di evoluzione e l'evoluzione
+    Stabilisce come deve evolvere il gioco; contiene la logica di evoluzione.
+
+  -> <Altri sottopackage>
+    ci possono comunque essere altri sottopackage, ma non sono necessari
+    Ad esempio ci potrebbe essere un sottopackage <UTIL> con classi di utilità e costanti o <IO> con classi di Input / Output
 
   -> _COMUNICAZIONE_: doppiamo anche scegliere quale pacchetto interagisce con quale altro
      (su uno dei template 'LaTeX-template-PIGDM.pdf' di consegna della tesina si trova uno schema riguardo ciò nel capitolo 3.1)
-     (riasc) 
+     (audio circa 1:22:00) 
      ))In questo schema il MODEL è 'slave' e viene solamente interpellato da altri senza mai interagire
      Se ne possono inventare altri, ma questo è quasi universalmente valido
      
@@ -155,9 +175,9 @@ ________________________________________________________________________________
         questo potrebbe creare un forte ACCOPPIAMENTO 
          - non va bene
         Per aumentare il livello di DISACCOPPIAMENTO è utilizzare il pattern 'Facade'.
-        X (es. Controller) espone un <interfaccia IX> (IController): la lista di metodi che le classi di Y (View) possono inviare a X (Controller) 
-        Tutte le classi di Y (VIEW) dipenderanno solamente dall'implementazione di IX (IController)
-        Così facendo ho DISACCOPPIAMENTO: se modifico una classe di X (Controller), Y (View) non ne risentirà
+        X (es. Controller) espone un <interfaccia IX> (IControllerForView): la lista di metodi che le classi di Y (View) possono inviare a X (Controller) 
+        Tutte le classi di Y (VIEW) dipenderanno solamente dall'implementazione di IX (IControllerForView)
+        Così facendo ho DISACCOPPIAMENTO: se modifico una classe di X (Controller), Y (View) non ne risentirà poiché IX (IControllerForView) è un interfaccia che espone i soli nomi e non implementazioni
 
      -ESEMPIO- vedi su [Unistudium] lo sviluppo del gioco 'Tetris'. Qua si trova ad esempio "IModel"
 
