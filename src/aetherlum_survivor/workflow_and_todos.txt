@@ -3,17 +3,47 @@ Qua è indicato il workflow e l'ordine di cose che stai facendo / lasciando in s
 ___________________________________________________________________________________________________________________________
 >> WORKFLOW
 ___________________________________________________________________________________________________________________________
-- Main class in container
+- openGamePanel() e creare la classe GamePanel
 
-- singleton --> creo IControllerForView e la seguente ControllerForView
+- a partire da ciò iniziare a lavorare anche sul Model e dunque sulla logica di gioco
 
-- creo il metodo openJFrame() - apre l'unica finestra dove saranno renderizzate le altre che sono dei JPanel
-  Istanzio poi il JFrame grazie a ControllerForView.openJFrame()
+- per iniziare il movimento del personaggio principale
+  Sempre per iniziare, puoi trattarlo come un semplice rettangolo senza skin, aggiungendola poi solo in un seconod momento
 
-- creo il metodo openStartWindow() nel ControllerForView
-  la StartWindow è inizializzata dal ControllerForView.onpenStartWindow()
 
+
+->>> FUTURE
+
+- quando ti ritroverai a dover fare il menù di pausa dal GamePanel
+  > sappiamo che questo presenta gli attributi del personaggio
+  > deve anche presentare le impostazioni
+  > una volta ridirezionati al menù delle impostazioni, deve apparire un pulsante di ritorno
+    magari basato sulla presenza di un status = GAMESTARTED --> if(status == GAMESTARTED) {dove int GAMESTARTED = 1;}
+    che ridireziona non al menù principale ma al gioco precedentemente iniziato
 
 ___________________________________________________________________________________________________________________________
 >> TODO
 ___________________________________________________________________________________________________________________________
+<STARTPANEL>
+  -sistemare grafica del menù principale, inserire audio, inserie immagine di sfondo
+  -Sistemare anche il Look&Feel con uno già creato con stile dark-fantasy
+  - finalizzare il menù delle impostazioni, dove sarà possibile disattivare l'audio (e eventuali altre opzioni)
+
+-OPTIONAL aggiungere al menù principale un bottone che ridiriga ad un panel di testo dove è presente una breve sinossi
+ del gioco e di ciò che sta accadendo (paladini di Laertel che provano a controbattere le orde infinite della Piaga)
+
+
+___________________________________________________________________________________________________________________________
+>> ERRORI E PROBLEMATICHE RISCONTRATE
+___________________________________________________________________________________________________________________________
+
+---Ogni tanto non runna il codice correttamente e appare il seguente errore, poi risolto con il solo rerun dell'applicazione
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.awt.Container.setLayout(java.awt.LayoutManager)" because "this.contPane" 
+is null
+        at aetherlum_survivor.view.View.openStartPanel(View.java:51)
+        at aetherlum_survivor.controller.ControllerForView.openStartPanel(ControllerForView.java:29)
+        at aetherlum_survivor.controller.ControllerForView.startApplication(ControllerForView.java:24)
+        at aetherlum_survivor.controller.Main.main(Main.java:6)
+>>>risolto: il multithreading esegue startApplication() e openGamePanel(); openGamePanel è eseguito subito mentre startApplication ogni tanto attende un attimo
+            dunque trova il contPane = null
+---

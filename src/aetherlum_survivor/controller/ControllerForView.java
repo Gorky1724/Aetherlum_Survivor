@@ -1,5 +1,7 @@
 package aetherlum_survivor.controller;
 
+import javax.swing.SwingUtilities;
+
 import aetherlum_survivor.view.View;
 
 public class ControllerForView implements InterfaceControllerForView{
@@ -18,14 +20,41 @@ public class ControllerForView implements InterfaceControllerForView{
     //---------------------------------------------------------------
 	//! PUBLIC INSTANCE METHODS
 
+    @Override
     public void startApplication() {
-        View.getInstance().openGameFrame(); //creates unical frame for the whole application
-        this.openStartPanel();
+        //multithreading
+        SwingUtilities.invokeLater(new Runnable() { 
+        @Override
+        public void run() {
+            View.getInstance().openGameFrame(); //per avere un unico frame su cui inserire i panel 
+            ControllerForView.getInstance().openStartPanel();
+        }
+    });
     }
 
+    @Override
     public void openStartPanel() {
         View.getInstance().openStartPanel();
+    }
 
+    @Override
+    public void closeStartPanel() {
+        View.getInstance().closeStartPanel();
+    }
+
+    @Override
+    public void openSettingsPanel() {
+        View.getInstance().openSettingsPanel();
+    }
+
+    @Override
+    public void closeSettingsPanel() {
+        View.getInstance().closeSettingsPanel();
+    }
+
+    @Override
+    public void openGamePanel() {
+        View.getInstance().openGamePanel();
     }
 
 
