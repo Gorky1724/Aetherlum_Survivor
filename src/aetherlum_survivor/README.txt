@@ -1,0 +1,1 @@
+The main class is in <aetherlum_survivor.controller.Main>

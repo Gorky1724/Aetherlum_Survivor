@@ -1,0 +1,19 @@
+Qua è indicato il workflow e l'ordine di cose che stai facendo / lasciando in sospeso
+
+___________________________________________________________________________________________________________________________
+>> WORKFLOW
+___________________________________________________________________________________________________________________________
+- Main class in container
+
+- singleton --> creo IControllerForView e la seguente ControllerForView
+
+- creo il metodo openJFrame() - apre l'unica finestra dove saranno renderizzate le altre che sono dei JPanel
+  Istanzio poi il JFrame grazie a ControllerForView.openJFrame()
+
+- creo il metodo openStartWindow() nel ControllerForView
+  la StartWindow è inizializzata dal ControllerForView.onpenStartWindow()
+
+
+___________________________________________________________________________________________________________________________
+>> TODO
+___________________________________________________________________________________________________________________________
