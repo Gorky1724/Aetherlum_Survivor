@@ -32,6 +32,7 @@ public class ControllerForView implements InterfaceControllerForView{
     });
     }
 
+    //PANEL MANAGEMENT_____________________________
     @Override
     public void openStartPanel() {
         View.getInstance().openStartPanel();
@@ -55,6 +56,22 @@ public class ControllerForView implements InterfaceControllerForView{
     @Override
     public void openGamePanel() {
         View.getInstance().openGamePanel();
+    }
+
+    @Override
+    public void closeGamePanel() {
+        View.getInstance().closeGamePanel();
+    }
+
+    @Override
+    public void requestStartGameLoop() {
+        ControllerForModel.getInstance().startGameLoop();
+    }
+
+    //UPDATE_____________________________
+    @Override
+    public void requestViewUpdate() {
+        //TODO
     }
 
 

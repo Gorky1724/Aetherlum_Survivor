@@ -4,6 +4,7 @@ public interface InterfaceControllerForView {
 
     public void startApplication();
 
+    //panels management
     public void openStartPanel();
 
     public void closeStartPanel();
@@ -13,5 +14,12 @@ public interface InterfaceControllerForView {
     public void closeSettingsPanel();
 
     public void openGamePanel();
+
+    public void closeGamePanel();
+
+    public void requestStartGameLoop();
+
+    //update
+    public void requestViewUpdate();
     
 }

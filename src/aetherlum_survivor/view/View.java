@@ -49,7 +49,7 @@ public class View implements InterfaceView {
         //change frame location
         final int X_LOC = 550;
         final int Y_LOC = 100;
-        gameFrame.setLocation(X_LOC,Y_LOC);
+        this.gameFrame.setLocation(X_LOC,Y_LOC);
 
         this.gameFrame.pack();
     }
@@ -59,7 +59,7 @@ public class View implements InterfaceView {
         this.contPane.removeAll();
 
         this.gameFrame.revalidate();
-        this.gameFrame.repaint();
+        //this.gameFrame.repaint();
     }
 
     @Override
@@ -70,14 +70,32 @@ public class View implements InterfaceView {
 
     @Override
     public void closeSettingsPanel(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'openGamePanel'");
+        this.contPane.removeAll();
+
+        this.gameFrame.revalidate();
+        //this.gameFrame.repaint();;
     }
 
     @Override
     public void openGamePanel(){
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'openGamePanel'");
+        GamePanel gamePanel = new GamePanel();
+
+        this.contPane.add(gamePanel);
+        
+        //change frame location
+        final int X_LOC = 300;
+        final int Y_LOC = 70;
+        gameFrame.setLocation(X_LOC,Y_LOC);
+
+        this.gameFrame.pack();
+    }
+
+    @Override
+    public void closeGamePanel(){
+        this.contPane.removeAll();
+
+        this.gameFrame.revalidate();
+        //this.gameFrame.repaint();
     }
 
     //---------------------------------------------------------------

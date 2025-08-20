@@ -13,5 +13,7 @@ public interface InterfaceView {
     public void closeSettingsPanel();
 
     public void openGamePanel();
+
+    public void closeGamePanel();
     
 }

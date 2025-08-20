@@ -74,6 +74,7 @@ public class StartPanel extends JPanel {
     private void handleNewGameEvent() {
         ControllerForView.getInstance().closeStartPanel();
         ControllerForView.getInstance().openGamePanel();
+        ControllerForView.getInstance().requestStartGameLoop();
         
         System.out.println(">> New Game Started from Start Panel");
     }
