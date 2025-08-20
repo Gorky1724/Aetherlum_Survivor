@@ -1,5 +1,7 @@
 package aetherlum_survivor.controller;
 
+import aetherlum_survivor.to_delete.GameLoop;
+
 public class ControllerForModel implements InterfaceControllerForModel{
 
     //---------------------------------------------------------------
@@ -14,40 +16,25 @@ public class ControllerForModel implements InterfaceControllerForModel{
 	//! PUBLIC INSTANCE METHODS
 
     @Override
-    public synchronized void startGameLoop() {
-        /*SYNCHRONIZED prevents thread interference and memory consistency errors
-        if morethreads need to read or write the same variables */
-        
-        if (this.gameLoop != null && this.gameLoop.isRunning()) { //gameLoop is already started
-            return;
-        }
-
-        if (this.gameLoop != null && !this.gameLoop.isRunning()) { //gameLoop exists but is not running
-            gameLoop.stopGame();
-        }
-
-        this.gameLoop = new GameLoop();
-        this.gameLoop.run(); //the gameLoop starts
+    public void startGameLoop() {
+        //TODO
 
         System.out.println(">> GameLoop Running");
     }
 
-    public synchronized void stopGameLoop() {
-        if (this.gameLoop != null && this.gameLoop.isRunning()) {
-            this.gameLoop.stopGame();
-        }
+    @Override
+    public void stopGameLoop() {
+        //TODO
+    }
+
+    @Override
+    public  void pauseGameLoop() {
+        //TODO
     }
     
-    public synchronized void pauseGameLoop() {
-        if (this.gameLoop != null) {
-            this.gameLoop.pauseGame();
-        }
-    }
-    
-    public synchronized void resumeGameLoop() {
-        if (this.gameLoop != null) {
-            this.gameLoop.resumeGame();
-        }
+    @Override
+    public  void resumeGameLoop() {
+        //TODO
     }
 
     //---------------------------------------------------------------
