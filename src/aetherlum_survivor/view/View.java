@@ -3,25 +3,30 @@ package aetherlum_survivor.view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import aetherlum_survivor.util.Constants;
+import java.awt.Dimension; 
+
+import java.awt.CardLayout; //to alternate JPanel
 
 public class View implements InterfaceView {
 
     //---------------------------------------------------------------
-	//! PRIVATE STATIC ATTRIBUTES
+	//! PRIVATE STATIC & NON ATTRIBUTES
 
     private static View instance = null;
-    private JFrame gameFrame; //TODO jframe e contPane erano protected
-    private Container contPane;
+    private JFrame gameFrame; 
 
-    //to have single instatiations
     private StartPanel startPanel;
     private SettingsPanel settingsPanel;
     private GamePanel gamePanel;
 
-    //panel currently shown
-    private JPanel currentPanel;
+    private JPanel cardPanel;
+    private CardLayout cardLayout;
+    
+    //strings to refer for the JPanel switch via CardLayout
+    private static final String START_PANEL = "START";
+    private static final String SETTINGS_PANEL = "SETTINGS";
+    private static final String GAME_PANEL = "GAME";
 
     //---------------------------------------------------------------
 
@@ -39,71 +44,57 @@ public class View implements InterfaceView {
         if(this.gameFrame == null) {
             this.gameFrame = new JFrame();
             this.gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.gameFrame.setPreferredSize(new Dimension(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT));
             this.gameFrame.setResizable(false); //the screen dimension must not vary
+            //change frame location
+            final int X_LOC = 300;
+            final int Y_LOC = 70;
+            this.gameFrame.setLocation(X_LOC,Y_LOC);
             this.gameFrame.setTitle("Aetherlum Survivor");
 
-            this.contPane = gameFrame.getContentPane();
+            //to setup CardLayout
+            this.cardLayout = new CardLayout();
+            this.cardPanel = new JPanel(cardLayout);
+
+            this.startPanel = new StartPanel();
+            this.settingsPanel = new SettingsPanel();
+            this.gamePanel = new GamePanel();
+            
+            this.cardPanel.add(this.startPanel, START_PANEL);
+            this.cardPanel.add(this.gamePanel, GAME_PANEL);
+            this.cardPanel.add(this.settingsPanel, SETTINGS_PANEL);
+            
+            this.gameFrame.add(this.cardPanel);
+            this.gameFrame.setVisible(true);
         }
-        this.gameFrame.setVisible(true);
     }
 
     @Override
     public void openStartPanel(){
-        if (this.startPanel == null) {
-            this.startPanel = new StartPanel();
-        }
+        this.cardLayout.show(cardPanel, START_PANEL);
 
-        switchToPanel(this.startPanel);
-
-        //change frame location
-        final int X_LOC = 550;
-        final int Y_LOC = 100;
-        this.gameFrame.setLocation(X_LOC,Y_LOC);
-
+        this.gameFrame.revalidate();
+        this.gameFrame.repaint();
         this.gameFrame.pack();
     }
 
     @Override
     public void openSettingsPanel(){
+        this.cardLayout.show(cardPanel, SETTINGS_PANEL);
+
+        this.gameFrame.revalidate();
+        this.gameFrame.repaint();
+        this.gameFrame.pack();
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'openGamePanel'");
     }
 
     @Override
     public void openGamePanel(){
-        if(this.gamePanel == null) {
-            this.gamePanel = new GamePanel();
-        }
+        this.cardLayout.show(cardPanel, GAME_PANEL);
 
-        switchToPanel(this.gamePanel);
-        
-        //change frame location
-        final int X_LOC = 300;
-        final int Y_LOC = 70;
-        this.gameFrame.setLocation(X_LOC,Y_LOC);
-
-        this.gameFrame.pack();
-    }
-
-    @Override
-    public void switchToPanel(JPanel newPanel) {
-        //close precedently shown panel
-        if (this.currentPanel != null) {
-            this.contPane.remove(this.currentPanel);
-        }
-
-        //add to gameFrame
-        this.contPane.setLayout(new BorderLayout());
-        this.contPane.add(newPanel, BorderLayout.CENTER);
-
-        //updates current panel
-        this.currentPanel = newPanel;
-
-        //updates frame
         this.gameFrame.revalidate();
         this.gameFrame.repaint();
         this.gameFrame.pack();
-
     }
 
     //---------------------------------------------------------------

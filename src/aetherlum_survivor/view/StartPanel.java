@@ -72,19 +72,69 @@ public class StartPanel extends JPanel {
         this.add(this.settingsMenuButton, layout);
     }
 
+    /*
     private void handleNewGameEvent() {
-        ControllerForView.getInstance().openGamePanel();
-        System.out.println(">> StartPanel --> GamePanel");
-
-        //to grant that UI is updated before starting newGame
+        //nested to avoid that requestSGL() is executed before openGamePanel()
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                System.out.println(">> New Game Started from Start Panel");
-                ControllerForView.getInstance().requestStartGameLoop();
+                ControllerForView.getInstance().openGamePanel();
+                System.out.println(">> StartPanel --> GamePanel");
+
+                //to grant that UI is updated before starting newGame
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println(">> New Game Started from Start Panel");
+                        ControllerForView.getInstance().requestStartGameLoop();
+                    }
+                });
             }
         });
         
+    }
+    */
+    private void handleNewGameEvent() {
+        System.out.println("=== DEBUG START ===");
+        System.out.println("1. handleNewGameEvent() iniziato - Thread: " + Thread.currentThread().getName());
+        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("2. Primo invokeLater eseguito - Thread: " + Thread.currentThread().getName());
+                
+                try {
+                    System.out.println("3. Chiamando ControllerForView.openGamePanel()...");
+                    ControllerForView.getInstance().openGamePanel();
+                    System.out.println("4. ControllerForView.openGamePanel() completato");
+                    
+                    System.out.println("5. Accodando secondo invokeLater...");
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("6. Secondo invokeLater eseguito - Thread: " + Thread.currentThread().getName());
+                            
+                            try {
+                                System.out.println("7. Chiamando requestStartGameLoop()...");
+                                ControllerForView.getInstance().requestStartGameLoop();
+                                System.out.println("8. requestStartGameLoop() completato");
+                            } catch (Exception e) {
+                                System.err.println("ERRORE in requestStartGameLoop(): " + e.getMessage());
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    System.out.println("9. Secondo invokeLater accodato");
+                    
+                } catch (Exception e) {
+                    System.err.println("ERRORE in openGamePanel(): " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        System.out.println("10. handleNewGameEvent() terminato");
+        System.out.println("=== DEBUG END ===");
     }
 
     private void handleSettingsMenuEvent() {

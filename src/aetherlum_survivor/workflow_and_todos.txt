@@ -47,3 +47,15 @@ is null
 >>>risolto: il multithreading esegue startApplication() e openGamePanel(); openGamePanel è eseguito subito mentre startApplication ogni tanto attende un attimo
             dunque trova il contPane = null
 ---
+
+---A non far interferire il thread del GameLoop con l'apertura del GamePanel
+
+---
+
+___________________________________________________________________________________________________________________________
+>> COSE USATE FORSE NON FATTE A LEZIONE
+___________________________________________________________________________________________________________________________
+
+<CardLayout> per alternare con pulizia trai vari panel
+
+<Thread> per istanziare il GameLoop
