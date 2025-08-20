@@ -3,7 +3,7 @@ package aetherlum_survivor.controller;
 public class GameLoop extends Thread {
     private volatile boolean running = false; //VOLATILE to be visible between threads if needed
     private volatile boolean paused = false; //to pause game
-    private final int TARGET_FPS = 60;
+    private final int TARGET_FPS = 1;
     private final long FRAME_TIME = 1000 / TARGET_FPS; // frame duration (seconds)
         
     public GameLoop() {
@@ -28,31 +28,31 @@ public class GameLoop extends Thread {
                 // Aggiorna la logica di gioco
                 update(deltaTime);
                 
-                // Notifica il controller per aggiornare la view
-                ControllerForView.getInstance().requestViewUpdate();
-                
                 lastTime = currentTime;
             }
-            
+            /*
             try {
                 Thread.sleep(FRAME_TIME); //to maintain FPS constant
             } catch (InterruptedException e) { //if something interrupts thread
                 Thread.currentThread().interrupt();
                 break;
-            }
+            }*/
         }
     }
     
     private void update(long deltaTime) {
         /* 
-        // Logica di aggiornamento del gioco
+        // update game logic
         ControllerForModel.getInstance().modelUpdate(deltaTime);
+
+        // update game view
+        ControllerForView.getInstance().requestViewUpdate();
         
         // Controlla condizioni di fine gioco
         if (ControllerForModel.getInstance().isGameOver()) {
             stopGame();
         }
-            */
+        */
     }
     
     public void startGame() {
