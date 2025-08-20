@@ -1,19 +1,17 @@
 package aetherlum_survivor.view;
 
+import javax.swing.JPanel;
+
 public interface InterfaceView {
 
     public void openGameFrame();
 
     public void openStartPanel();
 
-    public void closeStartPanel();
-
     public void openSettingsPanel();
     
-    public void closeSettingsPanel();
-
     public void openGamePanel();
 
-    public void closeGamePanel();
+    public void switchToPanel(JPanel newPanel);
     
 }

@@ -7,15 +7,9 @@ public interface InterfaceControllerForView {
     //panels management
     public void openStartPanel();
 
-    public void closeStartPanel();
-
     public void openSettingsPanel();
 
-    public void closeSettingsPanel();
-
     public void openGamePanel();
-
-    public void closeGamePanel();
 
     //updates and requests
     public void requestStartGameLoop();

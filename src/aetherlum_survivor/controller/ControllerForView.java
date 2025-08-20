@@ -44,31 +44,11 @@ public class ControllerForView implements InterfaceControllerForView{
     }
 
     @Override
-    public void closeStartPanel() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().closeStartPanel();
-            }
-        });
-    }
-
-    @Override
     public void openSettingsPanel() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 View.getInstance().openSettingsPanel();
-            }
-        });
-    }
-
-    @Override
-    public void closeSettingsPanel() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().closeSettingsPanel();
             }
         });
     }
@@ -83,15 +63,6 @@ public class ControllerForView implements InterfaceControllerForView{
         });
     }
 
-    @Override
-    public void closeGamePanel() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().closeGamePanel();
-            }
-        });
-    }
 
     //UPDATES and REQUESTS_____________________________
     @Override

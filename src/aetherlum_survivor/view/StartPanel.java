@@ -73,7 +73,6 @@ public class StartPanel extends JPanel {
     }
 
     private void handleNewGameEvent() {
-        ControllerForView.getInstance().closeStartPanel();
         ControllerForView.getInstance().openGamePanel();
         System.out.println(">> StartPanel --> GamePanel");
 
