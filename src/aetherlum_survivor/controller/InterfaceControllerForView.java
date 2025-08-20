@@ -17,9 +17,9 @@ public interface InterfaceControllerForView {
 
     public void closeGamePanel();
 
+    //updates and requests
     public void requestStartGameLoop();
 
-    //update
     public void requestViewUpdate();
     
 }

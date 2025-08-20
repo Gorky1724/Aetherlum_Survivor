@@ -4,6 +4,7 @@ import aetherlum_survivor.controller.ControllerForView;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -74,9 +75,17 @@ public class StartPanel extends JPanel {
     private void handleNewGameEvent() {
         ControllerForView.getInstance().closeStartPanel();
         ControllerForView.getInstance().openGamePanel();
-        ControllerForView.getInstance().requestStartGameLoop();
+        System.out.println(">> StartPanel --> GamePanel");
+
+        //to grant that UI is updated before starting newGame
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(">> New Game Started from Start Panel");
+                ControllerForView.getInstance().requestStartGameLoop();
+            }
+        });
         
-        System.out.println(">> New Game Started from Start Panel");
     }
 
     private void handleSettingsMenuEvent() {

@@ -32,6 +32,24 @@ public class ControllerForModel implements InterfaceControllerForModel{
         System.out.println(">> GameLoop Running");
     }
 
+    public synchronized void stopGameLoop() {
+        if (this.gameLoop != null && this.gameLoop.isRunning()) {
+            this.gameLoop.stopGame();
+        }
+    }
+    
+    public synchronized void pauseGameLoop() {
+        if (this.gameLoop != null) {
+            this.gameLoop.pauseGame();
+        }
+    }
+    
+    public synchronized void resumeGameLoop() {
+        if (this.gameLoop != null) {
+            this.gameLoop.resumeGame();
+        }
+    }
+
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------

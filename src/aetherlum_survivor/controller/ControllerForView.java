@@ -24,51 +24,81 @@ public class ControllerForView implements InterfaceControllerForView{
     public void startApplication() {
         //multithreading
         SwingUtilities.invokeLater(new Runnable() { 
-        @Override
-        public void run() {
-            View.getInstance().openGameFrame(); //per avere un unico frame su cui inserire i panel 
-            ControllerForView.getInstance().openStartPanel();
-        }
-    });
+            @Override
+            public void run() {
+                View.getInstance().openGameFrame(); //per avere un unico frame su cui inserire i panel 
+                ControllerForView.getInstance().openStartPanel();
+            }
+        });
     }
 
     //PANEL MANAGEMENT_____________________________
     @Override
     public void openStartPanel() {
-        View.getInstance().openStartPanel();
+        SwingUtilities.invokeLater(new Runnable() { 
+            @Override
+            public void run() {
+                View.getInstance().openStartPanel();
+            }
+        });
     }
 
     @Override
     public void closeStartPanel() {
-        View.getInstance().closeStartPanel();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().closeStartPanel();
+            }
+        });
     }
 
     @Override
     public void openSettingsPanel() {
-        View.getInstance().openSettingsPanel();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().openSettingsPanel();
+            }
+        });
     }
 
     @Override
     public void closeSettingsPanel() {
-        View.getInstance().closeSettingsPanel();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().closeSettingsPanel();
+            }
+        });
     }
 
     @Override
     public void openGamePanel() {
-        View.getInstance().openGamePanel();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().openGamePanel();
+            }
+        });
     }
 
     @Override
     public void closeGamePanel() {
-        View.getInstance().closeGamePanel();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().closeGamePanel();
+            }
+        });
     }
 
+    //UPDATES and REQUESTS_____________________________
     @Override
     public void requestStartGameLoop() {
         ControllerForModel.getInstance().startGameLoop();
     }
 
-    //UPDATE_____________________________
     @Override
     public void requestViewUpdate() {
         //TODO

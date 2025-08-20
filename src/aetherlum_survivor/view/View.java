@@ -59,7 +59,7 @@ public class View implements InterfaceView {
         this.contPane.removeAll();
 
         this.gameFrame.revalidate();
-        //this.gameFrame.repaint();
+        this.gameFrame.repaint();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class View implements InterfaceView {
         this.contPane.removeAll();
 
         this.gameFrame.revalidate();
-        //this.gameFrame.repaint();;
+        this.gameFrame.repaint();;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class View implements InterfaceView {
         this.contPane.removeAll();
 
         this.gameFrame.revalidate();
-        //this.gameFrame.repaint();
+        this.gameFrame.repaint();
     }
 
     //---------------------------------------------------------------
