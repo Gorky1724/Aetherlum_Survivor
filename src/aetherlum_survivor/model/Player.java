@@ -2,6 +2,7 @@ package aetherlum_survivor.model;
 
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
+import aetherlum_survivor.util.EntityLogicalData;
 
 public class Player extends Entity {
 
@@ -13,7 +14,7 @@ public class Player extends Entity {
     private double startY = 0;
     private double baseWidth = Constants.TILE_SIZE;
     private double baseHeight = Constants.TILE_SIZE;
-    
+
 
     //---------------------------------------------------------------
 
@@ -40,14 +41,23 @@ public class Player extends Entity {
         if (pressedLeftKey)
             deltaY -= 1;
         
-        //if keyboard inputs nullify each other
-        if (deltaX == 0 && deltaY == 0) {
+        EntityLogicalData playerELD = getEntityGraphicalData();
+        double currentX = playerELD.getCoordX();
+        double currentY = playerELD.getCoordY();
+        double newX;
+        double newY;
+        if (deltaX == 0 && deltaY == 0) { //if keyboard inputs nullify each other
             return;
         } else if (deltaX != 0 && deltaY != 0) { //diagonal movement - needs normalization
             double normalizationFactor = 0.707; //circa 1/(sqrt(2))
-            this.player.se
-
+            newX = currentX + deltaX * getSpeed() * normalizationFactor;
+            newY = currentY + deltaY * getSpeed() * normalizationFactor;
+        } else { //normal increment
+            newX = currentX + deltaX * getSpeed();
+            newY = currentY + deltaY * getSpeed();
         }
+        playerELD.setCoordX(newX);
+        playerELD.setCoordY(newY);
     }
     //---------------------------------------------------------------
 }

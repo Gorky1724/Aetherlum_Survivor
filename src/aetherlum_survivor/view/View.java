@@ -12,7 +12,7 @@ import java.awt.CardLayout; //to alternate JPanel
 public class View implements InterfaceView {
 
     //---------------------------------------------------------------
-	//! PRIVATE STATIC & NON ATTRIBUTES
+	//! PRIVATE ATTRIBUTES
 
     private static View instance = null;
     private JFrame gameFrame; 
@@ -60,6 +60,7 @@ public class View implements InterfaceView {
             this.startPanel = new StartPanel();
             this.settingsPanel = new SettingsPanel();
             this.gamePanel = new GamePanel();
+            System.out.println("it lives");
             attachKeyListenerToGamePanel();
             
             this.cardPanel.add(this.startPanel, START_PANEL);
@@ -105,7 +106,13 @@ public class View implements InterfaceView {
 
     @Override
     public void attachKeyListenerToGamePanel(){
-        this.gamePanel.addKeyListener((KeyListener) KeyHandler.getInstance());
+        if (this.gamePanel.getKeyListeners().length > 0) { //return array of associated KeyListeners - avoids to attach another one if there is already one
+            this.gamePanel.addKeyListener((KeyListener) KeyHandler.getInstance());
+
+            //grants that keys will be read
+            this.gamePanel.setFocusable(true);
+            this.gamePanel.requestFocus();
+        }
     }
 
     //---------------------------------------------------------------

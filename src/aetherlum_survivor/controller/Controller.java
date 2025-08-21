@@ -66,7 +66,6 @@ public class Controller implements InterfaceController{
             }
         });
     }
-
     
     // HANLDE GAMELOOP_____________________________
     @Override
