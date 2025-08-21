@@ -2,6 +2,7 @@ package aetherlum_survivor.controller;
 
 import javax.swing.SwingUtilities;
 
+import aetherlum_survivor.model.Model;
 import aetherlum_survivor.view.View;
 
 public class ControllerForView implements InterfaceControllerForView{
@@ -66,13 +67,8 @@ public class ControllerForView implements InterfaceControllerForView{
 
     //UPDATES and REQUESTS_____________________________
     @Override
-    public void requestStartGameLoop() {
-        ControllerForModel.getInstance().startGameLoop();
-    }
-
-    @Override
-    public void requestViewUpdate() {
-        //TODO
+    public void startGameLoop() {
+        Model.getInstance().startGameLoop();
     }
 
 

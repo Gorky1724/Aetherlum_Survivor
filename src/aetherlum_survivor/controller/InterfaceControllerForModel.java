@@ -12,7 +12,5 @@ public interface InterfaceControllerForModel {
     public void resumeGameLoop();
 
     // updates and requests
-
     public void requestViewUpdate();
-    
 }

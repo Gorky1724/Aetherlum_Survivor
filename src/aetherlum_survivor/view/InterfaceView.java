@@ -9,5 +9,7 @@ public interface InterfaceView {
     public void openSettingsPanel();
     
     public void openGamePanel();
+
+    public void update();
     
 }

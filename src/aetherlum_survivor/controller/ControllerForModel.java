@@ -1,6 +1,7 @@
 package aetherlum_survivor.controller;
 
 import aetherlum_survivor.model.Model;
+import aetherlum_survivor.view.View;
 
 public class ControllerForModel implements InterfaceControllerForModel{
 
@@ -14,9 +15,10 @@ public class ControllerForModel implements InterfaceControllerForModel{
 	//! PUBLIC INSTANCE METHODS
 
     // HANLDE GAMELOOP_____________________________
+
     @Override
     public void startGameLoop() {
-        Model.getInstance().startGameLoop();
+        //TODO
     }
 
     @Override
@@ -37,7 +39,7 @@ public class ControllerForModel implements InterfaceControllerForModel{
     //UPDATES and REQUESTS_____________________________
     @Override
     public void requestViewUpdate() {
-        ControllerForView.getInstance().requestViewUpdate();
+        View.getInstance().update();
     }
 
     //---------------------------------------------------------------

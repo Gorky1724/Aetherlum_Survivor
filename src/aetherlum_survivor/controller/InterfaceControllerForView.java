@@ -12,8 +12,6 @@ public interface InterfaceControllerForView {
     public void openGamePanel();
 
     //updates and requests
-    public void requestStartGameLoop();
-
-    public void requestViewUpdate();
+    public void startGameLoop();
     
 }

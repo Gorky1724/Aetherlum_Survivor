@@ -49,7 +49,13 @@ is null
 ---
 
 ---A non far interferire il thread del GameLoop con l'apertura del GamePanel
+Ho risolto usando un timer
+---
 
+---Su ControllerForView e ControllerForModel erano separati, come nell'app JTetris fornita dal professore
+Poiché erano così presenti alcuni metodi che non facevano altro che rimandare da un Controller ad un altro
+in un primo momento ho fatto si che il ControllerForX vedesse sempre solo comandi da X ma potesse interagire direttametne con Y
+Poi ho unito i 2 Controller in un controller unico valido sia per Model che per View
 ---
 
 ___________________________________________________________________________________________________________________________

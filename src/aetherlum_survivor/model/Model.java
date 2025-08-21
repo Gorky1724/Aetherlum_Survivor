@@ -19,10 +19,13 @@ public class Model implements InterfaceModel {
 	public void startGameLoop() {
 		
 		this.gameLoop = new GameLoop(e -> {
-		update();
-		ControllerForModel.getInstance().requestViewUpdate();
+			System.out.println("<<< Running >>>");
+			update();
+			ControllerForModel.getInstance().requestViewUpdate();
 		});
-		System.out.println(">> GameLoop Running");
+		System.out.println(">> GameLoop Started");
+
+		this.gameLoop.start();
 	}
 
 	@Override

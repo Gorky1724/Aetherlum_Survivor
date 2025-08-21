@@ -97,6 +97,11 @@ public class View implements InterfaceView {
         this.gameFrame.pack();
     }
 
+    @Override
+    public void update(){
+        this.gamePanel.repaint();
+    }
+
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------
