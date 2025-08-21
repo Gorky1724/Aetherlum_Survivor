@@ -1,6 +1,6 @@
 package aetherlum_survivor.controller;
 
-import aetherlum_survivor.to_delete.GameLoop;
+import aetherlum_survivor.model.Model;
 
 public class ControllerForModel implements InterfaceControllerForModel{
 
@@ -8,18 +8,15 @@ public class ControllerForModel implements InterfaceControllerForModel{
     //! PRIVATE STATIC ATTRIBUTES
     private static ControllerForModel instance = null;
 
-    private GameLoop gameLoop;
-
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------
 	//! PUBLIC INSTANCE METHODS
 
+    // HANLDE GAMELOOP_____________________________
     @Override
     public void startGameLoop() {
-        //TODO
-
-        System.out.println(">> GameLoop Running");
+        Model.getInstance().startGameLoop();
     }
 
     @Override
@@ -35,6 +32,12 @@ public class ControllerForModel implements InterfaceControllerForModel{
     @Override
     public  void resumeGameLoop() {
         //TODO
+    }
+
+    //UPDATES and REQUESTS_____________________________
+    @Override
+    public void requestViewUpdate() {
+        ControllerForView.getInstance().requestViewUpdate();
     }
 
     //---------------------------------------------------------------

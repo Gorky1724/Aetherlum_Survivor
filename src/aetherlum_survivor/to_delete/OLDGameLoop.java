@@ -1,12 +1,12 @@
 package aetherlum_survivor.to_delete;
 
-public class GameLoop extends Thread {
+public class OLDGameLoop extends Thread {
     private volatile boolean running = false; //VOLATILE to be visible between threads if needed
     private volatile boolean paused = false; //to pause game
-    private final int TARGET_FPS = 1;
-    private final long FRAME_TIME = 1000 / TARGET_FPS; // frame duration (seconds)
+    //private final int TARGET_FPS = 1;
+    //private final long FRAME_TIME = 1000 / TARGET_FPS; // frame duration (seconds)
         
-    public GameLoop() {
+    public OLDGameLoop() {
         this.setDaemon(true); // thread auto-closes when the app is closed
     }
     

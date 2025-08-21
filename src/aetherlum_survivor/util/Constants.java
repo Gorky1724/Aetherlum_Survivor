@@ -29,6 +29,9 @@ public class Constants {
     public static final int SHOWN_SCREEN_HEIGHT = tileSize * shownScreenRows;
     */
 
+    public static final int DESIRED_FPS = 60;
+    public static final int TIMER_REPEAT_DELAY = 1000 / DESIRED_FPS; //milliseconds
+
     //---------------------------------------------------------------
     
 }

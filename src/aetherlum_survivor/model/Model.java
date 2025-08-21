@@ -1,13 +1,34 @@
 package aetherlum_survivor.model;
 
+import aetherlum_survivor.controller.ControllerForModel;
+import aetherlum_survivor.model.loop.GameLoop;
+
 public class Model implements InterfaceModel {
 
     //---------------------------------------------------------------
-	//! PRIVATE STATIC ATTRIBUTES
+	//! PRIVATE ATTRIBUTES
 
     private static Model instance = null;
+	private GameLoop gameLoop;
+    //---------------------------------------------------------------
 
+    //---------------------------------------------------------------
+	//! PRIVATE ATTRIBUTES
 
+	@Override
+	public void startGameLoop() {
+		
+		this.gameLoop = new GameLoop(e -> {
+		update();
+		ControllerForModel.getInstance().requestViewUpdate();
+		});
+		System.out.println(">> GameLoop Running");
+	}
+
+	@Override
+	public void update() {
+		//TODO
+	}
 
     //---------------------------------------------------------------
 	//! STATIC METHODS
@@ -18,5 +39,4 @@ public class Model implements InterfaceModel {
 	}
     //---------------------------------------------------------------
 
-    
 }

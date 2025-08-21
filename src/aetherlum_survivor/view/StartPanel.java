@@ -77,14 +77,20 @@ public class StartPanel extends JPanel {
         ControllerForView.getInstance().openGamePanel();
         System.out.println(">> StartPanel --> GamePanel");
 
+        ControllerForView.getInstance().requestStartGameLoop();
+        System.out.println(">> New Game Started from Start Panel");
+        
+        //TODO to try if needed
+        /*
         //to grant that UI is updated before starting newGame
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 System.out.println(">> New Game Started from Start Panel");
-                    ControllerForView.getInstance().requestStartGameLoop();
-                }
+                ControllerForView.getInstance().requestStartGameLoop();
+            }
         });
+        */
     }       
     
     private void handleSettingsMenuEvent() {
