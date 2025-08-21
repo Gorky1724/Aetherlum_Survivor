@@ -6,9 +6,9 @@ import java.util.List;
 
 import aetherlum_survivor.model.Model;
 import aetherlum_survivor.view.View;
-import aetherlum_survivor.util.EntityGraphicalData;
+import aetherlum_survivor.util.EntityLogicalData;
 
-public class Controller implements InterfaceController {
+public class Controller implements InterfaceController{
 
     //---------------------------------------------------------------
     //! PRIVATE STATIC ATTRIBUTES
@@ -19,6 +19,7 @@ public class Controller implements InterfaceController {
     //! CONSTRUCTOR
     private Controller() {
         //default
+        View.getInstance().attachKeyListenerToGamePanel();
     }
 
     //---------------------------------------------------------------
@@ -91,20 +92,19 @@ public class Controller implements InterfaceController {
 
     // EXPOSES DATA_____________________________
     @Override
-    public EntityGraphicalData getPlayerEGD() {
-        return Model.getInstance().getPlayerEGD();
+    public EntityLogicalData getPlayerELD() {
+        return Model.getInstance().getPlayerELD();
     }
 
     @Override
-    public List<EntityGraphicalData> getEnemiesEGD() {
-        return Model.getInstance().getEnemiesEGD();
+    public List<EntityLogicalData> getEnemiesELD() {
+        return Model.getInstance().getEnemiesELD();
     }
 
     @Override
-    public List<EntityGraphicalData> getProjectilesEGD() {
-        return Model.getInstance().getProjectilesEGD();
+    public List<EntityLogicalData> getProjectilesELD() {
+        return Model.getInstance().getProjectilesELD();
     }
-
 
     //---------------------------------------------------------------
 

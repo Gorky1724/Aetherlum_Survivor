@@ -1,11 +1,12 @@
 package aetherlum_survivor.view;
+import aetherlum_survivor.controller.KeyHandler;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import aetherlum_survivor.util.Constants;
-import java.awt.Dimension; 
-
+import java.awt.Dimension;
+import java.awt.event.KeyListener;
 import java.awt.CardLayout; //to alternate JPanel
 
 public class View implements InterfaceView {
@@ -59,6 +60,7 @@ public class View implements InterfaceView {
             this.startPanel = new StartPanel();
             this.settingsPanel = new SettingsPanel();
             this.gamePanel = new GamePanel();
+            attachKeyListenerToGamePanel();
             
             this.cardPanel.add(this.startPanel, START_PANEL);
             this.cardPanel.add(this.gamePanel, GAME_PANEL);
@@ -99,6 +101,11 @@ public class View implements InterfaceView {
     @Override
     public void update(){
         this.gamePanel.repaint();
+    }
+
+    @Override
+    public void attachKeyListenerToGamePanel(){
+        this.gamePanel.addKeyListener((KeyListener) KeyHandler.getInstance());
     }
 
     //---------------------------------------------------------------

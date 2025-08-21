@@ -11,5 +11,7 @@ public interface InterfaceView {
     public void openGamePanel();
 
     public void update();
+
+    public void attachKeyListenerToGamePanel();
     
 }

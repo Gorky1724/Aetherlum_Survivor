@@ -64,6 +64,12 @@ in un primo momento ho fatto si che il ControllerForX vedesse sempre solo comand
 Poi ho unito i 2 Controller in un controller unico valido sia per Model che per View
 ---
 
+---Inizialmente volevo usare il KeyListener: Mettere il keylistener su Controller non lo faceva poi riconoscere da attachKeyListenerToGamePanel() come KeyListener ma solo come InterfaceController
+Più che fare un cast esplicito a KeyListener ho deciso di creare una seconda classe del controller 'KeyHandler'
+Poiché necessitavo della possibilità di dichiarare altri metodi per prendere le pressioni di tasti, ho comunque dovuto fare con cast esplicito a KeyHandler in quanto ne ho dovuto fare InterfaceKeyHandler
+---
+
+
 ___________________________________________________________________________________________________________________________
 >> COSE USATE FORSE NON FATTE A LEZIONE
 ___________________________________________________________________________________________________________________________

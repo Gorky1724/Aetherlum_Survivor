@@ -1,13 +1,14 @@
 package aetherlum_survivor.util;
 
-public class EntityGraphicalData {
+public class EntityLogicalData {
+    //logical coordinates
 
     private double coordX;
     private double coordY;
     private double width;
     private double height;
 
-    public EntityGraphicalData(double coordX, double coordY, double width, double height) {
+    public EntityLogicalData(double coordX, double coordY, double width, double height) {
         this.coordX = coordX;
         this.coordY = coordY;
         this.width = width;

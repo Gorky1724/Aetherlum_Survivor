@@ -6,12 +6,12 @@ public class Constants {
 	//! GRAPHICAL GAMEPANEL DATA
 
     public static final int originalTileSize = 16; //16x16 pixel tile
-    public static final int rescale = 3;
+    public static final int rescale = 2;
 
     public static final int TILE_SIZE = originalTileSize * rescale; //48x48
 
-    public static final int maxScreenColumns = 16;
-    public static final int maxScreenRows = 12;
+    public static final int maxScreenColumns = 24;
+    public static final int maxScreenRows = 18;
 
     public static final int SCREEN_WIDTH = TILE_SIZE * maxScreenColumns; 
     public static final int SCREEN_HEIGHT = TILE_SIZE * maxScreenRows;
@@ -33,5 +33,5 @@ public class Constants {
     public static final int TIMER_REPEAT_DELAY = 1000 / DESIRED_FPS; //milliseconds
 
     //---------------------------------------------------------------
-    
+
 }

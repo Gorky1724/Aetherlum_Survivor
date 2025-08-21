@@ -2,7 +2,7 @@ package aetherlum_survivor.controller;
 
 import java.util.List;
 
-import aetherlum_survivor.util.EntityGraphicalData;
+import aetherlum_survivor.util.EntityLogicalData;
 
 public interface InterfaceController {
     
@@ -26,10 +26,10 @@ public interface InterfaceController {
     public void requestViewUpdate();
 
     //exposes entities
-    public EntityGraphicalData getPlayerEGD();
+    public EntityLogicalData getPlayerELD();
 
-    public List<EntityGraphicalData> getEnemiesEGD();
+    public List<EntityLogicalData> getEnemiesELD();
 
-    public List<EntityGraphicalData> getProjectilesEGD();
+    public List<EntityLogicalData> getProjectilesELD();
 
 }

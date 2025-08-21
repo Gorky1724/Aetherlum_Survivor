@@ -1,6 +1,6 @@
 package aetherlum_survivor.model;
 
-import aetherlum_survivor.util.EntityGraphicalData;
+import aetherlum_survivor.util.EntityLogicalData;
 
 public  class Entity{
 
@@ -8,10 +8,11 @@ public  class Entity{
 	//! PRIVATE ATTRIBUTES
 
     //position and collision
-    private EntityGraphicalData egd;
+    private EntityLogicalData ELD;
 
     //game stats
     private int type;
+    private double speed;
 
     //---------------------------------------------------------------
 
@@ -24,28 +25,35 @@ public  class Entity{
 	//! PUBLIC INSTANCE METHODS
 
     // POSITION AND COLLISION_____________________________
-    protected EntityGraphicalData createEntityGraphicalData(double coordX, double coordY, double width, double height) {
-        return new EntityGraphicalData(coordX, coordY, width, height);
+    protected EntityLogicalData createEntityGraphicalData(double coordX, double coordY, double width, double height) {
+        return new EntityLogicalData(coordX, coordY, width, height);
     }
 
-    protected EntityGraphicalData getEntityGraphicalData() {
-        return this.egd;
+    protected EntityLogicalData getEntityGraphicalData() {
+        return this.ELD;
     }
 
-    protected void setEntityGraphicalData(EntityGraphicalData newEGD) {
-        this.egd = newEGD;
+    protected void setEntityGraphicalData(EntityLogicalData newELD) {
+        this.ELD = newELD;
     }
 
     protected void createAndSetEntityGraphicalData(double coordX, double coordY, double width, double height) {
-        this.egd = new EntityGraphicalData(coordX, coordY, width, height);
+        this.ELD = new EntityLogicalData(coordX, coordY, width, height);
     }
 
     // GAME STATS_____________________________
-    protected int setType() {
+    protected int getType() {
         return this.type;
     }
     protected void setType(int newType) {
         this.type = newType;
+    }
+
+    protected double getSpeed() {
+        return this.speed;
+    }
+    protected void setSpeed(double newSpeed) {
+        this.speed = newSpeed;
     }
 
     //---------------------------------------------------------------

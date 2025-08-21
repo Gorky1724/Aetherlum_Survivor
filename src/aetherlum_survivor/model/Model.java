@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aetherlum_survivor.controller.Controller;
+import aetherlum_survivor.controller.KeyHandler;
 import aetherlum_survivor.model.loop.GameLoop;
-import aetherlum_survivor.util.EntityGraphicalData;
+import aetherlum_survivor.util.EntityLogicalData;
 
 public class Model implements InterfaceModel {
 
@@ -22,20 +23,24 @@ public class Model implements InterfaceModel {
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------
-	//! PRIVATE ATTRIBUTES
+	//! PUBLIC METHODS
 
 	// HANDLE GAMELOOP_____________________________
 	@Override
 	public void startGameLoop() {
 		
 		this.gameLoop = new GameLoop(e -> {
-			System.out.println("<<< Running >>>");
+			//System.out.println("<<< Running >>>");
 			update();
 			Controller.getInstance().requestViewUpdate();
 		});
 		System.out.println(">> GameLoop Started");
 
 		this.gameLoop.start();
+
+		//single creation of player instance at the beginning of the game
+		this.player = new Player();
+
 	}
 
 	@Override
@@ -51,19 +56,25 @@ public class Model implements InterfaceModel {
 	// UPDATE_____________________________
 	@Override
 	public void update() {
-		//TODO
+		// if key input moves player
+		this.player.movePlayer(
+			KeyHandler.getInstance().getUpPressed(),
+			KeyHandler.getInstance().getRightPressed(),
+			KeyHandler.getInstance().getDownPressed(),
+			KeyHandler.getInstance().getLeftPressed()
+		);
 	}
 
-	// EXPOSES ENTITIES___________________
-    private List<EntityGraphicalData> convertToListEGD(List<? extends Entity> enList) {
+	// EXPOSES ENTITIES LOGICAL DATA___________________
+    private List<EntityLogicalData> convertToListELD(List<? extends Entity> enList) {
 		//wildcard: everything that extends Entity
 
-        List<EntityGraphicalData> graphicalDataList = new ArrayList<>();
+        List<EntityLogicalData> graphicalDataList = new ArrayList<>();
 
         // iterates on element of enList
         for (Entity entity : enList) {
             // Per ogni nemico, crea un oggetto EntityGraphicalData
-            EntityGraphicalData data = entity.getEntityGraphicalData();
+            EntityLogicalData data = entity.getEntityGraphicalData();
             // Aggiungi l'oggetto alla lista
             graphicalDataList.add(data);
         }
@@ -72,16 +83,16 @@ public class Model implements InterfaceModel {
         return graphicalDataList;
     }
 
-    public EntityGraphicalData getPlayerEGD() {
+    public EntityLogicalData getPlayerELD() {
 		return this.player.getEntityGraphicalData();
 	}
 
-    public List<EntityGraphicalData> getEnemiesEGD() {
-		return convertToListEGD(this.enemies);
+    public List<EntityLogicalData> getEnemiesELD() {
+		return convertToListELD(this.enemies);
 	}
 
-    public List<EntityGraphicalData> getProjectilesEGD() {
-		return convertToListEGD(this.projectiles);
+    public List<EntityLogicalData> getProjectilesELD() {
+		return convertToListELD(this.projectiles);
 	}
 
     //---------------------------------------------------------------
