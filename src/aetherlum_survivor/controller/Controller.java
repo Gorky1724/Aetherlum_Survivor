@@ -2,8 +2,11 @@ package aetherlum_survivor.controller;
 
 import javax.swing.SwingUtilities;
 
+import java.util.List;
+
 import aetherlum_survivor.model.Model;
 import aetherlum_survivor.view.View;
+import aetherlum_survivor.util.EntityGraphicalData;
 
 public class Controller implements InterfaceController {
 
@@ -23,7 +26,6 @@ public class Controller implements InterfaceController {
 
     @Override
     public void startApplication() {
-        //multithreading
         SwingUtilities.invokeLater(new Runnable() { 
             @Override
             public void run() {
@@ -66,31 +68,41 @@ public class Controller implements InterfaceController {
 
     
     // HANLDE GAMELOOP_____________________________
-
     @Override
     public void startGameLoop() {
         Model.getInstance().startGameLoop();
     }
 
     @Override
-    public void stopGameLoop() {
-        //TODO
-    }
-
-    @Override
-    public  void pauseGameLoop() {
-        //TODO
+    public void pauseGameLoop() {
+        Model.getInstance().pauseGameLoop();
     }
     
     @Override
     public  void resumeGameLoop() {
-        //TODO
+        Model.getInstance().resumeGameLoop();
     }
 
     //UPDATES and REQUESTS_____________________________
     @Override
     public void requestViewUpdate() {
         View.getInstance().update();
+    }
+
+    // EXPOSES DATA_____________________________
+    @Override
+    public EntityGraphicalData getPlayerEGD() {
+        return Model.getInstance().getPlayerEGD();
+    }
+
+    @Override
+    public List<EntityGraphicalData> getEnemiesEGD() {
+        return Model.getInstance().getEnemiesEGD();
+    }
+
+    @Override
+    public List<EntityGraphicalData> getProjectilesEGD() {
+        return Model.getInstance().getProjectilesEGD();
     }
 
 

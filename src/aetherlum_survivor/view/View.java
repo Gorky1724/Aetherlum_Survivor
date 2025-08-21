@@ -85,7 +85,6 @@ public class View implements InterfaceView {
         this.gameFrame.revalidate();
         this.gameFrame.repaint();
         this.gameFrame.pack();
-        // TODO Auto-generated method stub
     }
 
     @Override

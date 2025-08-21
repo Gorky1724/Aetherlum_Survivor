@@ -3,14 +3,20 @@ Qua è indicato il workflow e l'ordine di cose che stai facendo / lasciando in s
 ___________________________________________________________________________________________________________________________
 >> WORKFLOW
 ___________________________________________________________________________________________________________________________
-- openGamePanel() e creare la classe GamePanel
-
-- a partire da ciò iniziare a lavorare anche sul Model e dunque sulla logica di gioco
 
 - per iniziare il movimento del personaggio principale
   Sempre per iniziare, puoi trattarlo come un semplice rettangolo senza skin, aggiungendola poi solo in un seconod momento
 
+- GamePanel e i metodi paint richiedono al Controller i dati (solo grafici - dunque posizione X,Y,altezza e larghezza - tipo di entità)
+  basandosi su questo scorrono la lista di entità che gli è stata passata e le disegnano dove necessario
 
+- il Model accoglie gli input di spostamento del player
+
+- ogni tick aggiorna la posizione dei nemici
+  
+-> entrambi controllando le collisioni e facendo avvenire i relativi eventi
+
+<proiettili> <potenziamenti a terra> aggiungerli in un secondo momento
 
 ->>> FUTURE
 

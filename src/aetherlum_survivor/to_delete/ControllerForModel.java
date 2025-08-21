@@ -24,17 +24,17 @@ public class ControllerForModel implements InterfaceControllerForModel{
 
     @Override
     public void stopGameLoop() {
-        //TODO
+        //TO DO
     }
 
     @Override
     public  void pauseGameLoop() {
-        //TODO
+        //TO DO
     }
     
     @Override
     public  void resumeGameLoop() {
-        //TODO
+        //TO DO
     }
 
     //UPDATES and REQUESTS_____________________________

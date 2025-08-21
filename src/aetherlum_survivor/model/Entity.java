@@ -1,17 +1,17 @@
 package aetherlum_survivor.model;
 
+import aetherlum_survivor.util.EntityGraphicalData;
+
 public  class Entity{
 
     //---------------------------------------------------------------
 	//! PRIVATE ATTRIBUTES
 
     //position and collision
-    private double coordX;
-    private double coordY;
-    private double width;
-    private double height;
+    private EntityGraphicalData egd;
 
     //game stats
+    private int type;
 
     //---------------------------------------------------------------
 
@@ -23,36 +23,29 @@ public  class Entity{
     //---------------------------------------------------------------
 	//! PUBLIC INSTANCE METHODS
 
-    protected double getCoordX() {
-        return this.coordX;
+    // POSITION AND COLLISION_____________________________
+    protected EntityGraphicalData createEntityGraphicalData(double coordX, double coordY, double width, double height) {
+        return new EntityGraphicalData(coordX, coordY, width, height);
     }
 
-    protected double getCoordY() {
-        return this.coordY;
+    protected EntityGraphicalData getEntityGraphicalData() {
+        return this.egd;
     }
 
-    protected double getWidth() {
-        return this.width;
+    protected void setEntityGraphicalData(EntityGraphicalData newEGD) {
+        this.egd = newEGD;
     }
 
-    protected double getHeight() {
-        return this.height;
+    protected void createAndSetEntityGraphicalData(double coordX, double coordY, double width, double height) {
+        this.egd = new EntityGraphicalData(coordX, coordY, width, height);
     }
 
-    protected void setCoordX(double newX) {
-        this.coordX = newX;
+    // GAME STATS_____________________________
+    protected int setType() {
+        return this.type;
     }
-
-    protected void setCoordY(double newY) {
-        this.coordY = newY;
-    }
-
-    protected void setWidth(double newWidth) {
-        this.width = newWidth;
-    }
-
-    protected void setHeight(double newHeight) {
-        this.height = newHeight;
+    protected void setType(int newType) {
+        this.type = newType;
     }
 
     //---------------------------------------------------------------

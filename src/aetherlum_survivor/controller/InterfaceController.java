@@ -1,5 +1,9 @@
 package aetherlum_survivor.controller;
 
+import java.util.List;
+
+import aetherlum_survivor.util.EntityGraphicalData;
+
 public interface InterfaceController {
     
     public void startApplication();
@@ -14,13 +18,18 @@ public interface InterfaceController {
     // handle GameLoop
     public void startGameLoop();
 
-    public void stopGameLoop();
-
     public void pauseGameLoop();
 
     public void resumeGameLoop();
 
     // updates and requests
     public void requestViewUpdate();
+
+    //exposes entities
+    public EntityGraphicalData getPlayerEGD();
+
+    public List<EntityGraphicalData> getEnemiesEGD();
+
+    public List<EntityGraphicalData> getProjectilesEGD();
 
 }

@@ -1,6 +1,7 @@
 package aetherlum_survivor.model;
 
 import aetherlum_survivor.util.Constants;
+import aetherlum_survivor.util.EntityTypes;
 
 public class Player extends Entity {
 
@@ -14,15 +15,15 @@ public class Player extends Entity {
     private double baseHeight = Constants.TILE_SIZE;
 
     //game stats
+    private int type = EntityTypes.PLAYER;
 
     //---------------------------------------------------------------
 
     //! CONSTRUCTOR
     public Player() {
-        this.setCoordX(this.startX);
-        this.setCoordY(this.startY);;
-        this.setWidth(baseWidth);
-        this.setHeight(baseHeight);;
+        this.createAndSetEntityGraphicalData(startY, startX, baseWidth, baseHeight);
+
+        this.setType(this.type);
     }
     
 }

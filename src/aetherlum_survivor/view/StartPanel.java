@@ -4,7 +4,7 @@ import aetherlum_survivor.controller.Controller;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+//import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
