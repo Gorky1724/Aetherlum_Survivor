@@ -1,6 +1,15 @@
 package aetherlum_survivor.controller;
 
-public interface InterfaceControllerForModel {
+public interface InterfaceController {
+    
+    public void startApplication();
+
+    //panels management
+    public void openStartPanel();
+
+    public void openSettingsPanel();
+
+    public void openGamePanel();
 
     // handle GameLoop
     public void startGameLoop();
@@ -13,4 +22,5 @@ public interface InterfaceControllerForModel {
 
     // updates and requests
     public void requestViewUpdate();
+
 }

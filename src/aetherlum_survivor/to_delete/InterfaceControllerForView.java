@@ -1,4 +1,5 @@
-package aetherlum_survivor.controller;
+/*
+package aetherlum_survivor.to_delete;
 
 public interface InterfaceControllerForView {
 
@@ -15,3 +16,4 @@ public interface InterfaceControllerForView {
     public void startGameLoop();
     
 }
+*/

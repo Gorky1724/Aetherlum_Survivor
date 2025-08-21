@@ -21,10 +21,11 @@ public class GamePanel extends JPanel {
 		super.paintComponent(g);
 		// Insert here our drawing
 		Graphics2D g2d = (Graphics2D)g;
-
+        /*
 		paintMap(g2d);
         paintPlayer(g2d);
         paintEntities(g2d);
+        */
 	}
     
 }

@@ -1,3 +1,4 @@
+/*
 package aetherlum_survivor.controller;
 
 import aetherlum_survivor.model.Model;
@@ -59,3 +60,4 @@ public class ControllerForModel implements InterfaceControllerForModel{
 	//---------------------------------------------------------------
     
 }
+*/

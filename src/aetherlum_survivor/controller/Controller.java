@@ -5,16 +5,16 @@ import javax.swing.SwingUtilities;
 import aetherlum_survivor.model.Model;
 import aetherlum_survivor.view.View;
 
-public class ControllerForView implements InterfaceControllerForView{
+public class Controller implements InterfaceController {
 
     //---------------------------------------------------------------
     //! PRIVATE STATIC ATTRIBUTES
-    private static ControllerForView instance = null;
+    private static Controller instance = null;
 
     //---------------------------------------------------------------
 
     //! CONSTRUCTOR
-    private ControllerForView() {
+    private Controller() {
         //default
     }
 
@@ -28,7 +28,7 @@ public class ControllerForView implements InterfaceControllerForView{
             @Override
             public void run() {
                 View.getInstance().openGameFrame(); //per avere un unico frame su cui inserire i panel 
-                ControllerForView.getInstance().openStartPanel();
+                openStartPanel();
             }
         });
     }
@@ -64,11 +64,33 @@ public class ControllerForView implements InterfaceControllerForView{
         });
     }
 
+    
+    // HANLDE GAMELOOP_____________________________
 
-    //UPDATES and REQUESTS_____________________________
     @Override
     public void startGameLoop() {
         Model.getInstance().startGameLoop();
+    }
+
+    @Override
+    public void stopGameLoop() {
+        //TODO
+    }
+
+    @Override
+    public  void pauseGameLoop() {
+        //TODO
+    }
+    
+    @Override
+    public  void resumeGameLoop() {
+        //TODO
+    }
+
+    //UPDATES and REQUESTS_____________________________
+    @Override
+    public void requestViewUpdate() {
+        View.getInstance().update();
     }
 
 
@@ -78,9 +100,9 @@ public class ControllerForView implements InterfaceControllerForView{
 	//! STATIC METHODS
 
     //* singleton pattern
-    public static InterfaceControllerForView getInstance() {
+    public static InterfaceController getInstance() {
         if(instance == null) {
-            instance = new ControllerForView();
+            instance = new Controller();
         }
         return instance;
 

@@ -1,6 +1,6 @@
 package aetherlum_survivor.model;
 
-import aetherlum_survivor.controller.ControllerForModel;
+import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.model.loop.GameLoop;
 
 public class Model implements InterfaceModel {
@@ -21,7 +21,7 @@ public class Model implements InterfaceModel {
 		this.gameLoop = new GameLoop(e -> {
 			System.out.println("<<< Running >>>");
 			update();
-			ControllerForModel.getInstance().requestViewUpdate();
+			Controller.getInstance().requestViewUpdate();
 		});
 		System.out.println(">> GameLoop Started");
 

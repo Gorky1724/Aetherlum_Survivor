@@ -1,6 +1,6 @@
 package aetherlum_survivor.view;
 
-import aetherlum_survivor.controller.ControllerForView;
+import aetherlum_survivor.controller.Controller;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -74,10 +74,10 @@ public class StartPanel extends JPanel {
 
     private void handleNewGameEvent() {
         
-        ControllerForView.getInstance().openGamePanel();
+        Controller.getInstance().openGamePanel();
         System.out.println(">> StartPanel --> GamePanel");
 
-        ControllerForView.getInstance().requestStartGameLoop();
+        Controller.getInstance().startGameLoop();
         System.out.println(">> New Game Started from Start Panel");
         
         //TODO to try if needed
@@ -94,7 +94,7 @@ public class StartPanel extends JPanel {
     }       
     
     private void handleSettingsMenuEvent() {
-        ControllerForView.getInstance().openSettingsPanel();
+        Controller.getInstance().openSettingsPanel();
 
         System.out.println(">> Settings Menu Opened from Main Menu");
     }
