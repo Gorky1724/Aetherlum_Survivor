@@ -45,8 +45,8 @@ public class GamePanel extends JPanel {
 
     // LOGIC COORDINATES TO VIEW CONVERSION_______
     public Point convertLogicalToGraphical(double logicalX, double logicalY, EntityLogicalData playerELD) {
-        int screenCenterX = (int) Constants.SCREEN_WIDTH / 2;
-        int screenCenterY = (int) Constants.SCREEN_HEIGHT / 2;
+        int screenCenterX = (int) (Constants.SCREEN_WIDTH / 2 - playerELD.getWidth() / 2);
+        int screenCenterY = (int) (Constants.SCREEN_HEIGHT / 2 - playerELD.getHeight() / 2);
         
         int screenX = (int) (logicalX - playerELD.getCoordX() + screenCenterX);
         int screenY = (int) (logicalY - playerELD.getCoordY() + screenCenterY);
@@ -67,9 +67,9 @@ public class GamePanel extends JPanel {
     }
 
     public void paintPlayer(Graphics2D g2d, EntityLogicalData playerELD) {
-        //the player must always be centered on the screen - gX = halfScreenWidth, gY = halfScreenHeight
-        int playerGraphicalX = (int) Constants.SCREEN_WIDTH / 2;
-        int playerGraphicalY = (int) Constants.SCREEN_HEIGHT / 2;
+        //the player must always be centered on the screen: gX = halfScreenWidth - halfCharacterDimension, gY = halfScreenHeight - halfCharacterDimension
+        int playerGraphicalX = (int) (Constants.SCREEN_WIDTH / 2 - playerELD.getWidth() / 2);
+        int playerGraphicalY = (int) (Constants.SCREEN_HEIGHT / 2 - playerELD.getHeight() / 2);
 
         g2d.setColor(Color.WHITE);
         g2d.fillRect(playerGraphicalX, playerGraphicalY, (int) playerELD.getWidth(), (int) playerELD.getHeight());

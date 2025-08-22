@@ -15,15 +15,27 @@ public class Player extends Entity {
     private double baseWidth = Constants.TILE_SIZE;
     private double baseHeight = Constants.TILE_SIZE;
 
+    //exp
+    private double currentExp = 0;
+    private int level = 1; 
+    private double xpBar;
+
 
     //---------------------------------------------------------------
 
     //! CONSTRUCTOR
     public Player() {
+        super(EntityData.PLAYER_TYPE);
+
+        this.speed = EntityData.PLAYER_SPD;
+        this.maxHitPoints = EntityData.PLAYER_MAX_HP;
+        this.currentHP = this.maxHitPoints;
+        this.damage = EntityData.PLAYER_DMG;
+        this.damageResistance = EntityData.PLAYER_DMG_RST;
         this.createAndSetEntityGraphicalData(startY, startX, baseWidth, baseHeight);
 
-        this.setType(EntityData.PLAYER_TYPE);
-        this.setSpeed(EntityData.PLAYER_SPEED);
+        //player-only
+        this.xpBar = EntityData.XP_BAR;
     }
 
     //---------------------------------------------------------------
@@ -41,7 +53,7 @@ public class Player extends Entity {
         if (pressedLeftKey)
             deltaX -= 1;
         
-        EntityLogicalData playerELD = getEntityGraphicalData();
+        EntityLogicalData playerELD = this.eld;
         double currentX = playerELD.getCoordX();
         double currentY = playerELD.getCoordY();
         double newX;
@@ -50,16 +62,31 @@ public class Player extends Entity {
             return;
         } else if (deltaX != 0 && deltaY != 0) { //diagonal movement - needs normalization
             double normalizationFactor = 0.707; //circa 1/(sqrt(2))
-            newX = currentX + deltaX * getSpeed() * normalizationFactor;
-            newY = currentY + deltaY * getSpeed() * normalizationFactor;
+            newX = currentX + deltaX * this.speed * normalizationFactor;
+            newY = currentY + deltaY * this.speed * normalizationFactor;
         } else { //normal increment
-            newX = currentX + deltaX * getSpeed();
-            newY = currentY + deltaY * getSpeed();
+            newX = currentX + deltaX * this.speed;
+            newY = currentY + deltaY * this.speed;
         }
         playerELD.setCoordX(newX);
         playerELD.setCoordY(newY);
         
         System.out.println(">> ("+newX+", "+newY+")");
+    }
+
+    //exp methods
+    public void addExp(double xpGained) {
+        if(this.level <= EntityData.MAX_LEVEL) {
+            this.currentExp += xpGained;
+            if(this.currentExp >= this.xpBar){
+                levelUp();
+            }
+        }
+    }
+    public void levelUp() {
+        this.level++;
+        this.currentExp -= this.xpBar;
+        this.xpBar = this.xpBar*(this.level/2);
     }
     //---------------------------------------------------------------
 }

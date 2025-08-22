@@ -8,17 +8,21 @@ public  class Entity{
 	//! PRIVATE ATTRIBUTES
 
     //position and collision
-    private EntityLogicalData ELD;
+    protected EntityLogicalData eld;
 
     //game stats
-    private int type;
-    private double speed;
+    protected int type;
+    protected double speed;
+    protected double maxHitPoints;
+    protected double currentHP;
+    protected double damage;
+    protected double damageResistance;
 
     //---------------------------------------------------------------
 
     //! CONSTRUCTOR
-    public Entity() {
-        //do nothing
+    public Entity(int type) {
+        this.type = type;
     }
 
     //---------------------------------------------------------------
@@ -30,30 +34,26 @@ public  class Entity{
     }
 
     protected EntityLogicalData getEntityGraphicalData() {
-        return this.ELD;
+        return this.eld;
     }
 
     protected void setEntityGraphicalData(EntityLogicalData newELD) {
-        this.ELD = newELD;
+        this.eld = newELD;
     }
 
     protected void createAndSetEntityGraphicalData(double coordX, double coordY, double width, double height) {
-        this.ELD = new EntityLogicalData(coordX, coordY, width, height);
+        this.eld = new EntityLogicalData(coordX, coordY, width, height);
     }
 
-    // GAME STATS_____________________________
-    protected int getType() {
-        return this.type;
+    // DIRECT DATA VARIATION FROM GAME EVENT_____________________________
+    public void takeDamage(double dmgTaken) {
+        this.currentHP = this.currentHP - (dmgTaken - dmgTaken*this.damageResistance);
     }
-    protected void setType(int newType) {
-        this.type = newType;
+    public void heal(double healTaken) {
+        this.currentHP = Math.min(this.currentHP + healTaken, this.maxHitPoints);
     }
-
-    protected double getSpeed() {
-        return this.speed;
-    }
-    protected void setSpeed(double newSpeed) {
-        this.speed = newSpeed;
+    public boolean isAlive() {
+        return (currentHP > 0);
     }
 
     //---------------------------------------------------------------

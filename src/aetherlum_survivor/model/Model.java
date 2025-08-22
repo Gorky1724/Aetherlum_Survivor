@@ -18,7 +18,9 @@ public class Model implements InterfaceModel {
 
 	//game entities
 	private Player player;
+	private Projectiles projectileHandler;
 	private List<Projectiles> projectiles;
+	private Enemies enemyHandler;
 	private List<Enemies> enemies;
     //---------------------------------------------------------------
 
@@ -56,13 +58,15 @@ public class Model implements InterfaceModel {
 	// UPDATE_____________________________
 	@Override
 	public void update() {
-		// if key input moves player
-		this.player.movePlayer(
-			KeyHandler.getInstance().getUpPressed(),
-			KeyHandler.getInstance().getRightPressed(),
-			KeyHandler.getInstance().getDownPressed(),
-			KeyHandler.getInstance().getLeftPressed()
+
+		// if key input: moves player
+		this.player.movePlayer(KeyHandler.getInstance().getUpPressed(),
+								KeyHandler.getInstance().getRightPressed(),
+								KeyHandler.getInstance().getDownPressed(),
+								KeyHandler.getInstance().getLeftPressed()
 		);
+
+		
 	}
 
 	// EXPOSES ENTITIES LOGICAL DATA___________________

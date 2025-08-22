@@ -13,12 +13,19 @@ ________________________________________________________________________________
 - il Model accoglie gli input di spostamento del player
 
 - ogni tick aggiorna la posizione dei nemici
+
+- schermata di potenziamento
+
+- schermata di selezione scenari quando si preme "Try to Survive"
   
 -> entrambi controllando le collisioni e facendo avvenire i relativi eventi
 
 <proiettili> <potenziamenti a terra> aggiungerli in un secondo momento
 
 ->>> FUTURE
+
+- implementare Panel di Level Up e, prima del GamePanel, Panel di selezione dello scenario
+  > questo influenza lo sfondo della mappa, il numero di nemici e il tipo di nemici presenti
 
 - quando ti ritroverai a dover fare il menù di pausa dal GamePanel
   > sappiamo che questo presenta gli attributi del personaggio
@@ -27,6 +34,14 @@ ________________________________________________________________________________
     magari basato sulla presenza di un status = GAMESTARTED --> if(status == GAMESTARTED) {dove int GAMESTARTED = 1;}
     che ridireziona non al menù principale ma al gioco precedentemente iniziato
 
+- nel GamePanel, durante il gioco
+  > inserire il timer di quanto tempo si è sopravvissuti
+  > magari anche una barra di avanzamento degli XP e il livello corrente
+  > scorciatoia (tipo premere P) per il menù di pausa E / O un pulsante che lo metta in pausa
+    nel caso della scorciatoia, scriverlo
+
+- va sistematao il centramento del main character in coordgrafiche
+  nonostante i conti per centrarlo in coordGrafiche dovrebbero essere giusti, non è completamente centrato
 ___________________________________________________________________________________________________________________________
 >> TODO
 ___________________________________________________________________________________________________________________________
