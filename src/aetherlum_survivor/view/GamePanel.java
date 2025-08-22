@@ -48,8 +48,8 @@ public class GamePanel extends JPanel {
         int screenCenterX = (int) Constants.SCREEN_WIDTH / 2;
         int screenCenterY = (int) Constants.SCREEN_HEIGHT / 2;
         
-        int screenX = (int)(logicalX - playerELD.getCoordX() + screenCenterX);
-        int screenY = (int)(logicalY - playerELD.getCoordY() + screenCenterY);
+        int screenX = (int) (logicalX - playerELD.getCoordX() + screenCenterX);
+        int screenY = (int) (logicalY - playerELD.getCoordY() + screenCenterY);
         return new Point(screenX, screenY);
     }
 

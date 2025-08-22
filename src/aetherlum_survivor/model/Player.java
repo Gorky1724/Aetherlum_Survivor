@@ -33,13 +33,13 @@ public class Player extends Entity {
         int deltaX = 0, deltaY = 0;
         
         if (pressedUpKey)
-            deltaX -= 1;
-        if (pressedDownKey)
-            deltaX += 1;
-        if (pressedRightKey)
-            deltaY += 1;
-        if (pressedLeftKey)
             deltaY -= 1;
+        if (pressedDownKey)
+            deltaY += 1;
+        if (pressedRightKey)
+            deltaX += 1;
+        if (pressedLeftKey)
+            deltaX -= 1;
         
         EntityLogicalData playerELD = getEntityGraphicalData();
         double currentX = playerELD.getCoordX();
@@ -58,7 +58,8 @@ public class Player extends Entity {
         }
         playerELD.setCoordX(newX);
         playerELD.setCoordY(newY);
-        System.out.println("("+newX+", "+newY+")");
+        
+        System.out.println(">> ("+newX+", "+newY+")");
     }
     //---------------------------------------------------------------
 }

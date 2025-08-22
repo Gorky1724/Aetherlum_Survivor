@@ -71,6 +71,8 @@ public class KeyHandler implements InterfaceKeyHandler, KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
+        //in this way it's not needed to press key for every movement request:
+        // until the key is not released every tick the position will be updated
         switch(e.getKeyCode()) {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
