@@ -19,7 +19,6 @@ public class Controller implements InterfaceController{
     //! CONSTRUCTOR
     private Controller() {
         //default
-        View.getInstance().attachKeyListenerToGamePanel();
     }
 
     //---------------------------------------------------------------

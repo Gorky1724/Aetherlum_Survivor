@@ -33,7 +33,7 @@ public class Player extends Entity {
         int deltaX = 0, deltaY = 0;
         
         if (pressedUpKey)
-            deltaY -= 1;
+            deltaX -= 1;
         if (pressedDownKey)
             deltaX += 1;
         if (pressedRightKey)
@@ -58,6 +58,7 @@ public class Player extends Entity {
         }
         playerELD.setCoordX(newX);
         playerELD.setCoordY(newY);
+        System.out.println("("+newX+", "+newY+")");
     }
     //---------------------------------------------------------------
 }

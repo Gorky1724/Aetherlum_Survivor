@@ -60,7 +60,6 @@ public class View implements InterfaceView {
             this.startPanel = new StartPanel();
             this.settingsPanel = new SettingsPanel();
             this.gamePanel = new GamePanel();
-            System.out.println("it lives");
             attachKeyListenerToGamePanel();
             
             this.cardPanel.add(this.startPanel, START_PANEL);
@@ -97,6 +96,9 @@ public class View implements InterfaceView {
         this.gameFrame.revalidate();
         this.gameFrame.repaint();
         this.gameFrame.pack();
+
+        //sets focus to get keyboard inputs
+        this.gamePanel.requestFocusInWindow();
     }
 
     @Override
@@ -106,12 +108,11 @@ public class View implements InterfaceView {
 
     @Override
     public void attachKeyListenerToGamePanel(){
-        if (this.gamePanel.getKeyListeners().length > 0) { //return array of associated KeyListeners - avoids to attach another one if there is already one
+        if (this.gamePanel.getKeyListeners().length == 0) { //return array of associated KeyListeners - avoids to attach another one if there is already one
             this.gamePanel.addKeyListener((KeyListener) KeyHandler.getInstance());
 
-            //grants that keys will be read
+            //grants that keys will be read when called focus
             this.gamePanel.setFocusable(true);
-            this.gamePanel.requestFocus();
         }
     }
 
