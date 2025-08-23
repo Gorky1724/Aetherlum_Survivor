@@ -84,6 +84,15 @@ Più che fare un cast esplicito a KeyListener ho deciso di creare una seconda cl
 Poiché necessitavo della possibilità di dichiarare altri metodi per prendere le pressioni di tasti, ho comunque dovuto fare con cast esplicito a KeyHandler in quanto ne ho dovuto fare InterfaceKeyHandler
 ---
 
+---Comprendere bene le relazioni tra componenti dell MVC
+In particolare bene come in teoria il Model potrebbe notificare direttamente alla View tramite il pattern Observer di aggiornarsi.
+Ho però deciso di utilizzare la variante dell'MVC Controller presentata dal professore sul jtetris per
+far intermediare tale passaggio al Controller, semplificando così l'interazione
+---
+
+---creazione di pool di oggetti per la creazione di entità
+minimizzare così il numero di oggetti creati per appesantire il meno possibile le operazioni
+---
 
 ___________________________________________________________________________________________________________________________
 >> COSE USATE FORSE NON FATTE A LEZIONE

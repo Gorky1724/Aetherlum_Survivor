@@ -15,22 +15,16 @@ public class Constants {
 
     public static final int SCREEN_WIDTH = TILE_SIZE * maxScreenColumns; 
     public static final int SCREEN_HEIGHT = TILE_SIZE * maxScreenRows;
-    
-    /*
-    //* DA ELIMINARE
-    //some tiles are not shown to the player - they're where enemies spawns
-    public static final int hiddenScreenColumns = 4;
-    public static final int hiddenScreenRows = 4;
 
-    public static final int shownScreenColumns = maxScreenColumns - hiddenScreenColumns;
-    public static final int shownScreenRows = maxScreenRows - hiddenScreenRows;
+    //! ENEMIES SPAWN AND DESPAWN RADIUS
+    public static final double SPAWN_RADIUS = Math.max(SCREEN_WIDTH, SCREEN_HEIGHT) * 1.3;
+    public static final double DESPAWN_RADIUS = SPAWN_RADIUS * 1.1; 
 
-    public static final int SHOWN_SCREEN_WIDTH = tileSize * shownScreenColumns; 
-    public static final int SHOWN_SCREEN_HEIGHT = tileSize * shownScreenRows;
-    */
-
+    //! GAME LOOP TIMER RELATED
     public static final int DESIRED_FPS = 60;
-    public static final int TIMER_REPEAT_DELAY = 1000 / DESIRED_FPS; //milliseconds
+    public static final int TIMER_REPEAT_DELAY = 1000 / DESIRED_FPS; //milliseconds: circa 16.67 --(int)-> 16 ms
+
+    public static final int SPAWN_DESPAWN_CADENCE = 1000; //ms
 
     //---------------------------------------------------------------
 

@@ -8,9 +8,7 @@ public class SettingsPanel extends JPanel {
 
     public SettingsPanel() {
 
-    this.setBackground(Color.gray);
-    
-    //TODO
-
+        this.setBackground(Color.gray);
+        //TODO
     }
 }

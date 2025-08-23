@@ -5,8 +5,13 @@ import java.util.List;
 
 import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.controller.KeyHandler;
+
 import aetherlum_survivor.model.loop.GameLoop;
+
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.EntityData;
+import aetherlum_survivor.util.Constants;
+import aetherlum_survivor.util.ScenarioData;
 
 public class Model implements InterfaceModel {
 
@@ -16,12 +21,22 @@ public class Model implements InterfaceModel {
     private static Model instance = null;
 	private GameLoop gameLoop;
 
+	//selected scenario
+	private ScenarioData scenarioData;
+
 	//game entities
 	private Player player;
-	private Projectiles projectileHandler;
+
+	private Projectiles projectileHandler; //to use class Projectiles methods to update the List
 	private List<Projectiles> projectiles;
-	private Enemies enemyHandler;
+
+	private Enemies enemyHandler; //to use class Enemies methods to update the List
 	private List<Enemies> enemies;
+	private int max_enemies_number;
+
+	// i want the spawn/respawn to not happen every timer tick
+	private long lastEntitiesSpawnDespawn = 0; //starting value
+	private int cadence = Constants.SPAWN_DESPAWN_CADENCE; //every cadence-time entities are spawned/despawned
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------
@@ -36,12 +51,24 @@ public class Model implements InterfaceModel {
 			update();
 			Controller.getInstance().requestViewUpdate();
 		});
-		System.out.println(">> GameLoop Started");
 
 		this.gameLoop.start();
+		System.out.println(">> GameLoop Started");
+
 
 		//single creation of player instance at the beginning of the game
 		this.player = new Player();
+
+		//pre allocates list for the classes of entities that continually spawns and de-spawns
+		this.enemyHandler = new Enemies(EntityData.NULL_VALUE);
+		this.max_enemies_number = scenarioData.getEnemiesMaxNum();
+		this.enemies = new ArrayList<>(this.max_enemies_number);
+		for (int i = 0; i < this.max_enemies_number; i++) {
+			Enemies en = new Enemies(EntityData.NULL_VALUE);
+			en.setInactive();
+			en.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
+			enemies.add(en);
+		}
 
 	}
 
@@ -66,7 +93,30 @@ public class Model implements InterfaceModel {
 								KeyHandler.getInstance().getLeftPressed()
 		);
 
-		
+		//despawns and spawns entities every cadence
+		long currentTime = System.currentTimeMillis();
+		if (currentTime - this.lastEntitiesSpawnDespawn >= this.cadence) {
+			//despawns enemies too distant and spawns new enemies
+			this.enemies = this.enemyHandler.despawn(this.enemies, this.player.getEntityLogicalData());
+			this.enemies = this.enemyHandler.spawn(this.enemies, this.scenarioData, this.player.getEntityLogicalData());
+
+			//TODO
+			//despawns consumables too distant and spawns new enemies
+
+			//spawns projectiles
+
+
+			this.lastEntitiesSpawnDespawn = System.currentTimeMillis();;
+		}
+
+		//TODO
+		//moves entities
+
+	}
+
+	@Override
+	public void selectedScenario(int selected_scenario_num) {
+		scenarioData = new ScenarioData(selected_scenario_num);
 	}
 
 	// EXPOSES ENTITIES LOGICAL DATA___________________
@@ -74,21 +124,15 @@ public class Model implements InterfaceModel {
 		//wildcard: everything that extends Entity
 
         List<EntityLogicalData> graphicalDataList = new ArrayList<>();
-
-        // iterates on element of enList
-        for (Entity entity : enList) {
-            // Per ogni nemico, crea un oggetto EntityGraphicalData
-            EntityLogicalData data = entity.getEntityGraphicalData();
-            // Aggiungi l'oggetto alla lista
+        for (Entity entity : enList) { //extrapolates eld of every enemy and add to list
+            EntityLogicalData data = entity.getEntityLogicalData();
             graphicalDataList.add(data);
         }
-
-        // Restituisci la lista completa
         return graphicalDataList;
     }
 
     public EntityLogicalData getPlayerELD() {
-		return this.player.getEntityGraphicalData();
+		return this.player.getEntityLogicalData();
 	}
 
     public List<EntityLogicalData> getEnemiesELD() {

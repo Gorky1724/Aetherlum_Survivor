@@ -13,15 +13,11 @@ import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Dimension;
 
 public class StartPanel extends JPanel {
 
     private JButton newGameButton;
     private JButton settingsMenuButton;
-
-    private final int SPANEL_WIDTH = 250;
-    private final int SPANEL_HEIGHT = 500;
 
     //layout data
     private final int TOP_INS = 10; //pixels
@@ -34,8 +30,7 @@ public class StartPanel extends JPanel {
     private final int Y2 = 2;
 
     public StartPanel() {
-        this.setPreferredSize(new Dimension(SPANEL_WIDTH, SPANEL_HEIGHT));
-        //this.setPreferredSize(getPreferredSize());
+        this.setPreferredSize(getPreferredSize());
 
         //buffer di disegno off-screen poi riportato sullo schermo - per fluidità di rendering
         this.setDoubleBuffered(true);
@@ -73,25 +68,10 @@ public class StartPanel extends JPanel {
     }
 
     private void handleNewGameEvent() {
+        Controller.getInstance().openScenarioPanel();
         
-        Controller.getInstance().openGamePanel();
-        System.out.println(">> StartPanel --> GamePanel");
-
-        Controller.getInstance().startGameLoop();
-        System.out.println(">> New Game Started from Start Panel");
-        
-        //TODO to try if needed
-        /*
-        //to grant that UI is updated before starting newGame
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(">> New Game Started from Start Panel");
-                ControllerForView.getInstance().requestStartGameLoop();
-            }
-        });
-        */
-    }       
+        System.out.println(">> StartPanel --> ScenarioPanel");
+    }
     
     private void handleSettingsMenuEvent() {
         Controller.getInstance().openSettingsPanel();

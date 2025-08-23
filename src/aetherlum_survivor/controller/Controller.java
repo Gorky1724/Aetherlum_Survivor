@@ -57,6 +57,16 @@ public class Controller implements InterfaceController{
     }
 
     @Override
+    public void openScenarioPanel() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().openScenarioPanel();
+            }
+        });
+    }
+
+    @Override
     public void openGamePanel() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -86,6 +96,11 @@ public class Controller implements InterfaceController{
     @Override
     public void requestViewUpdate() {
         View.getInstance().update();
+    }
+
+    @Override
+    public void transmitScenarioToModel(int scenario_num) {
+        Model.getInstance().selectedScenario(scenario_num);
     }
 
     // EXPOSES DATA_____________________________

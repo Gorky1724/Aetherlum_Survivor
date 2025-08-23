@@ -16,6 +16,8 @@ public interface InterfaceModel {
     //update
     public void update();
 
+    public void selectedScenario(int selected_scenario_num);
+
     //exposes entities
     public EntityLogicalData getPlayerELD();
 

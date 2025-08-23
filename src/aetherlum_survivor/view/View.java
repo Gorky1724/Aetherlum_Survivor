@@ -20,6 +20,7 @@ public class View implements InterfaceView {
     private StartPanel startPanel;
     private SettingsPanel settingsPanel;
     private GamePanel gamePanel;
+    private ScenarioPanel scenarioPanel;
 
     private JPanel cardPanel;
     private CardLayout cardLayout;
@@ -28,6 +29,7 @@ public class View implements InterfaceView {
     private static final String START_PANEL = "START";
     private static final String SETTINGS_PANEL = "SETTINGS";
     private static final String GAME_PANEL = "GAME";
+    private static final String SCENARIO_PANEL = "SCENARIO";
 
     //---------------------------------------------------------------
 
@@ -40,6 +42,7 @@ public class View implements InterfaceView {
     //---------------------------------------------------------------
 	//! PUBLIC INSTANCE METHODS
 
+    //panel handling
     @Override
     public void openGameFrame() {
         if(this.gameFrame == null) {
@@ -61,10 +64,12 @@ public class View implements InterfaceView {
             this.settingsPanel = new SettingsPanel();
             this.gamePanel = new GamePanel();
             attachKeyListenerToGamePanel();
+            this.scenarioPanel = new ScenarioPanel();
             
             this.cardPanel.add(this.startPanel, START_PANEL);
             this.cardPanel.add(this.gamePanel, GAME_PANEL);
             this.cardPanel.add(this.settingsPanel, SETTINGS_PANEL);
+            this.cardPanel.add(this.scenarioPanel, SCENARIO_PANEL);
             
             this.gameFrame.add(this.cardPanel);
             this.gameFrame.setVisible(true);
@@ -90,6 +95,15 @@ public class View implements InterfaceView {
     }
 
     @Override
+    public void openScenarioPanel(){
+        this.cardLayout.show(cardPanel, SCENARIO_PANEL);
+
+        this.gameFrame.revalidate();
+        this.gameFrame.repaint();
+        this.gameFrame.pack();
+    }
+
+    @Override
     public void openGamePanel(){
         this.cardLayout.show(cardPanel, GAME_PANEL);
 
@@ -101,11 +115,13 @@ public class View implements InterfaceView {
         this.gamePanel.requestFocusInWindow();
     }
 
+    //updateView
     @Override
     public void update(){
         this.gamePanel.repaint();
     }
 
+    // keyListener for GamePanel
     @Override
     public void attachKeyListenerToGamePanel(){
         if (this.gamePanel.getKeyListeners().length == 0) { //return array of associated KeyListeners - avoids to attach another one if there is already one

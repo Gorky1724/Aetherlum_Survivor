@@ -10,6 +10,9 @@ public  class Entity{
     //position and collision
     protected EntityLogicalData eld;
 
+    // active/inactive - not used by Player but by the other classes
+    protected boolean status; //false: inactive - true: active
+
     //game stats
     protected int type;
     protected double speed;
@@ -29,20 +32,35 @@ public  class Entity{
 	//! PUBLIC INSTANCE METHODS
 
     // POSITION AND COLLISION_____________________________
-    protected EntityLogicalData createEntityGraphicalData(double coordX, double coordY, double width, double height) {
+    protected EntityLogicalData createEntityLogicalData(double coordX, double coordY, double width, double height) {
         return new EntityLogicalData(coordX, coordY, width, height);
     }
 
-    protected EntityLogicalData getEntityGraphicalData() {
+    protected EntityLogicalData getEntityLogicalData() {
         return this.eld;
     }
 
-    protected void setEntityGraphicalData(EntityLogicalData newELD) {
+    protected void setEntityLogicalData(EntityLogicalData newELD) {
         this.eld = newELD;
     }
 
-    protected void createAndSetEntityGraphicalData(double coordX, double coordY, double width, double height) {
+    protected void createAndSetEntityLogicalData(double coordX, double coordY, double width, double height) {
         this.eld = new EntityLogicalData(coordX, coordY, width, height);
+    }
+
+    // SETTER_____________________________
+    protected void setType(int newType) {
+        this.type = newType;
+    }
+
+    protected boolean isActive() {
+        return this.status;
+    }
+    protected void setActive() {
+        this.status = true;
+    }
+    protected void setInactive() {
+        this.status = false;
     }
 
     // DIRECT DATA VARIATION FROM GAME EVENT_____________________________

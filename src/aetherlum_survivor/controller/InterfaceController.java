@@ -13,6 +13,8 @@ public interface InterfaceController {
 
     public void openSettingsPanel();
 
+    public void openScenarioPanel();
+
     public void openGamePanel();
 
     // handle GameLoop
@@ -24,6 +26,8 @@ public interface InterfaceController {
 
     // updates and requests
     public void requestViewUpdate();
+
+    public void transmitScenarioToModel(int scenario_num);
 
     //exposes entities
     public EntityLogicalData getPlayerELD();

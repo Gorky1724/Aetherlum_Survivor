@@ -23,14 +23,14 @@ public class GamePanel extends JPanel {
     this.setBackground(Color.black);
     }
 
-    // to be able to repaint as desired
+    // to be able to repaint as desired - UPDATES the JPanel shown in the JFrame
     @Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// Insert here our drawing
 		Graphics2D g2d = (Graphics2D)g;
 
-        //calculate camera OFFSET - in this way camera is always centered on the player
+        //needed to calculate the offset of each element that always centers camera on the player
         EntityLogicalData playerELD = Controller.getInstance().getPlayerELD();
 
 		paintBackground(g2d);
@@ -76,19 +76,19 @@ public class GamePanel extends JPanel {
     }
 
     public void paintEnemies(Graphics2D g2d, EntityLogicalData playerELD) {
-        //TODO
-        //List<EntityLogicalData> enemyELD_List = Controller.getInstance().getEnemiesELD();
-        // Itera attraverso la lista dei nemici e disegnali
-        // for (Enemy enemy : enemyELD_List) {
-        //     // Calcola la posizione sullo schermo e disegna
-        //    g2d.fillRect(enemy.getCoordX() - cameraX, 0 - cameraY, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        // }
+        
+        List<EntityLogicalData> enemyELD_list = Controller.getInstance().getEnemiesELD();
+        for (EntityLogicalData enELD: enemyELD_list) {
+            Point enemyLoc = convertLogicalToGraphical(enELD.getCoordX(),enELD.getCoordY(), playerELD);
+            g2d.setColor(Color.YELLOW);
+            //getX() and getY() return 'double' values - here is needed an int so i use the attribute
+            g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
+        }
 
-        //TODO remove - used for reference in the moving
+        /* 
         Point enemyLoc = convertLogicalToGraphical(70,70, playerELD);
         g2d.setColor(Color.YELLOW);
-        //getX() and getY() return 'double' values - here is needed an int so i use the attribute
-        g2d.fillRect(enemyLoc.x, enemyLoc.y, 10, 10);
+        */
     }
 
     public void paintProjectiles(Graphics2D g2d, EntityLogicalData playerELD) {

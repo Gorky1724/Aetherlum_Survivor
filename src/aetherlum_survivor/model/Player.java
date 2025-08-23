@@ -1,6 +1,5 @@
 package aetherlum_survivor.model;
 
-import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityLogicalData;
 
@@ -12,8 +11,8 @@ public class Player extends Entity {
     //position and collision
     private double startX = 0;
     private double startY = 0;
-    private double baseWidth = Constants.TILE_SIZE;
-    private double baseHeight = Constants.TILE_SIZE;
+    private double baseWidth = EntityData.PLAYER_WIDTH;
+    private double baseHeight = EntityData.PLAYER_HEIGHT;
 
     //exp
     private double currentExp = 0;
@@ -27,12 +26,14 @@ public class Player extends Entity {
     public Player() {
         super(EntityData.PLAYER_TYPE);
 
+        this.setActive(); //set status - not actually needed
+
         this.speed = EntityData.PLAYER_SPD;
         this.maxHitPoints = EntityData.PLAYER_MAX_HP;
         this.currentHP = this.maxHitPoints;
         this.damage = EntityData.PLAYER_DMG;
         this.damageResistance = EntityData.PLAYER_DMG_RST;
-        this.createAndSetEntityGraphicalData(startY, startX, baseWidth, baseHeight);
+        this.createAndSetEntityLogicalData(startY, startX, baseWidth, baseHeight);
 
         //player-only
         this.xpBar = EntityData.XP_BAR;
@@ -71,7 +72,7 @@ public class Player extends Entity {
         playerELD.setCoordX(newX);
         playerELD.setCoordY(newY);
         
-        System.out.println(">> ("+newX+", "+newY+")");
+        //System.out.println("#> ("+newX+", "+newY+")");
     }
 
     //exp methods
