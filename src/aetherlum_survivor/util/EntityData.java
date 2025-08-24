@@ -23,7 +23,7 @@ public class EntityData {
     public static final int PLAYER_WIDTH = Constants.TILE_SIZE;
     public static final int PLAYER_HEIGHT = Constants.TILE_SIZE;
     public static final double PLAYER_SPD = 10;
-    public static final double PLAYER_MAX_HP = 100;
+    public static final double PLAYER_MAX_HP = 1000;
     public static final double PLAYER_DMG = 10;
     public static final double PLAYER_DMG_RST = 0; //0 <= dmg_rst <= 1 -- 1 = undamagable
 
@@ -32,14 +32,23 @@ public class EntityData {
 
     //! COLLECTIBLES -------------------------------------------------------------------------------------
     public static final int[] COLLECTIBLES_TYPE_RANGE = {10,100}; //included
+    public static final int MAX_COLLECTIBLES_SPAWN = 10;
 
     public static final int EXP_GLOBE_TYPE = 10;
+    public static final int EXP_GLOBE_EXP_GIVEN = 50;
     public static final int EXP_GLOBE_WIDTH = Constants.TILE_SIZE;
     public static final int EXP_GLOBE_HEIGHT = Constants.TILE_SIZE;
     public static final int EXP_GLOBE_NOT_USEFUL_STAT = 0;
+
+    public static final int HEALTH_GLOBE_TYPE = 20;
+    public static final int HEALTH_GLOBE_HEALTH_GIVEN = 25;
+    public static final int HEALTH_GLOBE_WIDTH = Constants.TILE_SIZE;
+    public static final int HEALTH_GLOBE_HEIGHT = Constants.TILE_SIZE;
+    public static final int HEALTH_GLOBE_NOT_USEFUL_STAT = 0;
     
     //! PROJECTILES -------------------------------------------------------------------------------------
     public static final int[] PROJECTILES_TYPE_RANGE = {400,700};
+    public static final int MAX_PROJECTILES_SPAWN = 1;
 
     //! ENEMIES -------------------------------------------------------------------------------------
     public static final int[] ENEMIES_TYPE_RANGE = {1000,1200};

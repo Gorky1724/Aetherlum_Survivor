@@ -75,6 +75,17 @@ public class Controller implements InterfaceController{
             }
         });
     }
+
+    @Override
+    public void handleGameOver() {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().openGameOverPanel();
+            }
+        });
+    }
     
     // HANLDE GAMELOOP_____________________________
     @Override
@@ -83,8 +94,8 @@ public class Controller implements InterfaceController{
     }
 
     @Override
-    public void pauseGameLoop() {
-        Model.getInstance().pauseGameLoop();
+    public void stopGameLoop() {
+        Model.getInstance().stopGameLoop();
     }
     
     @Override

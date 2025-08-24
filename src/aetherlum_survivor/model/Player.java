@@ -41,7 +41,8 @@ public class Player extends Entity {
 
     //---------------------------------------------------------------
 	//! PUBLIC METHODS
-    public void movePlayer(boolean pressedUpKey, boolean pressedRightKey, boolean pressedDownKey, boolean pressedLeftKey) {
+
+    protected void movePlayer(boolean pressedUpKey, boolean pressedRightKey, boolean pressedDownKey, boolean pressedLeftKey) {
         
         int deltaX = 0, deltaY = 0;
         
@@ -75,8 +76,24 @@ public class Player extends Entity {
         //System.out.println("#> ("+newX+", "+newY+")");
     }
 
+    //collision
+    @Override
+    protected void onCollision(Entity ent) {
+        if(Enemies.class.isInstance(ent)) { //only if is passed an enemy
+            this.takeDamage(ent.damage);
+            System.out.println("#> currenthp: " + this.currentHP);
+            if(!this.isAlive()) {
+                Model.getInstance().setGameOver();
+            }
+        }
+
+        if(Collectibles.class.isInstance(ent)) { //only if is passed a collectible
+            //TODO
+        }
+    }
+
     //exp methods
-    public void addExp(double xpGained) {
+    protected void addExp(double xpGained) {
         if(this.level <= EntityData.MAX_LEVEL) {
             this.currentExp += xpGained;
             if(this.currentExp >= this.xpBar){
@@ -84,7 +101,7 @@ public class Player extends Entity {
             }
         }
     }
-    public void levelUp() {
+    protected void levelUp() {
         this.level++;
         this.currentExp -= this.xpBar;
         this.xpBar = this.xpBar*(this.level/2);

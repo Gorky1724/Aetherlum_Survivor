@@ -29,9 +29,11 @@ public class Model implements InterfaceModel {
 
 	private Projectiles projectileHandler; //to use class Projectiles methods to update the List
 	private List<Projectiles> projectiles;
+	private int max_projectiles_number;
 
 	private Collectibles collectibleHandler; //to use class Projectiles methods to update the List
 	private List<Collectibles> collectibles;
+	private int max_collectibles_number;
 
 	private Enemies enemyHandler; //to use class Enemies methods to update the List
 	private List<Enemies> enemies;
@@ -70,19 +72,46 @@ public class Model implements InterfaceModel {
 			Enemies en = new Enemies(EntityData.NULL_VALUE);
 			en.setInactive();
 			en.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
-			enemies.add(en);
+			this.enemies.add(en);
+		}
+
+		this.projectileHandler = new Projectiles(EntityData.NULL_VALUE);
+		this.max_projectiles_number = EntityData.MAX_PROJECTILES_SPAWN;
+		this.projectiles = new ArrayList<>(this.max_projectiles_number);
+		for(int i = 0; i < this.max_projectiles_number; i++) {
+			Projectiles prj = new Projectiles(EntityData.NULL_VALUE);
+			prj.setInactive();
+			prj.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
+			this.projectiles.add(prj);
+		}
+
+		this.collectibleHandler = new Collectibles(EntityData.NULL_VALUE);
+		this.max_collectibles_number = EntityData.MAX_COLLECTIBLES_SPAWN;
+		this.collectibles = new ArrayList<>(this.max_collectibles_number);
+		for(int i = 0; i < this.max_collectibles_number; i++) {
+			Collectibles clt = new Collectibles(EntityData.NULL_VALUE);
+			clt.setInactive();
+			clt.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
+			this.collectibles.add(clt);
 		}
 
 	}
 
 	@Override
-	public void pauseGameLoop() {
+	public void stopGameLoop() {
 		this.gameLoop.pause();
 	}
 
 	@Override
 	public void resumeGameLoop() {
 		this.gameLoop.resume();
+	}
+
+	@Override
+	public void setGameOver() {
+		this.stopGameLoop();
+		System.out.println(">> GAME OVER");
+		Controller.getInstance().handleGameOver();
 	}
 
 	// UPDATE_____________________________
@@ -98,7 +127,7 @@ public class Model implements InterfaceModel {
 
 		//despawns and spawns entities every cadence
 		long currentTime = System.currentTimeMillis();
-		if (currentTime - this.lastEntitiesSpawnDespawn >= this.cadence) {
+		if ((currentTime - this.lastEntitiesSpawnDespawn) >= this.cadence) {
 			//despawns enemies too distant and spawns new enemies
 			this.enemies = this.enemyHandler.despawn(this.enemies, this.player.getEntityLogicalData());
 			this.enemies = this.enemyHandler.spawn(this.enemies, this.scenarioData, this.player.getEntityLogicalData());
@@ -109,19 +138,52 @@ public class Model implements InterfaceModel {
 			//spawns projectiles
 
 
-			this.lastEntitiesSpawnDespawn = System.currentTimeMillis();;
+			this.lastEntitiesSpawnDespawn = System.currentTimeMillis();
 		}
 
 		//TODO
 		//moves entities
 
 		//check collision
-
+		this.checkCollision();
 	}
 
 	@Override
 	public void selectedScenario(int selected_scenario_num) {
-		scenarioData = new ScenarioData(selected_scenario_num);
+		this.scenarioData = new ScenarioData(selected_scenario_num);
+	}
+
+	@Override
+	public void checkCollision() {
+		//player - enemies
+		for(Enemies en: this.enemies) {
+			if(en.isActive() && en.getBoundingBox().intersects(this.player.getBoundingBox())) {
+				this.player.onCollision(en);
+				//System.out.println("#> Collision with enemy");
+			}
+		}
+
+		//player - collectibles
+		for(Collectibles clt : this.collectibles) {
+			if(clt.isActive() && clt.getBoundingBox().intersects(this.player.getBoundingBox())) {
+				this.player.onCollision(clt);
+				clt.onCollision(this.player);
+			}
+		}
+
+		//enemies - projectiles
+		for(Enemies en: this.enemies) {
+			if(en.isActive()) {
+				for(Projectiles prj : this.projectiles) {
+					if(prj.isActive() && prj.getBoundingBox().intersects(en.getBoundingBox())) {
+						prj.onCollision(en);
+						en.onCollision(prj);
+					}
+				}
+			}
+		}
+
+		//EVENTUALLY TO ADD: player - projectiles
 	}
 
 	// EXPOSES ENTITIES LOGICAL DATA___________________

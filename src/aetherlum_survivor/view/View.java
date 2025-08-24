@@ -21,6 +21,7 @@ public class View implements InterfaceView {
     private SettingsPanel settingsPanel;
     private GamePanel gamePanel;
     private ScenarioPanel scenarioPanel;
+    private GameOverPanel gameOverPanel;
 
     private JPanel cardPanel;
     private CardLayout cardLayout;
@@ -30,6 +31,7 @@ public class View implements InterfaceView {
     private static final String SETTINGS_PANEL = "SETTINGS";
     private static final String GAME_PANEL = "GAME";
     private static final String SCENARIO_PANEL = "SCENARIO";
+    private static final String GAME_OVER_PANEL = "GAMEOVER";
 
     //---------------------------------------------------------------
 
@@ -65,12 +67,14 @@ public class View implements InterfaceView {
             this.gamePanel = new GamePanel();
             attachKeyListenerToGamePanel();
             this.scenarioPanel = new ScenarioPanel();
+            this.gameOverPanel = new GameOverPanel();
             
             this.cardPanel.add(this.startPanel, START_PANEL);
             this.cardPanel.add(this.gamePanel, GAME_PANEL);
             this.cardPanel.add(this.settingsPanel, SETTINGS_PANEL);
             this.cardPanel.add(this.scenarioPanel, SCENARIO_PANEL);
-            
+            this.cardPanel.add(this.gameOverPanel, GAME_OVER_PANEL);
+
             this.gameFrame.add(this.cardPanel);
             this.gameFrame.setVisible(true);
         }
@@ -113,6 +117,15 @@ public class View implements InterfaceView {
 
         //sets focus to get keyboard inputs
         this.gamePanel.requestFocusInWindow();
+    }
+
+    @Override
+    public void openGameOverPanel(){
+        this.cardLayout.show(cardPanel, GAME_OVER_PANEL);
+
+        this.gameFrame.revalidate();
+        this.gameFrame.repaint();
+        this.gameFrame.pack();
     }
 
     //updateView

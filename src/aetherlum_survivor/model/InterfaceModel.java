@@ -9,14 +9,18 @@ public interface InterfaceModel {
     //handle gameloop
     public void startGameLoop();
 
-    public void pauseGameLoop();
+    public void stopGameLoop();
 
     public void resumeGameLoop();
+
+    public void setGameOver();
 
     //update
     public void update();
 
     public void selectedScenario(int selected_scenario_num);
+
+    public void checkCollision();
 
     //exposes entities
     public EntityLogicalData getPlayerELD();

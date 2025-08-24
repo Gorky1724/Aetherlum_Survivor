@@ -17,10 +17,12 @@ public interface InterfaceController {
 
     public void openGamePanel();
 
+    public void handleGameOver();
+
     // handle GameLoop
     public void startGameLoop();
 
-    public void pauseGameLoop();
+    public void stopGameLoop();
 
     public void resumeGameLoop();
 

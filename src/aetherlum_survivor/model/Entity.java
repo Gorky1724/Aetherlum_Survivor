@@ -2,6 +2,8 @@ package aetherlum_survivor.model;
 
 import aetherlum_survivor.util.EntityLogicalData;
 
+import java.awt.geom.Rectangle2D;
+
 public  class Entity{
 
     //---------------------------------------------------------------
@@ -31,7 +33,7 @@ public  class Entity{
     //---------------------------------------------------------------
 	//! PUBLIC INSTANCE METHODS
 
-    // POSITION AND COLLISION_____________________________
+    // POSITION_____________________________
     protected EntityLogicalData createEntityLogicalData(double coordX, double coordY, double width, double height) {
         return new EntityLogicalData(coordX, coordY, width, height);
     }
@@ -46,6 +48,15 @@ public  class Entity{
 
     protected void createAndSetEntityLogicalData(double coordX, double coordY, double width, double height) {
         this.eld = new EntityLogicalData(coordX, coordY, width, height);
+    }
+
+    // COLLISION_____________________________
+    protected Rectangle2D getBoundingBox() {
+        return new Rectangle2D.Double(this.eld.getCoordX(), this.eld.getCoordY(), this.eld.getWidth(), this.eld.getHeight());
+    }
+
+    protected void onCollision(Entity otherEntity) {
+        //will be implemented by each subtype
     }
 
     // SETTER_____________________________

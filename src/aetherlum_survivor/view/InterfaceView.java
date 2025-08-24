@@ -13,6 +13,8 @@ public interface InterfaceView {
     
     public void openGamePanel();
 
+    public void openGameOverPanel();
+
     //update view
     public void update();
 
