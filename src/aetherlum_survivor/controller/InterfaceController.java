@@ -36,4 +36,6 @@ public interface InterfaceController {
 
     public List<EntityLogicalData> getProjectilesELD();
 
+    public List<EntityLogicalData> getCollectiblesELD();
+
 }

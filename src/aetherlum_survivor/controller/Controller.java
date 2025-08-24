@@ -119,6 +119,11 @@ public class Controller implements InterfaceController{
         return Model.getInstance().getProjectilesELD();
     }
 
+    @Override
+    public List<EntityLogicalData> getCollectiblesELD() {
+        return Model.getInstance().getCollectiblesELD();
+    }
+
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------

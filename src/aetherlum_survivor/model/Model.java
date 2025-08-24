@@ -30,6 +30,9 @@ public class Model implements InterfaceModel {
 	private Projectiles projectileHandler; //to use class Projectiles methods to update the List
 	private List<Projectiles> projectiles;
 
+	private Collectibles collectibleHandler; //to use class Projectiles methods to update the List
+	private List<Collectibles> collectibles;
+
 	private Enemies enemyHandler; //to use class Enemies methods to update the List
 	private List<Enemies> enemies;
 	private int max_enemies_number;
@@ -101,7 +104,7 @@ public class Model implements InterfaceModel {
 			this.enemies = this.enemyHandler.spawn(this.enemies, this.scenarioData, this.player.getEntityLogicalData());
 
 			//TODO
-			//despawns consumables too distant and spawns new enemies
+			//despawns collectibles too distant and spawns new consubamles
 
 			//spawns projectiles
 
@@ -111,6 +114,8 @@ public class Model implements InterfaceModel {
 
 		//TODO
 		//moves entities
+
+		//check collision
 
 	}
 
@@ -131,16 +136,24 @@ public class Model implements InterfaceModel {
         return graphicalDataList;
     }
 
+	@Override
     public EntityLogicalData getPlayerELD() {
 		return this.player.getEntityLogicalData();
 	}
 
+	@Override
     public List<EntityLogicalData> getEnemiesELD() {
 		return convertToListELD(this.enemies);
 	}
 
+	@Override
     public List<EntityLogicalData> getProjectilesELD() {
 		return convertToListELD(this.projectiles);
+	}
+
+	@Override
+	public List<EntityLogicalData> getCollectiblesELD() {
+		return convertToListELD(this.collectibles);
 	}
 
     //---------------------------------------------------------------

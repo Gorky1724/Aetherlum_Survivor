@@ -88,6 +88,7 @@ public class Player extends Entity {
         this.level++;
         this.currentExp -= this.xpBar;
         this.xpBar = this.xpBar*(this.level/2);
+        //TODO - open levelupPanel with selections of which stat to boost
     }
     //---------------------------------------------------------------
 }

@@ -23,5 +23,7 @@ public interface InterfaceModel {
 
     public List<EntityLogicalData> getEnemiesELD();
 
-    public List<EntityLogicalData> getProjectilesELD();    
+    public List<EntityLogicalData> getProjectilesELD(); 
+    
+    public List<EntityLogicalData> getCollectiblesELD(); 
 }

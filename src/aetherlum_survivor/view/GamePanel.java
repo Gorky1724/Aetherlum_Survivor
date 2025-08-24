@@ -36,8 +36,9 @@ public class GamePanel extends JPanel {
 		paintBackground(g2d);
 
         paintPlayer(g2d, playerELD);
-        paintProjectiles(g2d, playerELD);
         paintEnemies(g2d, playerELD);
+        paintProjectiles(g2d, playerELD);
+        paintCollectibles(g2d, playerELD);
 
         g2d.dispose(); //release computing resources
         
@@ -94,6 +95,11 @@ public class GamePanel extends JPanel {
     public void paintProjectiles(Graphics2D g2d, EntityLogicalData playerELD) {
         //TODO
         //List<EntityLogicalData> projectileELD_List = Controller.getInstance().getEnemiesELD();
+    }
+
+    public void paintCollectibles(Graphics2D g2d, EntityLogicalData playerELD) {
+        //TODO - similar to paintEnemies
+        
     }
     
 }

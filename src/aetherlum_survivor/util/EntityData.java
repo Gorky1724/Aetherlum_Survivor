@@ -19,7 +19,6 @@ public class EntityData {
     }
 
     //! PLAYER FIRENDLY-------------------------------------------------------------------------------------
-    // player
     public static final int PLAYER_TYPE = 0;
     public static final int PLAYER_WIDTH = Constants.TILE_SIZE;
     public static final int PLAYER_HEIGHT = Constants.TILE_SIZE;
@@ -31,13 +30,20 @@ public class EntityData {
     public static final double XP_BAR = 100;
     public static final int MAX_LEVEL = 25;
 
-    // pick-uppables
-    public static final int EXP_GLOBE_TYPE = 10;
+    //! COLLECTIBLES -------------------------------------------------------------------------------------
+    public static final int[] COLLECTIBLES_TYPE_RANGE = {10,100}; //included
 
-    // projectiles
+    public static final int EXP_GLOBE_TYPE = 10;
+    public static final int EXP_GLOBE_WIDTH = Constants.TILE_SIZE;
+    public static final int EXP_GLOBE_HEIGHT = Constants.TILE_SIZE;
+    public static final int EXP_GLOBE_NOT_USEFUL_STAT = 0;
+    
+    //! PROJECTILES -------------------------------------------------------------------------------------
+    public static final int[] PROJECTILES_TYPE_RANGE = {400,700};
 
     //! ENEMIES -------------------------------------------------------------------------------------
-    // enemies
+    public static final int[] ENEMIES_TYPE_RANGE = {1000,1200};
+
     public static final int BASE_ENEMY_TYPE = 1000;
     public static final int BASE_ENEMY_WIDTH = Constants.TILE_SIZE;
     public static final int BASE_ENEMY_HEIGHT = Constants.TILE_SIZE;
