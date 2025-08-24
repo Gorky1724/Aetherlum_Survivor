@@ -20,6 +20,9 @@ public class Constants {
     public static final double SPAWN_RADIUS = Math.max(SCREEN_WIDTH, SCREEN_HEIGHT) * 1.3;
     public static final double DESPAWN_RADIUS = SPAWN_RADIUS * 1.1; 
 
+    //! ENEMIES MOVEMENT
+    public static final int MOVING_CADENCE = 500; //ms - entities doesen't move every tick as the player does
+
     //! GAME LOOP TIMER RELATED
     public static final int DESIRED_FPS = 60;
     public static final int TIMER_REPEAT_DELAY = 1000 / DESIRED_FPS; //milliseconds: circa 16.67 --(int)-> 16 ms

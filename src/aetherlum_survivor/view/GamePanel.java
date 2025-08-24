@@ -81,15 +81,25 @@ public class GamePanel extends JPanel {
         List<EntityLogicalData> enemyELD_list = Controller.getInstance().getEnemiesELD();
         for (EntityLogicalData enELD: enemyELD_list) {
             Point enemyLoc = convertLogicalToGraphical(enELD.getCoordX(),enELD.getCoordY(), playerELD);
+            switch (enELD.getSpritePath()) {
+                case "YELLOW":
+                    g2d.setColor(Color.YELLOW);
+                    break;
+                case "GREY":
+                    g2d.setColor(Color.GRAY);
+                    break;
+                case "MAGENTA":
+                    g2d.setColor(Color.MAGENTA);
+                    break;
+                case "GREEN":
+                    g2d.setColor(Color.GREEN);
+                    break;
+            }
             g2d.setColor(Color.YELLOW);
             //getX() and getY() return 'double' values - here is needed an int so i use the attribute
             g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
         }
 
-        /* 
-        Point enemyLoc = convertLogicalToGraphical(70,70, playerELD);
-        g2d.setColor(Color.YELLOW);
-        */
     }
 
     public void paintProjectiles(Graphics2D g2d, EntityLogicalData playerELD) {

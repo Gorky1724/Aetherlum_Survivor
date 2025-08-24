@@ -41,7 +41,11 @@ public class Model implements InterfaceModel {
 
 	// i want the spawn/respawn to not happen every timer tick
 	private long lastEntitiesSpawnDespawn = 0; //starting value
-	private int cadence = Constants.SPAWN_DESPAWN_CADENCE; //every cadence-time entities are spawned/despawned
+	private int spawnDespawnCadence = Constants.SPAWN_DESPAWN_CADENCE; //every cadence-time entities are spawned/despawned
+
+	// entities doesen't move every tick as the player does but with a short imposed time delay
+	private long lastEntitiesMoved = 0;
+	private int movingCadence = Constants.MOVING_CADENCE;
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------
@@ -127,7 +131,7 @@ public class Model implements InterfaceModel {
 
 		//despawns and spawns entities every cadence
 		long currentTime = System.currentTimeMillis();
-		if ((currentTime - this.lastEntitiesSpawnDespawn) >= this.cadence) {
+		if ((currentTime - this.lastEntitiesSpawnDespawn) >= this.spawnDespawnCadence) {
 			//despawns enemies too distant and spawns new enemies
 			this.enemies = this.enemyHandler.despawn(this.enemies, this.player.getEntityLogicalData());
 			this.enemies = this.enemyHandler.spawn(this.enemies, this.scenarioData, this.player.getEntityLogicalData());
@@ -141,11 +145,19 @@ public class Model implements InterfaceModel {
 			this.lastEntitiesSpawnDespawn = System.currentTimeMillis();
 		}
 
-		//TODO
 		//moves entities
+		currentTime = System.currentTimeMillis();
+		if((currentTime - this.lastEntitiesMoved) >= this.movingCadence) {
+			for(Enemies en : this.enemies) { //enemies
+				en.moveTowardsPlayer(this.player.getEntityLogicalData());
+			}
+		}
+
+		//TODO - move projectiles to enemy
 
 		//check collision
 		this.checkCollision();
+
 	}
 
 	@Override

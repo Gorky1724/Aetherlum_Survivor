@@ -1,18 +1,30 @@
 package aetherlum_survivor.util;
 
 public class EntityLogicalData {
+    
     //logical coordinates
-
     private double coordX;
     private double coordY;
     private double width;
     private double height;
+
+    //visualization
+    private String spritePath;
 
     public EntityLogicalData(double coordX, double coordY, double width, double height) {
         this.coordX = coordX;
         this.coordY = coordY;
         this.width = width;
         this.height = height;
+    }
+
+    public EntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
+        this.coordX = coordX;
+        this.coordY = coordY;
+        this.width = width;
+        this.height = height;
+
+        this.spritePath = spritePath;
     }
     
     // POSITION AND COLLISION_____________________________
@@ -32,6 +44,10 @@ public class EntityLogicalData {
         return this.height;
     }
 
+    public String getSpritePath() {
+        return this.spritePath;
+    }
+
     public void setCoordX(double newX) {
         this.coordX = newX;
     }
@@ -46,6 +62,10 @@ public class EntityLogicalData {
 
     public void setHeight(double newHeight) {
         this.height = newHeight;
+    }
+
+    public void setSpritePath(String newSpritePath) {
+        this.spritePath = newSpritePath;
     }
 
     //---------------------------------------------------------------

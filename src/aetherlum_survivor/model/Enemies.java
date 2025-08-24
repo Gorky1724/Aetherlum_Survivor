@@ -55,6 +55,7 @@ public class Enemies extends Entity {
         
         eld.setWidth(stats.width);
         eld.setHeight(stats.height);
+        eld.setSpritePath(stats.spritePath);
         this.speed = stats.speed;
         this.maxHitPoints = stats.maxHP;
         this.currentHP = this.maxHitPoints;
@@ -134,5 +135,12 @@ public class Enemies extends Entity {
         }
         //System.out.println("#> Enemies Spawned");
         return enemies;
+    }
+
+    public void moveTowardsPlayer(EntityLogicalData playerELD) {
+        double angle = Math.atan2(playerELD.getCoordY() - this.eld.getCoordY(), playerELD.getCoordX() - this.eld.getCoordX());
+        
+        this.eld.setCoordX(this.eld.getCoordX() + Math.cos(angle) * this.speed);
+        this.eld.setCoordY(this.eld.getCoordY() + Math.sin(angle) * this.speed);
     }
 }
