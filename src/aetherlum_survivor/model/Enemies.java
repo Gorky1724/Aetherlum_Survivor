@@ -61,6 +61,7 @@ public class Enemies extends Entity {
         this.currentHP = this.maxHitPoints;
         this.damage = stats.damage;
         this.damageResistance = stats.damageResistance;
+        //System.out.println(">>> Enemy of type " + type + " spawned");
         
         return eld;
     }

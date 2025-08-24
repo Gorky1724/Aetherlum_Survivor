@@ -75,7 +75,7 @@ public class Model implements InterfaceModel {
 		for (int i = 0; i < this.max_enemies_number; i++) {
 			Enemies en = new Enemies(EntityData.NULL_VALUE);
 			en.setInactive();
-			en.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
+			en.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, ""+EntityData.NULL_VALUE);
 			this.enemies.add(en);
 		}
 

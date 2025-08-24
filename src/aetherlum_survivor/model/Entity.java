@@ -38,6 +38,10 @@ public  class Entity{
         return new EntityLogicalData(coordX, coordY, width, height);
     }
 
+    protected EntityLogicalData createEntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
+        return new EntityLogicalData(coordX, coordY, width, height, spritePath);
+    }
+
     protected EntityLogicalData getEntityLogicalData() {
         return this.eld;
     }
@@ -48,6 +52,10 @@ public  class Entity{
 
     protected void createAndSetEntityLogicalData(double coordX, double coordY, double width, double height) {
         this.eld = new EntityLogicalData(coordX, coordY, width, height);
+    }
+
+    protected void createAndSetEntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
+        this.eld = new EntityLogicalData(coordX, coordY, width, height, spritePath);
     }
 
     // COLLISION_____________________________

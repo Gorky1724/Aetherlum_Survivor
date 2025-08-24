@@ -85,7 +85,7 @@ public class GamePanel extends JPanel {
                 case "YELLOW":
                     g2d.setColor(Color.YELLOW);
                     break;
-                case "GREY":
+                case "GRAY":
                     g2d.setColor(Color.GRAY);
                     break;
                 case "MAGENTA":
@@ -94,8 +94,10 @@ public class GamePanel extends JPanel {
                 case "GREEN":
                     g2d.setColor(Color.GREEN);
                     break;
+                default:
+                    //System.out.println("color assignation failed");
+                    break;
             }
-            g2d.setColor(Color.YELLOW);
             //getX() and getY() return 'double' values - here is needed an int so i use the attribute
             g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
         }
