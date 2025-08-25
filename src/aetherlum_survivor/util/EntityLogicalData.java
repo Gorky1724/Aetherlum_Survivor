@@ -1,6 +1,9 @@
 package aetherlum_survivor.util;
 
 public class EntityLogicalData {
+
+    //active status
+    private boolean status;
     
     //logical coordinates
     private double coordX;
@@ -26,6 +29,14 @@ public class EntityLogicalData {
 
         this.spritePath = spritePath;
     }
+
+    // STATUS_____________________________
+    public boolean getStatus() {
+        return this.status;
+    }
+    public void setStatus(boolean newStatus) {
+        this.status = newStatus;
+    }
     
     // POSITION AND COLLISION_____________________________
     public double getCoordX() {
@@ -44,10 +55,6 @@ public class EntityLogicalData {
         return this.height;
     }
 
-    public String getSpritePath() {
-        return this.spritePath;
-    }
-
     public void setCoordX(double newX) {
         this.coordX = newX;
     }
@@ -64,6 +71,11 @@ public class EntityLogicalData {
         this.height = newHeight;
     }
 
+    // VISUALIZATION_____________________________
+    public String getSpritePath() {
+        return this.spritePath;
+    }
+    
     public void setSpritePath(String newSpritePath) {
         this.spritePath = newSpritePath;
     }

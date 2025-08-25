@@ -91,7 +91,7 @@ public class EntityData {
     public static final int PIERCING_PROJ_TYPE = 410;
     public static final int PIERCING_PROJ_WIDTH = (int) (Constants.TILE_SIZE*0.3);
     public static final int PIERCING_PROJ_HEIGHT = (int) (Constants.TILE_SIZE*0.3);
-    public static final double PIERCING_PROJ_RATE_MOD = 1.2; //slower fire rate
+    public static final double PIERCING_PROJ_RATE_MOD = 1.5; //slower fire rate
     public static final double PIERCING_PROJ_DMG_MOD = 0.8; //deals less dmg
     public static final double PIERCING_PROJ_SPD = PLAYER_SPD*1.4; 
     public static final double PIERCING_PROJ_MAX_HP = PLAYER_MAX_HP*0.5; //based on player base hp value
@@ -100,7 +100,7 @@ public class EntityData {
     public static final int FAST_PROJ_TYPE = 420;
     public static final int FAST_PROJ_WIDTH = (int) (Constants.TILE_SIZE*0.2);
     public static final int FAST_PROJ_HEIGHT = (int) (Constants.TILE_SIZE*0.2);
-    public static final double FAST_PROJ_RATE_MOD = 0.8; //slower fire rate
+    public static final double FAST_PROJ_RATE_MOD = 0.5; //slower fire rate
     public static final double FAST_PROJ_DMG_MOD = 0.6; //deals less dmg
     public static final double FAST_PROJ_SPD = PLAYER_SPD*2.5; 
     public static final double FAST_PROJ_MAX_HP = 1;

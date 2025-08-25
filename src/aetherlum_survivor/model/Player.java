@@ -50,6 +50,12 @@ public class Player extends Entity {
         availableProjectiles = new ArrayList<>();
         Long[] type_lastShot = {(long) EntityData.BASE_PROJ_TYPE, lastShot};
         this.availableProjectiles.add(type_lastShot); //TODO - incremented via levelup or boosts
+        /*TEST if all types of projectile spawns
+        Long[] piercing = {(long) EntityData.PIERCING_PROJ_TYPE, lastShot};
+        Long[] fast = {(long) EntityData.FAST_PROJ_TYPE, lastShot};
+        this.availableProjectiles.add(piercing);
+        this.availableProjectiles.add(fast);
+        */
     }
 
     //---------------------------------------------------------------
@@ -63,6 +69,7 @@ public class Player extends Entity {
     }
     
     //! PUBLIC METHODS - update
+    //move
     protected void movePlayer(boolean pressedUpKey, boolean pressedRightKey, boolean pressedDownKey, boolean pressedLeftKey) {
         
         int deltaX = 0, deltaY = 0;

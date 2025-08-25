@@ -68,26 +68,6 @@ public  class Entity{
         return new double[] {spawnX, spawnY};
     }
 
-    public EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld) {
-
-        EntityStats stats = EntityData.STATS.get(type);
-        if (stats == null) {
-            System.out.println("!!!>> NULL ENEMY TYPE NUMBER - This should never print out");
-        }
-        
-        eld.setWidth(stats.width);
-        eld.setHeight(stats.height);
-        eld.setSpritePath(stats.spritePath);
-        this.speed = stats.speed;
-        this.maxHitPoints = stats.maxHP;
-        this.currentHP = this.maxHitPoints;
-        this.damage = stats.damage;
-        this.damageResistance = stats.damageResistance;
-        //System.out.println(">>> Entity data of type " + type + " set");
-        
-        return eld;
-    }
-
     // despawn entities
     public <T extends Entity> List<T> despawn(List<T> entities, EntityLogicalData playerELD) {
 
@@ -112,10 +92,6 @@ public  class Entity{
         return new EntityLogicalData(coordX, coordY, width, height);
     }
 
-    protected EntityLogicalData createEntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
-        return new EntityLogicalData(coordX, coordY, width, height, spritePath);
-    }
-
     protected EntityLogicalData getEntityLogicalData() {
         return this.eld;
     }
@@ -126,6 +102,11 @@ public  class Entity{
 
     protected void createAndSetEntityLogicalData(double coordX, double coordY, double width, double height) {
         this.eld = new EntityLogicalData(coordX, coordY, width, height);
+    }
+
+    //status + visualization
+    protected EntityLogicalData createEntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
+        return new EntityLogicalData(coordX, coordY, width, height, spritePath);
     }
 
     protected void createAndSetEntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
@@ -170,6 +151,9 @@ public  class Entity{
     }
     public boolean isAlive() {
         return (currentHP > 0);
+    }
+    public void death() {
+        this.setInactive();
     }
 
     //---------------------------------------------------------------

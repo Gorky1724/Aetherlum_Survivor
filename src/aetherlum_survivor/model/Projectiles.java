@@ -18,23 +18,35 @@ public class Projectiles extends Entity{
     }
 
     //! INSTANCE METHODS - utilities
-    @Override
-    public EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld) {
-        //set specific stats
+    public EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld, double playerDamage) {
+
+        
         EntityStats stats = EntityData.STATS.get(type);
         if (stats == null) {
             System.out.println("!!!>> NULL ENEMY TYPE NUMBER - This should never print out");
         }
+        
+        eld.setWidth(stats.width);
+        eld.setHeight(stats.height);
+        eld.setSpritePath(stats.spritePath);
+        this.speed = stats.speed;
+        this.maxHitPoints = stats.maxHP;
+        this.currentHP = this.maxHitPoints;
+        this.damage = stats.damage;
+        this.damageResistance = stats.damageResistance;
+    
         this.rateModifier = stats.proj_rate_mod;
         this.damageModifier = stats.proj_dmg_mod;
+        this.damage = playerDamage; 
+        //System.out.println(">>> Entity data of type " + type + " set");
 
-        //set common stats
-        EntityLogicalData superResult = super.setValuesDependingOnEnemyType(type, eld);
-        
-        return superResult;
+
+        return eld;
+
     }
 
-    //! INSTANCE METHODS - spawn
+    //! INSTANCE METHODS - update
+    //spawn
     public List<Projectiles> shoot(List<Projectiles> projectiles, Player player, long currentTime) {
 
         int currentlyActive = countActive(projectiles);
@@ -57,7 +69,6 @@ public class Projectiles extends Entity{
             EntityStats stats = EntityData.STATS.get(projType);
             double prj_rateMod = stats.proj_rate_mod;
             if(lastShot + (player.getFireRate()*prj_rateMod) <= currentTime) { //if can shoot
-                System.out.println("#> Proj_type - " + "\n "+ lastShot + "\n" + player.getFireRate() + "\n" +prj_rateMod);
                 for(Projectiles prj: projectiles) {
                     if(!prj.isActive()) {
                         projData[1] = currentTime; //updates type_lastShot
@@ -66,7 +77,7 @@ public class Projectiles extends Entity{
                         eld.setCoordY(player.getEntityLogicalData().getCoordY());
 
                         //based on enemy type
-                        eld = prj.setValuesDependingOnEnemyType(projType, eld);
+                        eld = prj.setValuesDependingOnEnemyType(projType, eld, player.getDamage());
                         prj.setEntityLogicalData(eld);
                         prj.setActive();
                         break;
@@ -77,4 +88,20 @@ public class Projectiles extends Entity{
 
         return projectiles;
     }
+
+    //move
+    //TODO
+
+    //collision
+    @Override
+    protected void onCollision(Entity ent) {
+        if(Enemies.class.isInstance(ent)) { //only if is passed an enemy
+            this.takeDamage(ent.getDamage());
+            System.out.println("#> Projectile currenthp: " + this.currentHP);
+            if(!this.isAlive()) {
+                this.death();
+            }
+        }
+    }
+
 }

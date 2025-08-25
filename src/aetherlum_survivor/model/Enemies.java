@@ -15,7 +15,29 @@ public class Enemies extends Entity {
         super(type);
     }
 
+    //! PUBLIC METHODS - utilities
+    public EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld) {
+
+        EntityStats stats = EntityData.STATS.get(type);
+        if (stats == null) {
+            System.out.println("!!!>> NULL ENEMY TYPE NUMBER - This should never print out");
+        }
+        
+        eld.setWidth(stats.width);
+        eld.setHeight(stats.height);
+        eld.setSpritePath(stats.spritePath);
+        this.speed = stats.speed;
+        this.maxHitPoints = stats.maxHP;
+        this.currentHP = this.maxHitPoints;
+        this.damage = stats.damage;
+        this.damageResistance = stats.damageResistance;
+        //System.out.println(">>> Entity data of type " + type + " set");
+        
+        return eld;
+    }
+
     //! PUBLIC METHODS - update
+    //spawn
     public List<Enemies> spawn(List<Enemies> enemies, ScenarioData sd, EntityLogicalData playerELD) {
 
         int currentlyActive = countActive(enemies);
@@ -69,10 +91,23 @@ public class Enemies extends Entity {
         return enemies;
     }
 
+    //move
     public void moveTowardsPlayer(EntityLogicalData playerELD) {
         double angle = Math.atan2(playerELD.getCoordY() - this.eld.getCoordY(), playerELD.getCoordX() - this.eld.getCoordX());
         
         this.eld.setCoordX(this.eld.getCoordX() + Math.cos(angle) * this.speed);
         this.eld.setCoordY(this.eld.getCoordY() + Math.sin(angle) * this.speed);
+    }
+
+    //collision
+    @Override
+    protected void onCollision(Entity ent) {
+        if(Projectiles.class.isInstance(ent)) { //only if is passed an enemy
+            this.takeDamage(ent.getDamage());
+            System.out.println("#> Enemy currenthp: " + this.currentHP);
+            if(!this.isAlive()) {
+                this.death();
+            }
+        }
     }
 }
