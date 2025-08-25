@@ -145,7 +145,7 @@ public  class Entity{
         this.currentHP = Math.min(this.currentHP + healTaken, this.maxHitPoints);
     }
     public boolean isAlive() {
-        return (currentHP > 0);
+        return (currentHP >= 1);
     }
     public void death() {
         this.setInactive();

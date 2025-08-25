@@ -11,8 +11,7 @@ public class ScenarioData {
         case 1: {
             // SCENARIO 1
             SCENARIO_ENEMIES = new int[] {EntityData.BASE_ENEMY_TYPE};
-            //SCENARIO_MAX_NUM = 10;
-            SCENARIO_MAX_NUM = 1;
+            SCENARIO_MAX_NUM = 10;
             break;
             }
         case 2:{

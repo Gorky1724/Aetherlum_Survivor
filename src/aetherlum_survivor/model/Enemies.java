@@ -10,7 +10,10 @@ import aetherlum_survivor.util.ScenarioData;
 
 public class Enemies extends Entity {
 
-    //TODO
+    //! ATTRIBUTES
+    private double expGiven;
+
+    //! CONSTRUCTOR
     public Enemies(int type) {
         super(type);
     }
@@ -31,6 +34,8 @@ public class Enemies extends Entity {
         this.currentHP = this.maxHitPoints;
         this.damage = stats.damage;
         this.damageResistance = stats.damageResistance;
+        
+        this.expGiven = stats.expGiven;
         //System.out.println(">>> Entity data of type " + type + " set");
         
         return eld;
@@ -107,6 +112,7 @@ public class Enemies extends Entity {
             System.out.println("#> Enemy currenthp: " + this.currentHP);
             if(!this.isAlive()) {
                 this.death();
+                //TODO - add exp to player
             }
         }
     }

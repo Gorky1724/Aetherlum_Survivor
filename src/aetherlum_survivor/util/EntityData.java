@@ -16,16 +16,22 @@ public class EntityData {
         public final double speed, maxHP, damage, damageResistance;
         public final String spritePath;
 
+        //enemies data
+        public final double expGiven;
+
         //projectiles data
         public final double proj_rate_mod, proj_dmg_mod;
         
-        //common data constructor
-        public EntityStats(int width, int height, double speed, double maxHP, double damage, double damageResistance, String spritePath) {
+        //enemies data constructor
+        public EntityStats(int width, int height, double speed, double maxHP, double damage, double damageResistance, String spritePath, double expGiven) {
             this.width = width; this.height = height;
             this.speed = speed; this.maxHP = maxHP; this.damage = damage; this.damageResistance = damageResistance;
             this.spritePath = spritePath;
 
-            //uncommon data
+            //enemies data
+            this.expGiven = expGiven;
+
+            //not used data
             this.proj_rate_mod = NOT_USEFUL_VALUE;
             this.proj_dmg_mod = NOT_USEFUL_VALUE;
         }
@@ -36,9 +42,12 @@ public class EntityData {
             this.speed = speed; this.maxHP = maxHP; this.damage = damage; this.damageResistance = damageResistance;
             this.spritePath = spritePath;
 
-            //uncommon data
+            //projectiles data
             this.proj_rate_mod = proj_rate_mod;
             this.proj_dmg_mod = proj_dmg_mod;
+
+            //not used data
+            this.expGiven = NOT_USEFUL_VALUE;
         }
 
     }
@@ -117,6 +126,7 @@ public class EntityData {
     public static final double BASE_ENEMY_MAX_HP = 30;
     public static final double BASE_ENEMY_DMG = 10;
     public static final double BASE_ENEMY_DMG_RST = 0;
+    public static final int BASE_ENEMY_EXP_GIVEN = 50;
     public static final String BASE_ENEMY_SPRITE_PATH = "MAGENTA";
 
     public static final int FAST_ENEMY_TYPE = 1001;
@@ -126,6 +136,7 @@ public class EntityData {
     public static final double FAST_ENEMY_MAX_HP = 20;
     public static final double FAST_ENEMY_DMG = 10;
     public static final double FAST_ENEMY_DMG_RST = 0;
+    public static final int FAST_ENEMY_EXP_GIVEN = 100;
     public static final String FAST_ENEMY_SPRITE_PATH = "GRAY";
 
     public static final int TANK_ENEMY_TYPE = 1002;
@@ -135,6 +146,7 @@ public class EntityData {
     public static final double TANK_ENEMY_MAX_HP = 50;
     public static final double TANK_ENEMY_DMG = 7;
     public static final double TANK_ENEMY_DMG_RST = 0.2;
+    public static final int TANK_ENEMY_EXP_GIVEN = 100;
     public static final String TANK_ENEMY_SPRITE_PATH = "GREEN";
 
     public static final int STATIC_ENEMY_TYPE = 1010;
@@ -144,6 +156,7 @@ public class EntityData {
     public static final double STATIC_ENEMY_MAX_HP = 30;
     public static final double STATIC_ENEMY_DMG = 15;
     public static final double STATIC_ENEMY_DMG_RST = 0.3;
+    public static final int STATIC_ENEMY_EXP_GIVEN = 20;
     public static final String STATIC_ENEMY_SPRITE_PATH = "YELLOW";
 
     //! STATS OF ALL ENTITY mapped with the type as the key
@@ -154,10 +167,10 @@ public class EntityData {
         PIERCING_PROJ_TYPE, new EntityStats(PIERCING_PROJ_WIDTH, PIERCING_PROJ_HEIGHT, PIERCING_PROJ_SPD, PIERCING_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, PIERCING_PROJ_SPRITE_PATH, PIERCING_PROJ_RATE_MOD, PIERCING_PROJ_DMG_MOD),
         FAST_PROJ_TYPE, new EntityStats(FAST_PROJ_WIDTH, FAST_PROJ_HEIGHT, FAST_PROJ_SPD, FAST_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, FAST_PROJ_SPRITE_PATH, FAST_PROJ_RATE_MOD, FAST_PROJ_DMG_MOD),
         //enemies
-        BASE_ENEMY_TYPE, new EntityStats(BASE_ENEMY_WIDTH, BASE_ENEMY_HEIGHT, BASE_ENEMY_SPD, BASE_ENEMY_MAX_HP, BASE_ENEMY_DMG, BASE_ENEMY_DMG_RST, BASE_ENEMY_SPRITE_PATH),
-        FAST_ENEMY_TYPE, new EntityStats(FAST_ENEMY_WIDTH, FAST_ENEMY_HEIGHT, FAST_ENEMY_SPD, FAST_ENEMY_MAX_HP, FAST_ENEMY_DMG, FAST_ENEMY_DMG_RST, FAST_ENEMY_SPRITE_PATH),
-        TANK_ENEMY_TYPE, new EntityStats(TANK_ENEMY_WIDTH, TANK_ENEMY_HEIGHT, TANK_ENEMY_SPD, TANK_ENEMY_MAX_HP, TANK_ENEMY_DMG, TANK_ENEMY_DMG_RST, TANK_ENEMY_SPRITE_PATH),
-        STATIC_ENEMY_TYPE, new EntityStats(STATIC_ENEMY_WIDTH, STATIC_ENEMY_HEIGHT, STATIC_ENEMY_SPD, STATIC_ENEMY_MAX_HP, STATIC_ENEMY_DMG, STATIC_ENEMY_DMG_RST, STATIC_ENEMY_SPRITE_PATH)
+        BASE_ENEMY_TYPE, new EntityStats(BASE_ENEMY_WIDTH, BASE_ENEMY_HEIGHT, BASE_ENEMY_SPD, BASE_ENEMY_MAX_HP, BASE_ENEMY_DMG, BASE_ENEMY_DMG_RST, BASE_ENEMY_SPRITE_PATH, BASE_ENEMY_EXP_GIVEN),
+        FAST_ENEMY_TYPE, new EntityStats(FAST_ENEMY_WIDTH, FAST_ENEMY_HEIGHT, FAST_ENEMY_SPD, FAST_ENEMY_MAX_HP, FAST_ENEMY_DMG, FAST_ENEMY_DMG_RST, FAST_ENEMY_SPRITE_PATH, FAST_ENEMY_EXP_GIVEN),
+        TANK_ENEMY_TYPE, new EntityStats(TANK_ENEMY_WIDTH, TANK_ENEMY_HEIGHT, TANK_ENEMY_SPD, TANK_ENEMY_MAX_HP, TANK_ENEMY_DMG, TANK_ENEMY_DMG_RST, TANK_ENEMY_SPRITE_PATH, TANK_ENEMY_EXP_GIVEN),
+        STATIC_ENEMY_TYPE, new EntityStats(STATIC_ENEMY_WIDTH, STATIC_ENEMY_HEIGHT, STATIC_ENEMY_SPD, STATIC_ENEMY_MAX_HP, STATIC_ENEMY_DMG, STATIC_ENEMY_DMG_RST, STATIC_ENEMY_SPRITE_PATH, STATIC_ENEMY_EXP_GIVEN)
     );
     
 }
