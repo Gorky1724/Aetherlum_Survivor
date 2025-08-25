@@ -34,14 +34,14 @@ public class Player extends Entity {
     public Player() {
         super(EntityData.PLAYER_TYPE);
 
-        this.setActive(); //set status - not actually needed
-
         this.speed = EntityData.PLAYER_SPD;
         this.maxHitPoints = EntityData.PLAYER_MAX_HP;
         this.currentHP = this.maxHitPoints;
         this.damage = EntityData.PLAYER_DMG;
         this.damageResistance = EntityData.PLAYER_DMG_RST;
         this.createAndSetEntityLogicalData(startY, startX, baseWidth, baseHeight);
+
+        this.setActive(); //set status - not actually needed
 
         //player-only
         this.xpBar = EntityData.XP_BAR;

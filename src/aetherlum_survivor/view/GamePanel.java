@@ -80,23 +80,25 @@ public class GamePanel extends JPanel {
         
         List<EntityLogicalData> enemyELD_list = Controller.getInstance().getEnemiesELD();
         for (EntityLogicalData enELD: enemyELD_list) {
-            Point enemyLoc = convertLogicalToGraphical(enELD.getCoordX(),enELD.getCoordY(), playerELD);
-            switch (enELD.getSpritePath()) {
-                case "YELLOW":
-                    g2d.setColor(Color.YELLOW);
-                    break;
-                case "GRAY":
-                    g2d.setColor(Color.GRAY);
-                    break;
-                case "MAGENTA":
-                    g2d.setColor(Color.MAGENTA);
-                    break;
-                case "GREEN":
-                    g2d.setColor(Color.GREEN);
-                    break;
+            if(enELD.isActive()) {
+                Point enemyLoc = convertLogicalToGraphical(enELD.getCoordX(),enELD.getCoordY(), playerELD);
+                switch (enELD.getSpritePath()) {
+                    case "YELLOW":
+                        g2d.setColor(Color.YELLOW);
+                        break;
+                    case "GRAY":
+                        g2d.setColor(Color.GRAY);
+                        break;
+                    case "MAGENTA":
+                        g2d.setColor(Color.MAGENTA);
+                        break;
+                    case "GREEN":
+                        g2d.setColor(Color.GREEN);
+                        break;
+                }
+                //getX() and getY() return 'double' values - here is needed an int so i use the attribute
+                g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
             }
-            //getX() and getY() return 'double' values - here is needed an int so i use the attribute
-            g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
         }
 
     }
@@ -105,19 +107,21 @@ public class GamePanel extends JPanel {
         //TODO
         List<EntityLogicalData> projectilesELD_list = Controller.getInstance().getProjectilesELD();
         for(EntityLogicalData prjELD: projectilesELD_list) {
-            Point projectileLoc = convertLogicalToGraphical(prjELD.getCoordX(), prjELD.getCoordY(), playerELD);
-            switch (prjELD.getSpritePath()) {
-                case "CYAN":
-                    g2d.setColor(Color.CYAN);
-                    break;
-                case "RED":
-                    g2d.setColor(Color.RED);
-                    break;
-                case "PINK":
-                    g2d.setColor(Color.PINK);
-                    break;
+            if(prjELD.isActive()) {
+                Point projectileLoc = convertLogicalToGraphical(prjELD.getCoordX(), prjELD.getCoordY(), playerELD);
+                switch (prjELD.getSpritePath()) {
+                    case "CYAN":
+                        g2d.setColor(Color.CYAN);
+                        break;
+                    case "RED":
+                        g2d.setColor(Color.RED);
+                        break;
+                    case "PINK":
+                        g2d.setColor(Color.PINK);
+                        break;
+                }
+                g2d.fillRect(projectileLoc.x, projectileLoc.y, (int) prjELD.getWidth(), (int) prjELD.getHeight());
             }
-            g2d.fillRect(projectileLoc.x, projectileLoc.y, (int) prjELD.getWidth(), (int) prjELD.getHeight());
         }
     }
 

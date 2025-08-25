@@ -1,8 +1,6 @@
 package aetherlum_survivor.model;
 
 import aetherlum_survivor.util.Constants;
-import aetherlum_survivor.util.EntityData;
-import aetherlum_survivor.util.EntityData.EntityStats;
 import aetherlum_survivor.util.EntityLogicalData;
 
 import java.awt.geom.Rectangle2D;
@@ -16,9 +14,6 @@ public  class Entity{
 
     //position and collision
     protected EntityLogicalData eld;
-
-    // active/inactive - not used by Player but by the other classes
-    protected boolean status; //false: inactive - true: active
 
     //game stats
     protected int type;
@@ -105,12 +100,12 @@ public  class Entity{
     }
 
     //status + visualization
-    protected EntityLogicalData createEntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
-        return new EntityLogicalData(coordX, coordY, width, height, spritePath);
+    protected EntityLogicalData createEntityLogicalData(boolean status, double coordX, double coordY, double width, double height, String spritePath) {
+        return new EntityLogicalData(status, coordX, coordY, width, height, spritePath);
     }
 
-    protected void createAndSetEntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
-        this.eld = new EntityLogicalData(coordX, coordY, width, height, spritePath);
+    protected void createAndSetEntityLogicalData(boolean status, double coordX, double coordY, double width, double height, String spritePath) {
+        this.eld = new EntityLogicalData(status, coordX, coordY, width, height, spritePath);
     }
 
     // COLLISION_____________________________
@@ -133,13 +128,13 @@ public  class Entity{
     }
 
     protected boolean isActive() {
-        return this.status;
+        return this.eld.getStatus();
     }
     protected void setActive() {
-        this.status = true;
+        this.eld.setStatus(true);
     }
     protected void setInactive() {
-        this.status = false;
+        this.eld.setStatus(false);
     }
 
     // DIRECT DATA VARIATION FROM GAME EVENT_____________________________

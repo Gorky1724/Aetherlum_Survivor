@@ -2,8 +2,8 @@ package aetherlum_survivor.util;
 
 public class EntityLogicalData {
 
-    //active status
-    private boolean status;
+    // active/inactive - not used by Player but by the other classes
+    protected boolean status; //false: inactive - true: active
     
     //logical coordinates
     private double coordX;
@@ -21,7 +21,9 @@ public class EntityLogicalData {
         this.height = height;
     }
 
-    public EntityLogicalData(double coordX, double coordY, double width, double height, String spritePath) {
+    public EntityLogicalData(boolean status, double coordX, double coordY, double width, double height, String spritePath) {
+        this.status = status;
+        
         this.coordX = coordX;
         this.coordY = coordY;
         this.width = width;
@@ -36,6 +38,9 @@ public class EntityLogicalData {
     }
     public void setStatus(boolean newStatus) {
         this.status = newStatus;
+    }
+    public boolean isActive() {
+        return this.status;
     }
     
     // POSITION AND COLLISION_____________________________
@@ -75,7 +80,7 @@ public class EntityLogicalData {
     public String getSpritePath() {
         return this.spritePath;
     }
-    
+
     public void setSpritePath(String newSpritePath) {
         this.spritePath = newSpritePath;
     }

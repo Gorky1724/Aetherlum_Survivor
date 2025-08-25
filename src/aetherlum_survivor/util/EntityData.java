@@ -5,6 +5,7 @@ import java.util.Map;
 public class EntityData {
 
     //! GENERIC VALUE
+    public static final boolean INACTIVE_STATUS = false;
     public static final int NULL_VALUE = -1;
     public static final int NOT_USEFUL_VALUE = 0;
 
