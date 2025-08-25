@@ -29,11 +29,11 @@ public class Model implements InterfaceModel {
 
 	private Projectiles projectileHandler; //to use class Projectiles methods to update the List
 	private List<Projectiles> projectiles;
-	private int max_projectiles_number;
+	private int max_projectiles_number = EntityData.MAX_PROJECTILES_SPAWN;
 
 	private Collectibles collectibleHandler; //to use class Projectiles methods to update the List
 	private List<Collectibles> collectibles;
-	private int max_collectibles_number;
+	private int max_collectibles_number = EntityData.MAX_COLLECTIBLES_SPAWN;
 
 	private Enemies enemyHandler; //to use class Enemies methods to update the List
 	private List<Enemies> enemies;
