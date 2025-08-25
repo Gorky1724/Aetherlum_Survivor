@@ -1,5 +1,8 @@
 package aetherlum_survivor.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityLogicalData;
 
@@ -17,7 +20,12 @@ public class Player extends Entity {
     //exp
     private double currentExp = 0;
     private int level = 1; 
+    private int maxLevel = EntityData.MAX_LEVEL;
     private double xpBar;
+
+    //projectiles
+    private int fireRate;
+    private List<Long[]> availableProjectiles; //long needed for System.currentTimeMillis()
 
 
     //---------------------------------------------------------------
@@ -37,11 +45,24 @@ public class Player extends Entity {
 
         //player-only
         this.xpBar = EntityData.XP_BAR;
+        this.fireRate = EntityData.PLAYER_FIRE_RATE;
+        long lastShot = System.currentTimeMillis(); //saves last time the projectile of TYPE has been shot
+        availableProjectiles = new ArrayList<>();
+        Long[] type_lastShot = {(long) EntityData.BASE_PROJ_TYPE, lastShot};
+        this.availableProjectiles.add(type_lastShot); //TODO - incremented via levelup or boosts
     }
 
     //---------------------------------------------------------------
-	//! PUBLIC METHODS
+	//! PUBLIC METHODS - getter
+    public int getFireRate() {
+        return this.fireRate;
+    }
 
+    public List<Long[]> getAvailableProjectiles() {
+        return this.availableProjectiles;
+    }
+    
+    //! PUBLIC METHODS - update
     protected void movePlayer(boolean pressedUpKey, boolean pressedRightKey, boolean pressedDownKey, boolean pressedLeftKey) {
         
         int deltaX = 0, deltaY = 0;
@@ -80,7 +101,7 @@ public class Player extends Entity {
     @Override
     protected void onCollision(Entity ent) {
         if(Enemies.class.isInstance(ent)) { //only if is passed an enemy
-            this.takeDamage(ent.damage);
+            this.takeDamage(ent.getDamage());
             System.out.println("#> currenthp: " + this.currentHP);
             if(!this.isAlive()) {
                 Model.getInstance().setGameOver();
@@ -106,6 +127,7 @@ public class Player extends Entity {
         this.currentExp -= this.xpBar;
         this.xpBar = this.xpBar*(this.level/2);
         //TODO - open levelupPanel with selections of which stat to boost
+        // casually, also the chance to unlock a new firing type (or maybe every 5/10 levels)
     }
     //---------------------------------------------------------------
 }

@@ -17,8 +17,8 @@ public class Constants {
     public static final int SCREEN_HEIGHT = TILE_SIZE * maxScreenRows;
 
     //! ENEMIES SPAWN AND DESPAWN RADIUS
-    public static final double SPAWN_RADIUS = Math.max(SCREEN_WIDTH, SCREEN_HEIGHT) * 1.3;
-    public static final double DESPAWN_RADIUS = SPAWN_RADIUS * 1.1; 
+    public static final double SPAWN_RADIUS = Math.max(SCREEN_WIDTH, SCREEN_HEIGHT) * 1.5;
+    public static final double DESPAWN_RADIUS = Math.max(SCREEN_WIDTH, SCREEN_HEIGHT) * 1.8; 
 
     //! ENEMIES MOVEMENT
     public static final int MOVING_CADENCE = 500; //ms - entities doesen't move every tick as the player does

@@ -40,11 +40,11 @@ public class Model implements InterfaceModel {
 	private int max_enemies_number;
 
 	// i want the spawn/respawn to not happen every timer tick
-	private long lastEntitiesSpawnDespawn = 0; //starting value
+	private long lastEntitiesSpawnDespawn = System.currentTimeMillis(); //starting value
 	private int spawnDespawnCadence = Constants.SPAWN_DESPAWN_CADENCE; //every cadence-time entities are spawned/despawned
 
 	// entities doesen't move every tick as the player does but with a short imposed time delay
-	private long lastEntitiesMoved = 0;
+	private long lastEntitiesMoved = System.currentTimeMillis();
 	private int movingCadence = Constants.MOVING_CADENCE;
     //---------------------------------------------------------------
 
@@ -85,7 +85,7 @@ public class Model implements InterfaceModel {
 		for(int i = 0; i < this.max_projectiles_number; i++) {
 			Projectiles prj = new Projectiles(EntityData.NULL_VALUE);
 			prj.setInactive();
-			prj.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
+			prj.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, ""+EntityData.NULL_VALUE);
 			this.projectiles.add(prj);
 		}
 
@@ -95,7 +95,7 @@ public class Model implements InterfaceModel {
 		for(int i = 0; i < this.max_collectibles_number; i++) {
 			Collectibles clt = new Collectibles(EntityData.NULL_VALUE);
 			clt.setInactive();
-			clt.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
+			clt.createAndSetEntityLogicalData(EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, ""+EntityData.NULL_VALUE);
 			this.collectibles.add(clt);
 		}
 
@@ -139,11 +139,15 @@ public class Model implements InterfaceModel {
 			//TODO
 			//despawns collectibles too distant and spawns new consubamles
 
-			//spawns projectiles
+			//despawns projectiles
+			this.projectiles = this.projectileHandler.despawn(this.projectiles, this.player.getEntityLogicalData());
 
 
 			this.lastEntitiesSpawnDespawn = System.currentTimeMillis();
 		}
+		//projectiles spawn depends from playerFireRate*projectileRateModifier
+		currentTime = System.currentTimeMillis();
+		this.projectiles = this.projectileHandler.shoot(this.projectiles, this.player, currentTime);
 
 		//moves entities
 		currentTime = System.currentTimeMillis();

@@ -94,9 +94,6 @@ public class GamePanel extends JPanel {
                 case "GREEN":
                     g2d.setColor(Color.GREEN);
                     break;
-                default:
-                    //System.out.println("color assignation failed");
-                    break;
             }
             //getX() and getY() return 'double' values - here is needed an int so i use the attribute
             g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
@@ -106,7 +103,22 @@ public class GamePanel extends JPanel {
 
     public void paintProjectiles(Graphics2D g2d, EntityLogicalData playerELD) {
         //TODO
-        //List<EntityLogicalData> projectileELD_List = Controller.getInstance().getEnemiesELD();
+        List<EntityLogicalData> projectilesELD_list = Controller.getInstance().getProjectilesELD();
+        for(EntityLogicalData prjELD: projectilesELD_list) {
+            Point projectileLoc = convertLogicalToGraphical(prjELD.getCoordX(), prjELD.getCoordY(), playerELD);
+            switch (prjELD.getSpritePath()) {
+                case "CYAN":
+                    g2d.setColor(Color.CYAN);
+                    break;
+                case "RED":
+                    g2d.setColor(Color.RED);
+                    break;
+                case "PINK":
+                    g2d.setColor(Color.PINK);
+                    break;
+            }
+            g2d.fillRect(projectileLoc.x, projectileLoc.y, (int) prjELD.getWidth(), (int) prjELD.getHeight());
+        }
     }
 
     public void paintCollectibles(Graphics2D g2d, EntityLogicalData playerELD) {

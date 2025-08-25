@@ -1,6 +1,8 @@
 package aetherlum_survivor.model;
 
 import aetherlum_survivor.util.Constants;
+import aetherlum_survivor.util.EntityData;
+import aetherlum_survivor.util.EntityData.EntityStats;
 import aetherlum_survivor.util.EntityLogicalData;
 
 import java.awt.geom.Rectangle2D;
@@ -34,7 +36,7 @@ public  class Entity{
     }
 
     //---------------------------------------------------------------
-	//! PROTECTED INSTANCE METHODS
+	//! INSTANCE METHODS
 
     // utilities
     protected double calculateDistance(double x1, double y1, double x2, double y2) {
@@ -64,6 +66,26 @@ public  class Entity{
         double spawnY = playerY + distance * Math.sin(angle);
         
         return new double[] {spawnX, spawnY};
+    }
+
+    public EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld) {
+
+        EntityStats stats = EntityData.STATS.get(type);
+        if (stats == null) {
+            System.out.println("!!!>> NULL ENEMY TYPE NUMBER - This should never print out");
+        }
+        
+        eld.setWidth(stats.width);
+        eld.setHeight(stats.height);
+        eld.setSpritePath(stats.spritePath);
+        this.speed = stats.speed;
+        this.maxHitPoints = stats.maxHP;
+        this.currentHP = this.maxHitPoints;
+        this.damage = stats.damage;
+        this.damageResistance = stats.damageResistance;
+        //System.out.println(">>> Entity data of type " + type + " set");
+        
+        return eld;
     }
 
     // despawn entities
@@ -117,6 +139,11 @@ public  class Entity{
 
     protected void onCollision(Entity otherEntity) {
         //will be implemented by each subtype
+    }
+
+    // GETTER_____________________________
+    public double getDamage() {
+        return this.damage;
     }
 
     // SETTER_____________________________

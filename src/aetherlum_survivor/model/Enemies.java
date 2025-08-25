@@ -7,34 +7,12 @@ import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityData.EntityStats;
 import aetherlum_survivor.util.ScenarioData;
-import aetherlum_survivor.util.Constants;
 
 public class Enemies extends Entity {
 
     //TODO
     public Enemies(int type) {
         super(type);
-    }
-
-    //! PRIVATE METHODS - utilities
-    private EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld) {
-
-        EntityStats stats = EntityData.ENEMY_STATS.get(type);
-        if (stats == null) {
-            System.out.println("!!!>> NULL ENEMY TYPE NUMBER - This should never print out");
-        }
-        
-        eld.setWidth(stats.width);
-        eld.setHeight(stats.height);
-        eld.setSpritePath(stats.spritePath);
-        this.speed = stats.speed;
-        this.maxHitPoints = stats.maxHP;
-        this.currentHP = this.maxHitPoints;
-        this.damage = stats.damage;
-        this.damageResistance = stats.damageResistance;
-        //System.out.println(">>> Enemy of type " + type + " spawned");
-        
-        return eld;
     }
 
     //! PUBLIC METHODS - update
