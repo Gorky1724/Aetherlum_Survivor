@@ -4,23 +4,14 @@ ________________________________________________________________________________
 >> WORKFLOW
 ___________________________________________________________________________________________________________________________
 
-- per iniziare il movimento del personaggio principale
-  Sempre per iniziare, puoi trattarlo come un semplice rettangolo senza skin, aggiungendola poi solo in un seconod momento
+- movimento dei proiettili verso i nemici (+ movimento generico se non ce ne sono di abbastanza vicino - ad esempio in direzione movimento player)
 
-- GamePanel e i metodi paint richiedono al Controller i dati (solo grafici - dunque posizione X,Y,altezza e larghezza - tipo di entità)
-  basandosi su questo scorrono la lista di entità che gli è stata passata e le disegnano dove necessario
-
-- il Model accoglie gli input di spostamento del player
-
-- ogni tick aggiorna la posizione dei nemici
+- qualcosa che impedisca la completa sovrapposizione dei nemici
+  altrimenti si sovrappongono e sembra che non muoiano -- magari una check "canMove()" che non li faccia sovrapporre
+  per più di metà della loro larghezza e altezza
 
 - schermata di potenziamento
-
-- schermata di selezione scenari quando si preme "Try to Survive"
-  
--> entrambi controllando le collisioni e facendo avvenire i relativi eventi
-
-<proiettili> <potenziamenti a terra> aggiungerli in un secondo momento
+  scelte casuali(?) + possibilità di sbloccare altri attacchi (garantito ogni 5/10 livelli?)
 
 ->>> FUTURE
 

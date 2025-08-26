@@ -109,10 +109,15 @@ public class Enemies extends Entity {
     protected void onCollision(Entity ent) {
         if(Projectiles.class.isInstance(ent)) { //only if is passed an enemy
             this.takeDamage(ent.getDamage());
-            System.out.println("#> Enemy currenthp: " + this.currentHP);
+            //System.out.println("#> Enemy currenthp: " + this.currentHP);
             if(!this.isAlive()) {
                 this.death();
-                //TODO - add exp to player
+
+                //extracs projectile owner (Player) and removes it hp
+                Projectiles prj = (Projectiles) (ent);
+                Player pl = (Player) prj.getOwner();
+                pl.addExp(this.expGiven);
+                //System.out.println("#> added xp amount: " + this.expGiven);
             }
         }
     }

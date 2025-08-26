@@ -50,6 +50,7 @@ public class Player extends Entity {
         availableProjectiles = new ArrayList<>();
         Long[] type_lastShot = {(long) EntityData.BASE_PROJ_TYPE, lastShot};
         this.availableProjectiles.add(type_lastShot); //TODO - incremented via levelup or boosts
+
         /*TEST if all types of projectile spawns
         Long[] piercing = {(long) EntityData.PIERCING_PROJ_TYPE, lastShot};
         Long[] fast = {(long) EntityData.FAST_PROJ_TYPE, lastShot};
@@ -128,11 +129,14 @@ public class Player extends Entity {
                 levelUp();
             }
         }
+        //System.out.println("#> Player exp: "+ this.currentExp);
     }
     protected void levelUp() {
         this.level++;
         this.currentExp -= this.xpBar;
         this.xpBar = this.xpBar*(this.level/2);
+        //System.out.println("#> Player lvl: "+ this.level);
+        
         //TODO - open levelupPanel with selections of which stat to boost
         // casually, also the chance to unlock a new firing type (or maybe every 5/10 levels)
     }

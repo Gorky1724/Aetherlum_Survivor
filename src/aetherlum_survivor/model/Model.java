@@ -144,7 +144,7 @@ public class Model implements InterfaceModel {
 		}
 		//projectiles spawn depends from playerFireRate*projectileRateModifier
 		currentTime = System.currentTimeMillis();
-		this.projectiles = this.projectileHandler.shoot(this.projectiles, this.player, currentTime);
+		this.projectiles = this.projectileHandler.shoot(this.projectiles, this.player, currentTime, this.enemies);
 
 		//moves entities
 		currentTime = System.currentTimeMillis();
@@ -152,9 +152,12 @@ public class Model implements InterfaceModel {
 			for(Enemies en : this.enemies) { //enemies
 				en.moveTowardsPlayer(this.player.getEntityLogicalData());
 			}
-		}
 
-		//TODO - move projectiles to enemy
+			for(Projectiles prj : this.projectiles) {
+				prj.advance();
+			}
+
+		}
 
 		//check collision
 		this.checkCollision();
