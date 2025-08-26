@@ -23,6 +23,9 @@ public  class Entity{
     protected double damage;
     protected double damageResistance;
 
+    //for randomness
+    protected Random random = new Random();
+
     //---------------------------------------------------------------
 
     //! CONSTRUCTOR
@@ -49,7 +52,6 @@ public  class Entity{
     }
 
     protected double[] generateSpawnPosition(double playerX, double playerY) {
-        Random random = new Random();
 
         //casual angle
         double angle = random.nextDouble() * 2*Math.PI;

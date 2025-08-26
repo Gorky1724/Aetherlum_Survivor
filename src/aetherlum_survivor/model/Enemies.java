@@ -57,7 +57,6 @@ public class Enemies extends Entity {
         int[] allowedEnemiesType = sd.getEnemiesTypesAvaliable();
 
         //spawns random number of enemies
-        Random rand = new Random();
         double min = 1;
         double max = (double) (maxEnemies - currentlyActive) / 4;
         int toSpawn = 1;
@@ -65,13 +64,9 @@ public class Enemies extends Entity {
             toSpawn = (int) ((Math.random() * (max - min)) + min);
         }
 
+        // in a random position
         int spawned = 0;
         while(spawned < toSpawn) {
-            //select random type
-            int t = rand.nextInt(allowedEnemiesType.length);
-            int enemyType = allowedEnemiesType[t];
-
-            double[] spawnPosition = generateSpawnPosition(playerELD.getCoordX(), playerELD.getCoordY());
             
             //finds first inactive
             for (Enemies en : enemies) {
@@ -80,10 +75,17 @@ public class Enemies extends Entity {
                 }
 
                 if(!en.isActive()) {
+                    //select random type
+                    int t = random.nextInt(allowedEnemiesType.length);
+                    int enemyType = allowedEnemiesType[t];
                     en.setType(enemyType);
+                    //and random position
                     EntityLogicalData eld = en.getEntityLogicalData();
+                    double[] spawnPosition = generateSpawnPosition(playerELD.getCoordX(), playerELD.getCoordY());
+                    
                     eld.setCoordX(spawnPosition[0]);
                     eld.setCoordY(spawnPosition[1]);
+                    System.out.println("#> Enemies Spawned in coord: "+spawnPosition[0]+" "+spawnPosition[1]);
 
                     //based on enemy type
                     eld = en.setValuesDependingOnEnemyType(enemyType, eld);
@@ -99,12 +101,6 @@ public class Enemies extends Entity {
 
     //move
     public void moveTowardsPlayer(EntityLogicalData playerELD, List<Enemies> enemies) {
-        /* 
-        double angle = Math.atan2(playerELD.getCoordY() - this.eld.getCoordY(), playerELD.getCoordX() - this.eld.getCoordX());
-        
-        this.eld.setCoordX(this.eld.getCoordX() + Math.cos(angle) * this.speed);
-        this.eld.setCoordY(this.eld.getCoordY() + Math.sin(angle) * this.speed);
-        */
 
         // moves towards player
         double directionX = playerELD.getCoordX() - this.eld.getCoordX();
