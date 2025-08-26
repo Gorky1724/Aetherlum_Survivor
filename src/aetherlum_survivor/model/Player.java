@@ -57,6 +57,7 @@ public class Player extends Entity {
         this.availableProjectiles.add(piercing);
         this.availableProjectiles.add(fast);
         */
+        
     }
 
     //---------------------------------------------------------------

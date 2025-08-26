@@ -22,6 +22,7 @@ public class Constants {
 
     //! ENEMIES MOVEMENT
     public static final int MOVING_CADENCE = 500; //ms - entities doesen't move every tick as the player does
+    public static final double SOVRAPPOSITION_LIMIT_VALUE = 0.8;
 
     //! GAME LOOP TIMER RELATED
     public static final int DESIRED_FPS = 60;

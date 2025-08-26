@@ -4,8 +4,6 @@ ________________________________________________________________________________
 >> WORKFLOW
 ___________________________________________________________________________________________________________________________
 
-- movimento dei proiettili verso i nemici (+ movimento generico se non ce ne sono di abbastanza vicino - ad esempio in direzione movimento player)
-
 - qualcosa che impedisca la completa sovrapposizione dei nemici
   altrimenti si sovrappongono e sembra che non muoiano -- magari una check "canMove()" che non li faccia sovrapporre
   per più di metà della loro larghezza e altezza

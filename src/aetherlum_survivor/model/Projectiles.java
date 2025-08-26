@@ -53,6 +53,10 @@ public class Projectiles extends Entity{
         return this.owner;
     }
 
+    public double getDamageModifier() {
+        return this.damageModifier;
+    }
+
     //! INSTANCE METHODS - update
     //spawn
     public List<Projectiles> shoot(List<Projectiles> projectiles, Player player, long currentTime, List<Enemies> enemies) {
