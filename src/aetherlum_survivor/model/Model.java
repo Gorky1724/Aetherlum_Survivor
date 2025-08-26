@@ -21,6 +21,10 @@ public class Model implements InterfaceModel {
     private static Model instance = null;
 	private GameLoop gameLoop;
 
+	//ingame timer
+	private int secondsPassed;
+	private long lastUpdatedSeconds = System.currentTimeMillis();
+
 	//selected scenario
 	private ScenarioData scenarioData;
 
@@ -57,7 +61,11 @@ public class Model implements InterfaceModel {
 		
 		this.gameLoop = new GameLoop(e -> {
 			//System.out.println("<<< Running >>>");
+
+			handleTimePassed();
+
 			update();
+
 			Controller.getInstance().requestViewUpdate();
 		});
 
@@ -113,6 +121,20 @@ public class Model implements InterfaceModel {
 		this.stopGameLoop();
 		System.out.println(">> GAME OVER");
 		Controller.getInstance().handleGameOver();
+	}
+
+	// INGAME TIMER_____________________________
+	private void handleTimePassed() {
+		long ct = System.currentTimeMillis();
+		if(ct - this.lastUpdatedSeconds >= 1000) {
+			this.lastUpdatedSeconds = ct;
+			this.secondsPassed++;
+		}
+	}
+
+	@Override
+	public int getTimePassed() {
+		return this.secondsPassed;
 	}
 
 	// UPDATE_____________________________
@@ -202,7 +224,7 @@ public class Model implements InterfaceModel {
 		//EVENTUALLY TO ADD: player - projectiles
 	}
 
-	// EXPOSES ENTITIES LOGICAL DATA___________________
+	// EXPOSES DATA___________________
     private List<EntityLogicalData> convertToListELD(List<? extends Entity> enList) {
 		//wildcard: everything that extends Entity
 
@@ -213,25 +235,27 @@ public class Model implements InterfaceModel {
         }
         return graphicalDataList;
     }
-
 	@Override
     public EntityLogicalData getPlayerELD() {
 		return this.player.getEntityLogicalData();
 	}
-
 	@Override
     public List<EntityLogicalData> getEnemiesELD() {
 		return convertToListELD(this.enemies);
 	}
-
 	@Override
     public List<EntityLogicalData> getProjectilesELD() {
 		return convertToListELD(this.projectiles);
 	}
-
 	@Override
 	public List<EntityLogicalData> getCollectiblesELD() {
 		return convertToListELD(this.collectibles);
+	}
+
+	@Override
+	public double[] getPlayerExpInfo() {
+		double [] bar_level = {this.player.getCurrentXp(), this.player.getXpBar(), (double) this.player.getLevel(), };
+		return bar_level;
 	}
 
     //---------------------------------------------------------------

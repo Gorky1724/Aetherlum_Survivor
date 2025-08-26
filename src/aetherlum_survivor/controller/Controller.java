@@ -86,6 +86,45 @@ public class Controller implements InterfaceController{
             }
         });
     }
+
+    @Override
+    public void handlePauseGame() {
+
+        this.stopGameLoop();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().openPausePanel();
+            }
+        });
+    }
+
+    @Override
+    public void handleLevelUp() {
+
+        this.stopGameLoop();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().openLevelUpPanel();
+            }
+        });
+    }
+
+    @Override
+    public void handleResumeGame() {
+
+        this.resumeGameLoop();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                View.getInstance().openGamePanel();
+            }
+        });
+    }
     
     // HANLDE GAMELOOP_____________________________
     @Override
@@ -119,20 +158,26 @@ public class Controller implements InterfaceController{
     public EntityLogicalData getPlayerELD() {
         return Model.getInstance().getPlayerELD();
     }
-
     @Override
     public List<EntityLogicalData> getEnemiesELD() {
         return Model.getInstance().getEnemiesELD();
     }
-
     @Override
     public List<EntityLogicalData> getProjectilesELD() {
         return Model.getInstance().getProjectilesELD();
     }
-
     @Override
     public List<EntityLogicalData> getCollectiblesELD() {
         return Model.getInstance().getCollectiblesELD();
+    }
+
+    @Override
+    public int getTimePassed() {
+        return Model.getInstance().getTimePassed();
+    }
+    @Override
+    public double[] getPlayerExpInfo() {
+        return Model.getInstance().getPlayerExpInfo();
     }
 
     //---------------------------------------------------------------

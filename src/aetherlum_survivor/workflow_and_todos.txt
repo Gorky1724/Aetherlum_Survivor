@@ -4,10 +4,6 @@ ________________________________________________________________________________
 >> WORKFLOW
 ___________________________________________________________________________________________________________________________
 
-- qualcosa che impedisca la completa sovrapposizione dei nemici
-  altrimenti si sovrappongono e sembra che non muoiano -- magari una check "canMove()" che non li faccia sovrapporre
-  per più di metà della loro larghezza e altezza
-
 - schermata di potenziamento
   scelte casuali(?) + possibilità di sbloccare altri attacchi (garantito ogni 5/10 livelli?)
 
@@ -24,13 +20,8 @@ ________________________________________________________________________________
     che ridireziona non al menù principale ma al gioco precedentemente iniziato
 
 - nel GamePanel, durante il gioco
-  > inserire il timer di quanto tempo si è sopravvissuti
-  > magari anche una barra di avanzamento degli XP e il livello corrente
   > scorciatoia (tipo premere P) per il menù di pausa E / O un pulsante che lo metta in pausa
     nel caso della scorciatoia, scriverlo
-
-- va sistematao il centramento del main character in coordgrafiche
-  nonostante i conti per centrarlo in coordGrafiche dovrebbero essere giusti, non è completamente centrato
 ___________________________________________________________________________________________________________________________
 >> TODO
 ___________________________________________________________________________________________________________________________

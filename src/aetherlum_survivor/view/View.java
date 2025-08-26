@@ -22,6 +22,8 @@ public class View implements InterfaceView {
     private GamePanel gamePanel;
     private ScenarioPanel scenarioPanel;
     private GameOverPanel gameOverPanel;
+    private PausePanel pausePanel;
+    private LevelUpPanel levelUpPanel;
 
     private JPanel cardPanel;
     private CardLayout cardLayout;
@@ -32,6 +34,8 @@ public class View implements InterfaceView {
     private static final String GAME_PANEL = "GAME";
     private static final String SCENARIO_PANEL = "SCENARIO";
     private static final String GAME_OVER_PANEL = "GAMEOVER";
+    private static final String PAUSE_PANEL = "PAUSE";
+    private static final String LEVEL_UP_PANEL = "LEVEL_UP";
 
     //---------------------------------------------------------------
 
@@ -68,12 +72,16 @@ public class View implements InterfaceView {
             attachKeyListenerToGamePanel();
             this.scenarioPanel = new ScenarioPanel();
             this.gameOverPanel = new GameOverPanel();
+            this.pausePanel = new PausePanel();
+            this.levelUpPanel = new LevelUpPanel();
             
             this.cardPanel.add(this.startPanel, START_PANEL);
             this.cardPanel.add(this.gamePanel, GAME_PANEL);
             this.cardPanel.add(this.settingsPanel, SETTINGS_PANEL);
             this.cardPanel.add(this.scenarioPanel, SCENARIO_PANEL);
             this.cardPanel.add(this.gameOverPanel, GAME_OVER_PANEL);
+            this.cardPanel.add(this.pausePanel, PAUSE_PANEL);
+            this.cardPanel.add(this.levelUpPanel, LEVEL_UP_PANEL);
 
             this.gameFrame.add(this.cardPanel);
             this.gameFrame.setVisible(true);
@@ -122,6 +130,24 @@ public class View implements InterfaceView {
     @Override
     public void openGameOverPanel(){
         this.cardLayout.show(cardPanel, GAME_OVER_PANEL);
+
+        this.gameFrame.revalidate();
+        this.gameFrame.repaint();
+        this.gameFrame.pack();
+    }
+
+    @Override
+    public void openPausePanel(){
+        this.cardLayout.show(cardPanel, PAUSE_PANEL);
+
+        this.gameFrame.revalidate();
+        this.gameFrame.repaint();
+        this.gameFrame.pack();
+    }
+
+    @Override
+    public void openLevelUpPanel(){
+        this.cardLayout.show(cardPanel, LEVEL_UP_PANEL);
 
         this.gameFrame.revalidate();
         this.gameFrame.repaint();

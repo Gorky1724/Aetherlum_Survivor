@@ -65,6 +65,9 @@ public class KeyHandler implements InterfaceKeyHandler, KeyListener{
             case KeyEvent.VK_LEFT:
                 this.left_pressed = true;
                 break;
+            case KeyEvent.VK_P:
+                Controller.getInstance().handlePauseGame();
+                break;
         }
         
     }

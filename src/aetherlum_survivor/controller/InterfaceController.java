@@ -26,12 +26,18 @@ public interface InterfaceController {
 
     public void handleGameOver();
 
+    public void handlePauseGame();
+
+    public void handleLevelUp();
+
+    public void handleResumeGame();
+
     // updates and requests
     public void requestViewUpdate();
 
     public void transmitScenarioToModel(int scenario_num);
 
-    //exposes entities
+    //exposes data
     public EntityLogicalData getPlayerELD();
 
     public List<EntityLogicalData> getEnemiesELD();
@@ -39,5 +45,9 @@ public interface InterfaceController {
     public List<EntityLogicalData> getProjectilesELD();
 
     public List<EntityLogicalData> getCollectiblesELD();
+
+    public int getTimePassed();
+
+    public double[] getPlayerExpInfo();
 
 }

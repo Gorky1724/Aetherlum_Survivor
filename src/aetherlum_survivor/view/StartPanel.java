@@ -32,7 +32,7 @@ public class StartPanel extends JPanel {
     public StartPanel() {
         this.setPreferredSize(getPreferredSize());
 
-        //buffer di disegno off-screen poi riportato sullo schermo - per fluidità di rendering
+        //off screen drawing buffer, then reported on screen - for rendering fluidity
         this.setDoubleBuffered(true);
 
         this.newGameButton = new JButton("Try to Survive");

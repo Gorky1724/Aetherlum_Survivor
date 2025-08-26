@@ -85,7 +85,7 @@ public class Enemies extends Entity {
                     
                     eld.setCoordX(spawnPosition[0]);
                     eld.setCoordY(spawnPosition[1]);
-                    System.out.println("#> Enemies Spawned in coord: "+spawnPosition[0]+" "+spawnPosition[1]);
+                    //System.out.println("#> Enemies Spawned in coord: "+spawnPosition[0]+" "+spawnPosition[1]);
 
                     //based on enemy type
                     eld = en.setValuesDependingOnEnemyType(enemyType, eld);

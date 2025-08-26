@@ -15,6 +15,10 @@ public interface InterfaceView {
 
     public void openGameOverPanel();
 
+    public void openPausePanel();
+
+    public void openLevelUpPanel();
+
     //update view
     public void update();
 

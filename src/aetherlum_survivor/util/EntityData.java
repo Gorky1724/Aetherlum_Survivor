@@ -62,7 +62,7 @@ public class EntityData {
     public static final double PLAYER_DMG_RST = 0; //0 <= dmg_rst <= 1 -- 1 = undamagable
     public static final String PLAYER_SPRITE_PATH = "WHITE";
 
-    public static final double XP_BAR = 100;
+    public static final double XP_BAR = 200;
     public static final int MAX_LEVEL = 25;
 
     public static final int PLAYER_FIRE_RATE = 1000; //ms

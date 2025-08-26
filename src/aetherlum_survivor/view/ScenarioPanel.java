@@ -31,7 +31,7 @@ public class ScenarioPanel extends JPanel {
 
         this.setPreferredSize(getPreferredSize());
 
-        //buffer di disegno off-screen poi riportato sullo schermo - per fluidità di rendering
+        //off screen drawing buffer, then reported on screen - for rendering fluidity
         this.setDoubleBuffered(true);
 
         JLabel askLabel = new JLabel("Where have you been deployed?");

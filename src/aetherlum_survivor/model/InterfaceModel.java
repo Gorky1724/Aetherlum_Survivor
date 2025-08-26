@@ -15,6 +15,9 @@ public interface InterfaceModel {
 
     public void setGameOver();
 
+    //ingame timer
+    public int getTimePassed();
+
     //update
     public void update();
 
@@ -22,7 +25,7 @@ public interface InterfaceModel {
 
     public void checkCollision();
 
-    //exposes entities
+    //exposes data
     public EntityLogicalData getPlayerELD();
 
     public List<EntityLogicalData> getEnemiesELD();
@@ -30,4 +33,6 @@ public interface InterfaceModel {
     public List<EntityLogicalData> getProjectilesELD(); 
     
     public List<EntityLogicalData> getCollectiblesELD(); 
+
+    public double[] getPlayerExpInfo();
 }

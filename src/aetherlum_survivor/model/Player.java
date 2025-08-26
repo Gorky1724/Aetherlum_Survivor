@@ -3,6 +3,7 @@ package aetherlum_survivor.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityLogicalData;
 
@@ -65,9 +66,18 @@ public class Player extends Entity {
     public int getFireRate() {
         return this.fireRate;
     }
-
     public List<Long[]> getAvailableProjectiles() {
         return this.availableProjectiles;
+    }
+
+    public double getCurrentXp() {
+        return this.currentExp;
+    }
+    public double getXpBar() {
+        return this.xpBar;
+    }
+    public int getLevel() {
+        return this.level;
     }
     
     //! PUBLIC METHODS - update
@@ -140,6 +150,7 @@ public class Player extends Entity {
         
         //TODO - open levelupPanel with selections of which stat to boost
         // casually, also the chance to unlock a new firing type (or maybe every 5/10 levels)
+        Controller.getInstance().handleLevelUp();
     }
     //---------------------------------------------------------------
 }

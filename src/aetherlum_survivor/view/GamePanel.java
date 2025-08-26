@@ -9,6 +9,7 @@ import aetherlum_survivor.util.Constants;
 import java.util.List;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -17,10 +18,10 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
 
-    //buffer di disegno off-screen poi riportato sullo schermo - per fluidità di rendering
-    this.setDoubleBuffered(true);
+        //off screen drawing buffer, then reported on screen - for rendering fluidity
+        this.setDoubleBuffered(true);
 
-    this.setBackground(Color.black);
+        this.setBackground(Color.black);
     }
 
     // to be able to repaint as desired - UPDATES the JPanel shown in the JFrame
@@ -39,6 +40,8 @@ public class GamePanel extends JPanel {
         paintEnemies(g2d, playerELD);
         paintProjectiles(g2d, playerELD);
         paintCollectibles(g2d, playerELD);
+
+        paintAdditionalElements(g2d);
 
         g2d.dispose(); //release computing resources
         
@@ -70,7 +73,7 @@ public class GamePanel extends JPanel {
         return new Point(screenX, screenY);
     }
 
-    // PAINT ELEMENTS_____________________________
+    //! PAINT ELEMENTS_____________________________
     //TODO the implementation must be improved with sprites and animation
     public void paintBackground(Graphics2D g2d) {
         g2d.setColor(Color.BLACK);
@@ -146,6 +149,62 @@ public class GamePanel extends JPanel {
     public void paintCollectibles(Graphics2D g2d, EntityLogicalData playerELD) {
         //TODO - similar to paintEnemies
         
+    }
+
+    // paint additional elements: xpBar, timer, P to Pause
+    public void paintAdditionalElements(Graphics2D g2d) {
+        //data
+        int sec = Controller.getInstance().getTimePassed();
+        double[] bar_level = Controller.getInstance().getPlayerExpInfo();
+        double currentXp = bar_level[0];
+        double xpBar = bar_level[1];
+        int level = (int) bar_level[2]; 
+
+        // XP BAR
+        int barWidth = Constants.SCREEN_WIDTH - 60;
+        int barHeight = 15;
+        int barCoordX = 20; //top_left_corner
+        int barCoordY = 20;
+        //bar
+        g2d.setColor(new Color(50, 50, 50, 150)); //dark grey - transparent
+        g2d.fillRect(barCoordX, barCoordY, barWidth, barHeight);
+        //xp_progression
+        double progress = currentXp / xpBar;
+        int widthToFill = (int) (progress * barWidth);
+        g2d.setColor(new Color(255, 215, 0, 200)); //gold - semitransparent
+        g2d.fillRect(barCoordX, barCoordY, widthToFill, barHeight);
+        //bar_border
+        g2d.setColor(Color.WHITE);
+        g2d.drawRect(barCoordX, barCoordY, barWidth, barHeight);
+
+        // TEXT UNDER IT
+        int panelWidth = barWidth - 40;
+        int panelHeight = 20;
+        int panelX = barCoordX + 20;
+        int panelY = barCoordY + barHeight + 5;
+        g2d.setColor(new Color(30, 30, 30, 180));
+        g2d.fillRect(panelX, panelY, panelWidth, panelHeight);
+        //text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(new Font("Serif", Font.BOLD, 14));
+        //level - left
+        g2d.drawString("Lvl: " + level, panelX + 10, panelY + 15);
+        //timer - center
+        String timerText = formatTime(sec);
+        int textWidth = g2d.getFontMetrics().stringWidth(timerText);
+        g2d.drawString(timerText, panelX + (panelWidth - textWidth) / 2, panelY + 15);
+        //pause notify - right
+        String pauseText = "P to Pause";
+        int pauseWidth = g2d.getFontMetrics().stringWidth(pauseText);
+        g2d.drawString(pauseText, panelX + panelWidth - pauseWidth - 10, panelY + 15);
+        
+    }
+
+    //! UTILITIES_____________________________
+    public String formatTime(int seconds){
+        long min = seconds / 60;
+        long sec = seconds % 60;
+        return String.format("%02d:%02d", min, sec); //formats time to mm:ss instead of m:s
     }
     
 }
