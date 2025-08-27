@@ -12,6 +12,7 @@ import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.ScenarioData;
+import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 public class Model implements InterfaceModel {
 
@@ -141,7 +142,7 @@ public class Model implements InterfaceModel {
 	@Override
 	public void update() {
 
-		// if key input: moves player
+		// if key input: moves player 
 		this.player.movePlayer(KeyHandler.getInstance().getUpPressed(),
 								KeyHandler.getInstance().getRightPressed(),
 								KeyHandler.getInstance().getDownPressed(),
@@ -222,6 +223,11 @@ public class Model implements InterfaceModel {
 		}
 
 		//EVENTUALLY TO ADD: player - projectiles
+	}
+
+	public void upgradePlayer(LevelUpOptions powerUpData) {
+		//stops player if it was moving when the level up panel showed up
+
 	}
 
 	// EXPOSES DATA___________________

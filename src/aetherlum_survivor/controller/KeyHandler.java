@@ -38,6 +38,15 @@ public class KeyHandler implements InterfaceKeyHandler, KeyListener{
         return this.left_pressed;    
     }
 
+    // RESET KEYS_____________________________
+    @Override
+    public void resetKeys() {
+        this.up_pressed = false;
+        this.right_pressed = false;
+        this.down_pressed = false;
+        this.left_pressed = false;
+    }
+
     // KEY INPUT_____________________________
     @Override
     public void keyTyped(KeyEvent e) {

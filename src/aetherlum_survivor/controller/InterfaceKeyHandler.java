@@ -10,4 +10,7 @@ public interface InterfaceKeyHandler {
     public boolean getDownPressed();
 
     public boolean getLeftPressed();
+
+    //reset keys
+    public void resetKeys();
 }

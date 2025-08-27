@@ -3,10 +3,12 @@ package aetherlum_survivor.controller;
 import javax.swing.SwingUtilities;
 
 import java.util.List;
+import java.util.Map;
 
 import aetherlum_survivor.model.Model;
 import aetherlum_survivor.view.View;
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 public class Controller implements InterfaceController{
 
@@ -91,6 +93,7 @@ public class Controller implements InterfaceController{
     public void handlePauseGame() {
 
         this.stopGameLoop();
+        KeyHandler.getInstance().resetKeys(); //makes sure that no player movement keys remains pressed when the game reopens
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -101,14 +104,15 @@ public class Controller implements InterfaceController{
     }
 
     @Override
-    public void handleLevelUp() {
+    public void handleLevelUp(Map<Integer, LevelUpOptions> randomLvlUp) {
 
         this.stopGameLoop();
+        KeyHandler.getInstance().resetKeys(); //makes sure that no player movement keys remains pressed when the game reopens
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                View.getInstance().openLevelUpPanel();
+                View.getInstance().openLevelUpPanel(randomLvlUp);
             }
         });
     }
@@ -151,6 +155,11 @@ public class Controller implements InterfaceController{
     @Override
     public void transmitScenarioToModel(int scenario_num) {
         Model.getInstance().selectedScenario(scenario_num);
+    }
+
+    @Override
+    public void upgradePlayer(LevelUpOptions powerUpData) {
+        Model.getInstance().upgradePlayer(powerUpData);
     }
 
     // EXPOSES DATA_____________________________

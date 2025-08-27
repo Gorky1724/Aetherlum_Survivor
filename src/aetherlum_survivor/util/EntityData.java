@@ -161,7 +161,7 @@ public class EntityData {
 
     //! STATS OF ALL ENTITY mapped with the type as the key
     //  to easily extract data when assignign them to spawned enemies
-    public static final Map<Integer, EntityStats> STATS = Map.of(
+    public static final Map<Integer, EntityStats> STATS = Map.of( //creates immutable map
         //projectiles
         BASE_PROJ_TYPE, new EntityStats(BASE_PROJ_WIDTH, BASE_PROJ_HEIGHT, BASE_PROJ_SPD, BASE_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, BASE_PROJ_SPRITE_PATH, BASE_PROJ_RATE_MOD, BASE_PROJ_DMG_MOD),
         PIERCING_PROJ_TYPE, new EntityStats(PIERCING_PROJ_WIDTH, PIERCING_PROJ_HEIGHT, PIERCING_PROJ_SPD, PIERCING_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, PIERCING_PROJ_SPRITE_PATH, PIERCING_PROJ_RATE_MOD, PIERCING_PROJ_DMG_MOD),

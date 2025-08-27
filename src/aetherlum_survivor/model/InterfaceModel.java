@@ -3,6 +3,7 @@ package aetherlum_survivor.model;
 import java.util.List;
 
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 public interface InterfaceModel {
 
@@ -24,6 +25,8 @@ public interface InterfaceModel {
     public void selectedScenario(int selected_scenario_num);
 
     public void checkCollision();
+
+    public void upgradePlayer(LevelUpOptions powerUpData);
 
     //exposes data
     public EntityLogicalData getPlayerELD();

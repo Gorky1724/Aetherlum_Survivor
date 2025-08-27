@@ -1,11 +1,16 @@
 package aetherlum_survivor.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.HashMap;
 
 import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.LevelUpData;
+import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 public class Player extends Entity {
 
@@ -24,9 +29,15 @@ public class Player extends Entity {
     private int maxLevel = EntityData.MAX_LEVEL;
     private double xpBar;
 
+    //level up options
+    private Map<Integer, LevelUpOptions> availableLevelUps;
+    private Map<Integer, LevelUpOptions> availableProjUnlock;
+    private int numProjOwned;
+
     //projectiles
     private int fireRate;
     private List<Long[]> availableProjectiles; //long needed for System.currentTimeMillis()
+
 
 
     //---------------------------------------------------------------
@@ -44,21 +55,27 @@ public class Player extends Entity {
 
         this.setActive(); //set status - not actually needed
 
-        //player-only
+        //xp
         this.xpBar = EntityData.XP_BAR;
+
+        //firing projectiles
         this.fireRate = EntityData.PLAYER_FIRE_RATE;
         long lastShot = System.currentTimeMillis(); //saves last time the projectile of TYPE has been shot
         availableProjectiles = new ArrayList<>();
         Long[] type_lastShot = {(long) EntityData.BASE_PROJ_TYPE, lastShot};
         this.availableProjectiles.add(type_lastShot); //TODO - incremented via levelup or boosts
-
+        this.numProjOwned = 1;
         /*TEST if all types of projectile spawns
         Long[] piercing = {(long) EntityData.PIERCING_PROJ_TYPE, lastShot};
         Long[] fast = {(long) EntityData.FAST_PROJ_TYPE, lastShot};
         this.availableProjectiles.add(piercing);
         this.availableProjectiles.add(fast);
         */
-        
+
+        // available level-ups
+        this.availableLevelUps = new HashMap<>(LevelUpData.LEVEL_UP_OPTIONS);
+        this.availableProjUnlock = new HashMap<>(LevelUpData.UNLOCK_PROJ_OPTIONS);
+
     }
 
     //---------------------------------------------------------------
@@ -134,7 +151,7 @@ public class Player extends Entity {
 
     //exp methods
     protected void addExp(double xpGained) {
-        if(this.level <= EntityData.MAX_LEVEL) {
+        if(this.level < maxLevel) {
             this.currentExp += xpGained;
             if(this.currentExp >= this.xpBar){
                 levelUp();
@@ -148,9 +165,23 @@ public class Player extends Entity {
         this.xpBar = this.xpBar*(this.level/2);
         //System.out.println("#> Player lvl: "+ this.level);
         
-        //TODO - open levelupPanel with selections of which stat to boost
-        // casually, also the chance to unlock a new firing type (or maybe every 5/10 levels)
-        Controller.getInstance().handleLevelUp();
+        //randomizes available upgrades
+        Map<Integer, LevelUpOptions> randomLvlUp = new HashMap<>();
+        // if level = multiple_of_LVL_PRJ_UNLOCK_INTERVAL
+        if (this.level == LevelUpData.LVL_PRJ_UNLOCK_INTERVAL * this.numProjOwned) {
+            int projCode = 100 + this.numProjOwned;
+            randomLvlUp.put(projCode, availableProjUnlock.get(projCode));
+        }
+        // randomly selects power ups based on remaining slots
+        List<Integer> allCodes = new ArrayList<>(availableLevelUps.keySet());
+        Collections.shuffle(allCodes);
+        int optionsToAdd = LevelUpData.NUM_OPTIONS - randomLvlUp.size();
+        for (int i = 0; i < optionsToAdd; i++) {
+            int key = allCodes.get(i);
+            randomLvlUp.put(key, availableLevelUps.get(key));
+        }
+
+        Controller.getInstance().handleLevelUp(randomLvlUp);
     }
     //---------------------------------------------------------------
 }

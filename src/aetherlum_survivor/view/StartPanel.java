@@ -65,6 +65,13 @@ public class StartPanel extends JPanel {
 
         layout.gridy = Y2; // change to next row
         this.add(this.settingsMenuButton, layout);
+
+        //set custom elements aspect
+        //to assign buttons custom aspect
+        JButton[] buttons = {newGameButton, settingsMenuButton};
+        for (JButton b : buttons) {
+            b.setFocusPainted(false); //removes sub-rectangle on the button that shows it is clickable
+        }
     }
 
     private void handleNewGameEvent() {

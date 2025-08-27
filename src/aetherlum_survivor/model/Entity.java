@@ -23,7 +23,7 @@ public  class Entity{
     protected double damage;
     protected double damageResistance;
 
-    //for randomness
+    //for randomness in metods
     protected Random random = new Random();
 
     //---------------------------------------------------------------

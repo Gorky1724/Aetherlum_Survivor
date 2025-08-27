@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.Constants;
+import aetherlum_survivor.util.EntityData;
 
 import java.util.List;
 
@@ -171,6 +172,9 @@ public class GamePanel extends JPanel {
         //xp_progression
         double progress = currentXp / xpBar;
         int widthToFill = (int) (progress * barWidth);
+        if(level == EntityData.MAX_LEVEL) { //color all bar if is maxLevel
+            widthToFill = barWidth;
+        }
         g2d.setColor(new Color(255, 215, 0, 200)); //gold - semitransparent
         g2d.fillRect(barCoordX, barCoordY, widthToFill, barHeight);
         //bar_border

@@ -5,6 +5,7 @@ import javax.swing.SwingConstants;
 
 import aetherlum_survivor.controller.Controller;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -35,7 +36,6 @@ public class ScenarioPanel extends JPanel {
         this.setDoubleBuffered(true);
 
         JLabel askLabel = new JLabel("Where have you been deployed?");
-        //askLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         JLabel scen1_Label = new JLabel("<html><center>" +
                                         "A destroyed village, where only some<br/>" +
@@ -91,17 +91,17 @@ public class ScenarioPanel extends JPanel {
 
         layout.gridx = 0;
         layout.gridy = 0;
-        layout.gridwidth = 3; // Si estende su 3 colonne
+        layout.gridwidth = 3; // extends on 3 columns
         layout.insets = new Insets(20, 10, 30, 10);
         layout.anchor = GridBagConstraints.CENTER;
         this.add(askLabel, layout);
 
-        // Reset gridwidth per i componenti successivi
+        // Reset gridwidth for successive components
         layout.gridwidth = 1;
         layout.insets = new Insets(10, 20, 10, 20);
         layout.anchor = GridBagConstraints.CENTER;
 
-        // Prima colonna - Scenario 1
+        // 1st column - scenario 1
         layout.gridx = 0;
         layout.gridy = 1;
         this.add(this.scen1_Butt, layout);
@@ -110,7 +110,7 @@ public class ScenarioPanel extends JPanel {
         layout.insets = new Insets(5, 20, 10, 20);
         this.add(scen1_Label, layout);
 
-        // Seconda colonna - Scenario 2
+        // 2nd column - scenario 2
         layout.gridx = 1;
         layout.gridy = 1;
         layout.insets = new Insets(10, 20, 10, 20);
@@ -120,7 +120,7 @@ public class ScenarioPanel extends JPanel {
         layout.insets = new Insets(5, 20, 10, 20);
         this.add(scen2_Label, layout);
 
-        // Terza colonna - Scenario 3
+        // 3rd column - scenario 3
         layout.gridx = 2;
         layout.gridy = 1;
         layout.insets = new Insets(10, 20, 10, 20);
@@ -129,6 +129,13 @@ public class ScenarioPanel extends JPanel {
         layout.gridy = 2;
         layout.insets = new Insets(5, 20, 10, 20);
         this.add(scen3_Label, layout);
+
+        //set custom elements aspect
+        //to assign buttons custom aspect
+        JButton[] buttons = {scen1_Butt, scen2_Butt, scen3_Butt};
+        for (JButton b : buttons) {
+            b.setFocusPainted(false); //removes sub-rectangle on the button that shows it is clickable
+        }
     }
 
     private void handleScenarioSelectedEvent() {

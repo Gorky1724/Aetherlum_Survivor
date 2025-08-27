@@ -5,8 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import aetherlum_survivor.util.Constants;
+import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
+
 import java.awt.Dimension;
 import java.awt.event.KeyListener;
+import java.util.Map;
 import java.awt.CardLayout; //to alternate JPanel
 
 public class View implements InterfaceView {
@@ -146,8 +149,10 @@ public class View implements InterfaceView {
     }
 
     @Override
-    public void openLevelUpPanel(){
+    public void openLevelUpPanel(Map<Integer, LevelUpOptions> randomLvlUp){
         this.cardLayout.show(cardPanel, LEVEL_UP_PANEL);
+
+        this.levelUpPanel.setup(randomLvlUp);
 
         this.gameFrame.revalidate();
         this.gameFrame.repaint();

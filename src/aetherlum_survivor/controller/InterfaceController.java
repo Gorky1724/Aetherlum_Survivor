@@ -1,8 +1,10 @@
 package aetherlum_survivor.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 public interface InterfaceController {
     
@@ -28,7 +30,7 @@ public interface InterfaceController {
 
     public void handlePauseGame();
 
-    public void handleLevelUp();
+    public void handleLevelUp(Map<Integer, LevelUpOptions> randomLvlUp);
 
     public void handleResumeGame();
 
@@ -36,6 +38,8 @@ public interface InterfaceController {
     public void requestViewUpdate();
 
     public void transmitScenarioToModel(int scenario_num);
+
+    public void upgradePlayer(LevelUpOptions powerUpData);
 
     //exposes data
     public EntityLogicalData getPlayerELD();
