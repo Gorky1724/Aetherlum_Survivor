@@ -144,7 +144,7 @@ public class Player extends Entity {
     protected void onCollision(Entity ent) {
         if(Enemies.class.isInstance(ent)) { //only if is passed an enemy
             this.takeDamage(ent.getDamage());
-            System.out.println("#> currenthp: " + this.currentHP);
+            //System.out.println("#> currenthp: " + this.currentHP);
             if(!this.isAlive()) {
                 Model.getInstance().setGameOver();
             }

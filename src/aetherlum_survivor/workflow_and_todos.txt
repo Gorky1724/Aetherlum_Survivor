@@ -4,13 +4,8 @@ ________________________________________________________________________________
 >> WORKFLOW
 ___________________________________________________________________________________________________________________________
 
-- schermata di potenziamento
-  scelte casuali(?) + possibilità di sbloccare altri attacchi (garantito ogni 5/10 livelli?)
 
 ->>> FUTURE
-
-- implementare Panel di Level Up e, prima del GamePanel, Panel di selezione dello scenario
-  > questo influenza lo sfondo della mappa, il numero di nemici e il tipo di nemici presenti
 
 - quando ti ritroverai a dover fare il menù di pausa dal GamePanel
   > sappiamo che questo presenta gli attributi del personaggio
@@ -19,9 +14,6 @@ ________________________________________________________________________________
     magari basato sulla presenza di un status = GAMESTARTED --> if(status == GAMESTARTED) {dove int GAMESTARTED = 1;}
     che ridireziona non al menù principale ma al gioco precedentemente iniziato
 
-- nel GamePanel, durante il gioco
-  > scorciatoia (tipo premere P) per il menù di pausa E / O un pulsante che lo metta in pausa
-    nel caso della scorciatoia, scriverlo
 ___________________________________________________________________________________________________________________________
 >> TODO
 ___________________________________________________________________________________________________________________________

@@ -3,7 +3,6 @@ package aetherlum_survivor.view;
 import javax.swing.JPanel;
 
 import aetherlum_survivor.controller.Controller;
-import aetherlum_survivor.model.Entity;
 import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
@@ -57,20 +56,6 @@ public class GamePanel extends JPanel {
         
         int screenX = (int) (logicalX - playerELD.getCoordX() + screenCenterX);
         int screenY = (int) (logicalY - playerELD.getCoordY() + screenCenterY);
-
-        /*
-        // screencenter == player_central_pixel_location
-        int screenCenterX = Constants.SCREEN_WIDTH / 2;
-        int screenCenterY = Constants.SCREEN_HEIGHT / 2;
-
-        // player_logical_center
-        double playerCenterX = playerELD.getCoordX() + playerELD.getWidth() / 2.0;
-        double playerCenterY = playerELD.getCoordY() + playerELD.getHeight() / 2.0;
-
-        // translation: move system to let player_center coincide with screen_center
-        int screenX = (int) (logicalX - playerCenterX + screenCenterX);
-        int screenY = (int) (logicalY - playerCenterY + screenCenterY);
-        */
         
         return new Point(screenX, screenY);
     }
@@ -166,8 +151,21 @@ public class GamePanel extends JPanel {
 
         // HEALTH BAR
         int hbWidth = EntityData.PLAYER_WIDTH + 10;
-        int hbHeight = 10;
-        int hbCoordX = (int) (Constants.SCREEN_WIDTH/2 + EntityData.PLAYER_WIDTH);
+        int hbHeight = 5;
+        int hbCoordX = (int) (Constants.SCREEN_WIDTH/2 - EntityData.PLAYER_WIDTH/2 - 5);
+        int hbCoordY = (int) (Constants.SCREEN_HEIGHT/2 + EntityData.PLAYER_HEIGHT/2 + 2);
+        // percentage to fill
+        double hpPercent = currentHP / maxHP;
+        int hbFillWidth = (int) (hpPercent * hbWidth);
+        //bar
+        g2d.setColor(new Color(50, 50, 50, 150)); //dark grey - transparent
+        g2d.fillRect(hbCoordX, hbCoordY, hbWidth, hbHeight);
+        //hp_amount
+        g2d.setColor(new Color(200, 0, 0, 200)); //red - transparent
+        g2d.fillRect(hbCoordX, hbCoordY, hbFillWidth, hbHeight);
+        //border
+        g2d.setColor(Color.WHITE);
+        g2d.drawRect(hbCoordX, hbCoordY, hbWidth, hbHeight);
 
         // XP BAR
         int barWidth = Constants.SCREEN_WIDTH - 60;
