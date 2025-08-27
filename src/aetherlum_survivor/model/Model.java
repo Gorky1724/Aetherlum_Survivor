@@ -2,6 +2,7 @@ package aetherlum_survivor.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.controller.KeyHandler;
@@ -71,7 +72,7 @@ public class Model implements InterfaceModel {
 		});
 
 		this.gameLoop.start();
-		System.out.println(">> GameLoop Started");
+		//System.out.println(">> GameLoop Started");
 
 
 		//single creation of player instance at the beginning of the game
@@ -225,9 +226,8 @@ public class Model implements InterfaceModel {
 		//EVENTUALLY TO ADD: player - projectiles
 	}
 
-	public void upgradePlayer(LevelUpOptions powerUpData) {
-		//stops player if it was moving when the level up panel showed up
-
+	public void upgradePlayer(Map<Integer, LevelUpOptions> powerUpData) {
+		this.player.upgrade(powerUpData);
 	}
 
 	// EXPOSES DATA___________________
@@ -259,9 +259,11 @@ public class Model implements InterfaceModel {
 	}
 
 	@Override
-	public double[] getPlayerExpInfo() {
-		double [] bar_level = {this.player.getCurrentXp(), this.player.getXpBar(), (double) this.player.getLevel(), };
-		return bar_level;
+	public double[] getPlayerInfo() {
+		double [] bar_level_hp = {this.player.getCurrentXp(), this.player.getXpBar(), (double) this.player.getLevel(),
+									this.player.getCurrentHP(), this.player.getMaxHP()
+								};
+		return bar_level_hp;
 	}
 
     //---------------------------------------------------------------

@@ -35,7 +35,7 @@ public class Player extends Entity {
     private int numProjOwned;
 
     //projectiles
-    private int fireRate;
+    private int fireRate; //ms
     private List<Long[]> availableProjectiles; //long needed for System.currentTimeMillis()
 
 
@@ -61,9 +61,9 @@ public class Player extends Entity {
         //firing projectiles
         this.fireRate = EntityData.PLAYER_FIRE_RATE;
         long lastShot = System.currentTimeMillis(); //saves last time the projectile of TYPE has been shot
-        availableProjectiles = new ArrayList<>();
+        this.availableProjectiles = new ArrayList<>();
         Long[] type_lastShot = {(long) EntityData.BASE_PROJ_TYPE, lastShot};
-        this.availableProjectiles.add(type_lastShot); //TODO - incremented via levelup or boosts
+        this.availableProjectiles.add(type_lastShot);
         this.numProjOwned = 1;
         /*TEST if all types of projectile spawns
         Long[] piercing = {(long) EntityData.PIERCING_PROJ_TYPE, lastShot};
@@ -95,6 +95,12 @@ public class Player extends Entity {
     }
     public int getLevel() {
         return this.level;
+    }
+    public double getCurrentHP() {
+        return this.currentHP;
+    }
+    public double getMaxHP() {
+        return this.maxHitPoints;
     }
     
     //! PUBLIC METHODS - update
@@ -167,21 +173,85 @@ public class Player extends Entity {
         
         //randomizes available upgrades
         Map<Integer, LevelUpOptions> randomLvlUp = new HashMap<>();
-        // if level = multiple_of_LVL_PRJ_UNLOCK_INTERVAL
-        if (this.level == LevelUpData.LVL_PRJ_UNLOCK_INTERVAL * this.numProjOwned) {
-            int projCode = 100 + this.numProjOwned;
+        // if level = multiple_of_LVL_PRJ_UNLOCK_INTERVAL && are left projectiles to unlock
+        int projCode = 100 + this.numProjOwned;
+        if (this.level % LevelUpData.LVL_PRJ_UNLOCK_INTERVAL == 0 && projCode <= LevelUpData.PRJ_UNLOCK_RANGE[1]) {
             randomLvlUp.put(projCode, availableProjUnlock.get(projCode));
+
+            //System.out.println("code: " + projCode + "\n descr: "+ availableProjUnlock.get(projCode).description);
         }
         // randomly selects power ups based on remaining slots
         List<Integer> allCodes = new ArrayList<>(availableLevelUps.keySet());
         Collections.shuffle(allCodes);
         int optionsToAdd = LevelUpData.NUM_OPTIONS - randomLvlUp.size();
         for (int i = 0; i < optionsToAdd; i++) {
-            int key = allCodes.get(i);
-            randomLvlUp.put(key, availableLevelUps.get(key));
+            int code = allCodes.get(i);
+            randomLvlUp.put(code, availableLevelUps.get(code));
+            //System.out.println("rndSz: "+randomLvlUp.size());
+
+            //System.out.println("code: " + code + "\n descr: "+ randomLvlUp.get(code).description);
         }
 
         Controller.getInstance().handleLevelUp(randomLvlUp);
+    }
+
+    //upgrade character
+    protected void upgrade(Map<Integer, LevelUpOptions> powerUpData) {
+        int code = powerUpData.keySet().iterator().next(); //directly exstracts unical key
+        LevelUpOptions data = powerUpData.get(code); //exstracts data
+        if(data.flatValue != LevelUpData.NULL_VALUE) {
+            switch (code) {
+                case LevelUpData.CODE_SPD_FV:
+                    this.speed = this.speed + data.flatValue;
+                    //System.out.println("@> New Speed: " + this.speed);
+                    break;
+                case LevelUpData.CODE_MAX_HP_FV:
+                    this.maxHitPoints = this.maxHitPoints + data.flatValue;
+                    //System.out.println("@> New MaxHP: " + this.maxHitPoints);
+                    break;
+                case LevelUpData.CODE_DMG_FV:
+                    this.damage = this.damage + data.flatValue;
+                    //System.out.println("@> New Damage: " + this.damage);
+                    break;
+                case LevelUpData.CODE_DMG_RST_FV:
+                    this.damageResistance = this.damageResistance + data.flatValue;
+                    if(this.damageResistance >= 0.95) { //cant become invincible
+                        this.damageResistance = 0.95;
+                    }
+                    //System.out.println("@> New DmgRst: " + this.damageResistance);
+                    break;
+            }
+        }
+        //separate if without else: if will be inctroduced a power up that updates both, both will be verified
+        if(data.percentageValue != LevelUpData.NULL_VALUE) {
+            switch (code) {
+                case LevelUpData.CODE_MAX_HP_PV:
+                    this.maxHitPoints = this.maxHitPoints * data.percentageValue;
+                    //System.out.println("@> New MaxHP (%incr): " + this.maxHitPoints);
+                    break;
+                case LevelUpData.CODE_FIRE_RATE_PV:
+                    this.fireRate = (int) (this.fireRate * data.percentageValue);
+                    //System.out.println("@> New FireRate: " + this.fireRate);
+                    break;
+            }
+        }
+
+        if(data.newProjType != LevelUpData.NULL_VALUE) {
+            long lastShot = System.currentTimeMillis();
+            this.numProjOwned++;
+            switch (code) {
+                case LevelUpData.CODE_UNLOCK_PIERCING_PROJ:
+                    Long[] type_lastShot = {(long) data.newProjType, lastShot};
+                    this.availableProjectiles.add(type_lastShot);
+                    //System.out.println("@> New UNLOCKED FAST PRJ");
+                    break;
+                case LevelUpData.CODE_UNLOCK_FAST_PROJ:
+                    Long[] type_ls = {(long) data.newProjType, lastShot};
+                    this.availableProjectiles.add(type_ls);
+                    //System.out.println("@> New UNLOCKED PIERCING PRJ");
+                    break;
+            }
+        }
     }
     //---------------------------------------------------------------
 }

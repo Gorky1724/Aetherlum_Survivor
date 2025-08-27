@@ -39,7 +39,7 @@ public interface InterfaceController {
 
     public void transmitScenarioToModel(int scenario_num);
 
-    public void upgradePlayer(LevelUpOptions powerUpData);
+    public void upgradePlayer(Map<Integer, LevelUpOptions> powerUpData);
 
     //exposes data
     public EntityLogicalData getPlayerELD();
@@ -52,6 +52,6 @@ public interface InterfaceController {
 
     public int getTimePassed();
 
-    public double[] getPlayerExpInfo();
+    public double[] getPlayerInfo();
 
 }

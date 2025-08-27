@@ -1,6 +1,7 @@
 package aetherlum_survivor.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -104,7 +105,14 @@ public class LevelUpPanel extends JPanel {
 
         //associates action listener
         JButton[] buttons = {powUp1_Butt, powUp2_Butt, powUp3_Butt};
+        
         for (int i = 0; i < buttons.length && i < codes.size(); i++) {
+
+            //removes precedent actionListeners from button
+            for (ActionListener al : buttons[i].getActionListeners()) {
+                buttons[i].removeActionListener(al);
+            }
+
             int code = codes.get(i);
             buttons[i].setText(this.powerUpsAvailable.get(code).description);
             buttons[i].addActionListener(new ActionListener() {
@@ -122,7 +130,12 @@ public class LevelUpPanel extends JPanel {
         //assign powerUpSelected
         this.powerUpSelected = this.powerUpsAvailable.get(this.codeOfSelectedPowUp);
 
-        Controller.getInstance().upgradePlayer(this.powerUpSelected);
+        //System.out.println("codeOfSelectedPowUp: " + this.codeOfSelectedPowUp);
+        //System.out.println("powerUpSelected: " + this.powerUpSelected);
+
+        Map<Integer, LevelUpOptions> dataPassed = new HashMap<>(Map.of(this.codeOfSelectedPowUp, this.powerUpSelected));
+
+        Controller.getInstance().upgradePlayer(dataPassed);
         Controller.getInstance().resumeGameLoop();
         Controller.getInstance().openGamePanel();
     }

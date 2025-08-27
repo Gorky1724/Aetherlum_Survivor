@@ -77,13 +77,13 @@ public class StartPanel extends JPanel {
     private void handleNewGameEvent() {
         Controller.getInstance().openScenarioPanel();
         
-        System.out.println(">> StartPanel --> ScenarioPanel");
+        //System.out.println(">> StartPanel --> ScenarioPanel");
     }
     
     private void handleSettingsMenuEvent() {
         Controller.getInstance().openSettingsPanel();
 
-        System.out.println(">> Settings Menu Opened from Main Menu");
+        //System.out.println(">> Settings Menu Opened from Main Menu");
     }
 
     

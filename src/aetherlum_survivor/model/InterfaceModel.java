@@ -1,6 +1,7 @@
 package aetherlum_survivor.model;
 
 import java.util.List;
+import java.util.Map;
 
 import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
@@ -26,7 +27,7 @@ public interface InterfaceModel {
 
     public void checkCollision();
 
-    public void upgradePlayer(LevelUpOptions powerUpData);
+    public void upgradePlayer(Map<Integer, LevelUpOptions> powerUpData);
 
     //exposes data
     public EntityLogicalData getPlayerELD();
@@ -37,5 +38,5 @@ public interface InterfaceModel {
     
     public List<EntityLogicalData> getCollectiblesELD(); 
 
-    public double[] getPlayerExpInfo();
+    public double[] getPlayerInfo();
 }

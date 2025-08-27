@@ -158,7 +158,7 @@ public class Controller implements InterfaceController{
     }
 
     @Override
-    public void upgradePlayer(LevelUpOptions powerUpData) {
+    public void upgradePlayer(Map<Integer, LevelUpOptions> powerUpData) {
         Model.getInstance().upgradePlayer(powerUpData);
     }
 
@@ -185,8 +185,8 @@ public class Controller implements InterfaceController{
         return Model.getInstance().getTimePassed();
     }
     @Override
-    public double[] getPlayerExpInfo() {
-        return Model.getInstance().getPlayerExpInfo();
+    public double[] getPlayerInfo() {
+        return Model.getInstance().getPlayerInfo();
     }
 
     //---------------------------------------------------------------

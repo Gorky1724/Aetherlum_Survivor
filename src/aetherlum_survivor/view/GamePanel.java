@@ -3,6 +3,7 @@ package aetherlum_survivor.view;
 import javax.swing.JPanel;
 
 import aetherlum_survivor.controller.Controller;
+import aetherlum_survivor.model.Entity;
 import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
@@ -152,14 +153,21 @@ public class GamePanel extends JPanel {
         
     }
 
-    // paint additional elements: xpBar, timer, P to Pause
+    // paint additional elements: healthBar, xpBar, timer, P to Pause
     public void paintAdditionalElements(Graphics2D g2d) {
         //data
         int sec = Controller.getInstance().getTimePassed();
-        double[] bar_level = Controller.getInstance().getPlayerExpInfo();
-        double currentXp = bar_level[0];
-        double xpBar = bar_level[1];
-        int level = (int) bar_level[2]; 
+        double[] bar_level_hp = Controller.getInstance().getPlayerInfo();
+        double currentXp = bar_level_hp[0];
+        double xpBar = bar_level_hp[1];
+        int level = (int) bar_level_hp[2]; 
+        double currentHP = bar_level_hp[3];
+        double maxHP = bar_level_hp[4];
+
+        // HEALTH BAR
+        int hbWidth = EntityData.PLAYER_WIDTH + 10;
+        int hbHeight = 10;
+        int hbCoordX = (int) (Constants.SCREEN_WIDTH/2 + EntityData.PLAYER_WIDTH);
 
         // XP BAR
         int barWidth = Constants.SCREEN_WIDTH - 60;

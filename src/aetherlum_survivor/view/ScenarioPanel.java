@@ -5,7 +5,6 @@ import javax.swing.SwingConstants;
 
 import aetherlum_survivor.controller.Controller;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -140,13 +139,13 @@ public class ScenarioPanel extends JPanel {
 
     private void handleScenarioSelectedEvent() {
         Controller.getInstance().transmitScenarioToModel(scenario_selected_num);
-        System.out.println(">> SelectedScenario: " + scenario_selected_num);
+        //System.out.println(">> SelectedScenario: " + scenario_selected_num);
         
         Controller.getInstance().openGamePanel();
-        System.out.println(">> ScenarioPanel --> GamePanel");
+        //System.out.println(">> ScenarioPanel --> GamePanel");
 
         Controller.getInstance().startGameLoop();
-        System.out.println(">> New Game Started from Scenario Panel");
+        //System.out.println(">> New Game Started from Scenario Panel");
         
         //TODO to try if needed
         /*
