@@ -154,18 +154,15 @@ public class Model implements InterfaceModel {
 								KeyHandler.getInstance().getLeftPressed()
 		);
 
-		//despawns and spawns entities every cadence
+		//despawns if too distant and spawns entities every cadence
 		long currentCycle = this.getClockCyle();
 		if ((currentCycle - this.lastEntitiesSpawnDespawn) >= this.spawnDespawnCadence) {
-			//despawns enemies too distant and spawns new enemies
 			this.enemies = this.enemyHandler.despawn(this.enemies, this.player.getEntityLogicalData());
 			this.enemies = this.enemyHandler.spawn(this.enemies, this.scenarioData, this.player.getEntityLogicalData());
 
-			//despawns collectibles too distant and spawns new consubamles
 			this.collectibles = this.collectibleHandler.despawn(this.collectibles, this.player.getEntityLogicalData());
 			this.collectibles = this.collectibleHandler.spawn(this.collectibles, this.player.getEntityLogicalData());
 
-			//despawns projectiles
 			this.projectiles = this.projectileHandler.despawn(this.projectiles, this.player.getEntityLogicalData());
 
 			this.lastEntitiesSpawnDespawn = this.getClockCyle();
@@ -184,7 +181,6 @@ public class Model implements InterfaceModel {
 
 		//check collision
 		this.checkCollision();
-
 	}
 
 	@Override
@@ -220,8 +216,6 @@ public class Model implements InterfaceModel {
 				}
 			}
 		}
-
-		//EVENTUALLY TO ADD: player - projectiles
 	}
 
 	public void upgradePlayer(Map<Integer, LevelUpOptions> powerUpData) {
@@ -229,9 +223,8 @@ public class Model implements InterfaceModel {
 	}
 
 	// EXPOSES DATA___________________
-    private List<EntityLogicalData> convertToListELD(List<? extends Entity> enList) {
-		//wildcard: everything that extends Entity
-
+    private List<EntityLogicalData> convertToListELD(List<? extends Entity> enList) { //wildcard: everything that extends Entity
+		
         List<EntityLogicalData> graphicalDataList = new ArrayList<>();
         for (Entity entity : enList) { //extrapolates eld of every enemy and add to list
             EntityLogicalData data = entity.getEntityLogicalData();
