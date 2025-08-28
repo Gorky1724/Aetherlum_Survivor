@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -48,20 +49,24 @@ public class LevelUpPanel extends JPanel {
         askLabel.setForeground(Color.WHITE); //text color
         askLabel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30)); //extends dimension to extend background
         askLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        askLabel.setFont(new Font("Serif", Font.BOLD, 14));
+        askLabel.setFont(new Font("Monospaced", Font.BOLD, 14));
 
         powUp1_Butt = new JButton("LOADING UPGRADE AVAILABLE");
         powUp2_Butt = new JButton("LOADING UPGRADE AVAILABLE");
         powUp3_Butt = new JButton("LOADING UPGRADE AVAILABLE");
 
         JButton[] buttons = {powUp1_Butt, powUp2_Butt, powUp3_Butt};
+        Dimension buttonSize = new Dimension(300, 50);
         //to assign buttons custom aspect
         for (JButton b : buttons) {
             b.setBackground(new Color(0,0,0));
             b.setForeground(Color.WHITE);
             b.setFocusPainted(false); //removes sub-rectangle on the button that shows it is clickable
             b.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); //more space if the inserted text needs to occupy it and resize button
-            b.setFont(new Font("Serif", Font.ITALIC, 14));
+            b.setFont(new Font("Monospaced", Font.PLAIN, 14));
+            b.setPreferredSize(buttonSize);
+            b.setMinimumSize(buttonSize);
+            b.setMaximumSize(buttonSize);
         }
 
         //define menu layout

@@ -143,6 +143,8 @@ public class View implements InterfaceView {
     public void openPausePanel(){
         this.cardLayout.show(cardPanel, PAUSE_PANEL);
 
+        this.pausePanel.updatePlayerData();
+
         this.gameFrame.revalidate();
         this.gameFrame.repaint();
         this.gameFrame.pack();

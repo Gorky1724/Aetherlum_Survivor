@@ -1,7 +1,6 @@
 package aetherlum_survivor.model;
 
 import java.util.List;
-import java.util.Random;
 
 import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.EntityData;
@@ -20,7 +19,7 @@ public class Enemies extends Entity {
     }
 
     //! PUBLIC METHODS - utilities
-    public EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld) {
+    private EntityLogicalData setValuesDependingOnEnemyType(int type, EntityLogicalData eld) {
 
         EntityStats stats = EntityData.STATS.get(type);
         if (stats == null) {
@@ -123,10 +122,10 @@ public class Enemies extends Entity {
 
             // minimun distance before repulsion - proportionally based on their dimension
             double minDistanceX = ((this.getEntityLogicalData().getWidth() + other.getEntityLogicalData().getWidth()) * Constants.SOVRAPPOSITION_LIMIT_VALUE) / 2.0;
-            double minDistanceY = ((this.getEntityLogicalData().getHeight() * 0.8 + other.getEntityLogicalData().getHeight()) * Constants.SOVRAPPOSITION_LIMIT_VALUE) / 2.0;
+            double minDistanceY = ((this.getEntityLogicalData().getHeight() + other.getEntityLogicalData().getHeight()) * Constants.SOVRAPPOSITION_LIMIT_VALUE) / 2.0;
             double minDistance = Math.max(minDistanceX, minDistanceY);
 
-            if (dist < minDistance && dist > 0.0001) {
+            if (dist < minDistance && dist > 0.0001) { //TODO - change to constant
                 // repulsive force proportional to their vicinance - with normalization
                 double force = (minDistance - dist) / minDistance; //max for dist->0, min for dist->minDistance
                 repelX += (distX / dist) * force;
@@ -156,7 +155,7 @@ public class Enemies extends Entity {
             if(!this.isAlive()) {
                 this.death();
 
-                //extracs projectile owner (Player) and removes it hp
+                //extracs projectile's owner (Player) and removes it hp
                 Player pl = (Player) prj.getOwner();
                 pl.addExp(this.expGiven);
                 //System.out.println("#> added xp amount: " + this.expGiven);

@@ -5,6 +5,9 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________________________________________
 
 
+- modificare la mira dei proiettili in modo che non sia mirato il TopLeftCorner ma il centro
+  > con x+enemyWidth/2 e y+enemyWidth/2
+
 ->>> FUTURE
 
 - quando ti ritroverai a dover fare il menù di pausa dal GamePanel
@@ -66,10 +69,17 @@ far intermediare tale passaggio al Controller, semplificando così l'interazione
 minimizzare così il numero di oggetti creati per appesantire il meno possibile le operazioni
 ---
 
+---velocità di aggiornamento delle creature non costante
+causata probabilmente dal fatto che il GameLoop sia un JavaSwingTimer, dunque ogni operazione e aggiornamento sia fatto dall'EDT.
+Possibili soluzioni:
+ > passare ad un GameLoop con Thread separato
+ +aggiungere un deltaTime
+ +far sì che le liste modificate non siano le stesse lette dal repaint evidanto l'errore di modifica e lettura contemporanea di un documento
+
 ___________________________________________________________________________________________________________________________
 >> COSE USATE FORSE NON FATTE A LEZIONE
 ___________________________________________________________________________________________________________________________
 
 <CardLayout> per alternare con pulizia trai vari panel
 
-<Thread> per istanziare il GameLoop
+? <Thread> per istanziare il GameLoop

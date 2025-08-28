@@ -23,8 +23,7 @@ public class Projectiles extends Entity{
     }
 
     //! INSTANCE METHODS - utilities
-    public EntityLogicalData setValuesDependingOnProjectileType(int type, EntityLogicalData eld, Player player) {
-
+    private EntityLogicalData setValuesDependingOnProjectileType(int type, EntityLogicalData eld, Player player) {
         
         EntityStats stats = EntityData.STATS.get(type);
         if (stats == null) {
@@ -53,6 +52,9 @@ public class Projectiles extends Entity{
         return this.owner;
     }
 
+    public double getRateModifier() {
+        return this.rateModifier;
+    }
     public double getDamageModifier() {
         return this.damageModifier;
     }
@@ -110,24 +112,30 @@ public class Projectiles extends Entity{
     }
 
     //move
-    public void findAndSetAngleOfMovement(List<Enemies> enemies) {
-        double[] minDistanceEnData = {Constants.DESPAWN_RADIUS+1, 0, 0}; //distance, coordX, coordY
-        for(Enemies en : enemies) {
-            if(en.isActive()) {
-                double enX = en.getEntityLogicalData().getCoordX();
-                double enY = en.getEntityLogicalData().getCoordY();
-                double dist = calculateDistance(enX, enY, this.eld.getCoordX(), this.eld.getCoordY());
-                if(dist <= minDistanceEnData[0]) {
+    public void findAndSetAngleOfMovement(List<Enemies> enemies) { //aims to center of enemy
+        double[] minDistanceEnData = {Constants.DESPAWN_RADIUS+1, 0, 0}; // distance, centerX, centerY
+        
+        double projCenterX = this.eld.getCoordX() + this.eld.getWidth()/2.0;
+        double projCenterY = this.eld.getCoordY() + this.eld.getHeight()/2.0;
+
+        for (Enemies en : enemies) {
+            if (en.isActive()) {
+                double enCenterX = en.getEntityLogicalData().getCoordX() + en.getEntityLogicalData().getWidth() / 2.0;
+                double enCenterY = en.getEntityLogicalData().getCoordY() + en.getEntityLogicalData().getHeight() / 2.0;
+
+                double dist = calculateDistance(enCenterX, enCenterY, projCenterX, projCenterY);
+
+                if (dist <= minDistanceEnData[0]) {
                     minDistanceEnData[0] = dist;
-                    minDistanceEnData[1] = enX;
-                    minDistanceEnData[2] = enY; 
+                    minDistanceEnData[1] = enCenterX;
+                    minDistanceEnData[2] = enCenterY;
                 }
             }
         }
 
-        //if no close enemy has been found, the shot will direct towards the (0,0) of the logical coord axis
+        // angle from proj_center to closest_en_center - if none is found the shot will be directed towards (0,0) of the logical coord axis
+        this.angleOfMovement = Math.atan2(minDistanceEnData[2] - projCenterY, minDistanceEnData[1] - projCenterX);
 
-        this.angleOfMovement = Math.atan2(minDistanceEnData[2] - this.eld.getCoordY(), minDistanceEnData[1] - this.eld.getCoordX());
     }
     public void advance() {
         this.eld.setCoordX(this.eld.getCoordX() + Math.cos(this.angleOfMovement) * this.speed);

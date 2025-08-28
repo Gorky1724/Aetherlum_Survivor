@@ -56,7 +56,7 @@ public class EntityData {
     public static final int PLAYER_TYPE = 0;
     public static final int PLAYER_WIDTH = Constants.TILE_SIZE;
     public static final int PLAYER_HEIGHT = Constants.TILE_SIZE;
-    public static final double PLAYER_SPD = 10;
+    public static final double PLAYER_SPD = 7;
     public static final double PLAYER_MAX_HP = 1000;
     public static final double PLAYER_DMG = 10;
     public static final double PLAYER_DMG_RST = 0; //0 <= dmg_rst <= 1 -- 1 = undamagable
@@ -75,7 +75,7 @@ public class EntityData {
     public static final int EXP_GLOBE_EXP_GIVEN = 50;
     public static final int EXP_GLOBE_WIDTH = Constants.TILE_SIZE;
     public static final int EXP_GLOBE_HEIGHT = Constants.TILE_SIZE;
-    public static final String EXP_GLOBE_SPRITE_PATH = "BLUE";
+    public static final String EXP_GLOBE_SPRITE_PATH = "BLUE"; //find sprite of golden color
 
     public static final int HEALTH_GLOBE_TYPE = 20;
     public static final int HEALTH_GLOBE_HEALTH_GIVEN = 25;
@@ -122,7 +122,7 @@ public class EntityData {
     public static final int BASE_ENEMY_TYPE = 1000;
     public static final int BASE_ENEMY_WIDTH = Constants.TILE_SIZE;
     public static final int BASE_ENEMY_HEIGHT = Constants.TILE_SIZE;
-    public static final double BASE_ENEMY_SPD = 6;
+    public static final double BASE_ENEMY_SPD = 3;
     public static final double BASE_ENEMY_MAX_HP = 30;
     public static final double BASE_ENEMY_DMG = 10;
     public static final double BASE_ENEMY_DMG_RST = 0;
@@ -132,7 +132,7 @@ public class EntityData {
     public static final int FAST_ENEMY_TYPE = 1001;
     public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*0.7);
     public static final int FAST_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*0.7);
-    public static final double FAST_ENEMY_SPD = 8;
+    public static final double FAST_ENEMY_SPD = 5;
     public static final double FAST_ENEMY_MAX_HP = 20;
     public static final double FAST_ENEMY_DMG = 10;
     public static final double FAST_ENEMY_DMG_RST = 0;
@@ -142,7 +142,7 @@ public class EntityData {
     public static final int TANK_ENEMY_TYPE = 1002;
     public static final int TANK_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*1.5);
     public static final int TANK_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*1.5);
-    public static final double TANK_ENEMY_SPD = 4;
+    public static final double TANK_ENEMY_SPD = 3;
     public static final double TANK_ENEMY_MAX_HP = 50;
     public static final double TANK_ENEMY_DMG = 7;
     public static final double TANK_ENEMY_DMG_RST = 0.2;

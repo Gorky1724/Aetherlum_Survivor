@@ -196,7 +196,7 @@ public class GamePanel extends JPanel {
         g2d.fillRect(panelX, panelY, panelWidth, panelHeight);
         //text
         g2d.setColor(Color.WHITE);
-        g2d.setFont(new Font("Serif", Font.BOLD, 14));
+        g2d.setFont(new Font("Monospaced", Font.BOLD, 14));
         //level - left
         g2d.drawString("Lvl: " + level, panelX + 10, panelY + 15);
         //timer - center
