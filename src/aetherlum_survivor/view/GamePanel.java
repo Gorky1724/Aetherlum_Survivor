@@ -134,8 +134,22 @@ public class GamePanel extends JPanel {
     }
 
     public void paintCollectibles(Graphics2D g2d, EntityLogicalData playerELD) {
-        //TODO - similar to paintEnemies
         
+        List<EntityLogicalData> collectiblesELD_list = Controller.getInstance().getCollectiblesELD();
+        for(EntityLogicalData cltELD: collectiblesELD_list) {
+            if(cltELD.isActive()) {
+                Point collectibleLoc = convertLogicalToGraphical(cltELD.getCoordX(), cltELD.getCoordY(), playerELD);
+                switch (cltELD.getSpritePath()) {
+                    case "RED":
+                        g2d.setColor(Color.RED);
+                        break;
+                    case "BLUE":
+                        g2d.setColor(Color.BLUE);
+                        break;
+                }
+                g2d.fillRect(collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight());
+            }
+        }
     }
 
     // paint additional elements: healthBar, xpBar, timer, P to Pause

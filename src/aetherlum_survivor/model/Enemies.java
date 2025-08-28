@@ -63,16 +63,16 @@ public class Enemies extends Entity {
             toSpawn = (int) ((Math.random() * (max - min)) + min);
         }
 
-        // in a random position
         int spawned = 0;
         while(spawned < toSpawn) {
             
-            //finds first inactive
+            //iterates on enemies
             for (Enemies en : enemies) {
                 if(spawned >= toSpawn) {
                     break;
                 }
 
+                //finds inactive
                 if(!en.isActive()) {
                     //select random type
                     int t = random.nextInt(allowedEnemiesType.length);

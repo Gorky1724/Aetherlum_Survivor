@@ -18,6 +18,7 @@ public class Projectiles extends Entity{
 
     private Entity owner; //direct reference to who shot it
 
+    //! CONSTRUCTOR
     public Projectiles(int type) {
         super(type);
     }

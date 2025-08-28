@@ -151,7 +151,8 @@ public class Player extends Entity {
         }
 
         if(Collectibles.class.isInstance(ent)) { //only if is passed a collectible
-            //TODO
+            Collectibles clt = (Collectibles) ent;
+            clt.applyEffect(this);
         }
     }
 

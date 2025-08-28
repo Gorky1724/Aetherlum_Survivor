@@ -44,9 +44,9 @@ public class Model implements InterfaceModel {
 	private List<Enemies> enemies;
 	private int max_enemies_number;
 
-	// i want the spawn/respawn to not happen every timer tick
+	// i want the spawn/respawn to not happen every timer tick but every cadence-time
 	private long lastEntitiesSpawnDespawn = this.getClockCyle(); //starting value
-	private int spawnDespawnCadence = Constants.SPAWN_DESPAWN_CADENCE; //every cadence-time entities are spawned/despawned
+	private int spawnDespawnCadence = Constants.SPAWN_DESPAWN_CADENCE; //to be sure that it's spawned even if a frame gets skipped
 
 	//ingame timer - only instance with currentTimeMillis() for more precision
 	private int secondsPassed;
@@ -161,8 +161,9 @@ public class Model implements InterfaceModel {
 			this.enemies = this.enemyHandler.despawn(this.enemies, this.player.getEntityLogicalData());
 			this.enemies = this.enemyHandler.spawn(this.enemies, this.scenarioData, this.player.getEntityLogicalData());
 
-			//TODO
 			//despawns collectibles too distant and spawns new consubamles
+			this.collectibles = this.collectibleHandler.despawn(this.collectibles, this.player.getEntityLogicalData());
+			this.collectibles = this.collectibleHandler.spawn(this.collectibles, this.player.getEntityLogicalData());
 
 			//despawns projectiles
 			this.projectiles = this.projectileHandler.despawn(this.projectiles, this.player.getEntityLogicalData());
@@ -197,7 +198,6 @@ public class Model implements InterfaceModel {
 		for(Enemies en: this.enemies) {
 			if(en.isActive() && en.getBoundingBox().intersects(this.player.getBoundingBox())) {
 				this.player.onCollision(en);
-				//System.out.println("#> Collision with enemy");
 			}
 		}
 

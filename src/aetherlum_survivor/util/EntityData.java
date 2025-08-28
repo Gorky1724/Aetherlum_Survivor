@@ -21,6 +21,9 @@ public class EntityData {
 
         //projectiles data
         public final double proj_rate_mod, proj_dmg_mod;
+
+        //collectibles data
+        public final double collectibleValue;
         
         //enemies data constructor
         public EntityStats(int width, int height, double speed, double maxHP, double damage, double damageResistance, String spritePath, double expGiven) {
@@ -34,6 +37,7 @@ public class EntityData {
             //not used data
             this.proj_rate_mod = NOT_USEFUL_VALUE;
             this.proj_dmg_mod = NOT_USEFUL_VALUE;
+            this.collectibleValue = NOT_USEFUL_VALUE;
         }
 
         //projectile data constructor
@@ -48,6 +52,21 @@ public class EntityData {
 
             //not used data
             this.expGiven = NOT_USEFUL_VALUE;
+            this.collectibleValue = NOT_USEFUL_VALUE;
+        }
+
+        //collectibles data constructor
+        public EntityStats(int width, int height, double maxHP, String spritePath, double collectibleValue) {
+            this.width = width; this.height = height; this.maxHP = maxHP;
+            this.spritePath = spritePath;
+
+            //collectibles data
+            this.collectibleValue = collectibleValue;
+
+            //not used data
+            this.speed = NOT_USEFUL_VALUE; this.damage = NOT_USEFUL_VALUE; this.damageResistance = NOT_USEFUL_VALUE;
+            this.expGiven = NOT_USEFUL_VALUE;
+            this.proj_rate_mod = NOT_USEFUL_VALUE; this.proj_dmg_mod = NOT_USEFUL_VALUE;
         }
 
     }
@@ -69,23 +88,27 @@ public class EntityData {
 
     //! COLLECTIBLES -------------------------------------------------------------------------------------
     public static final int[] COLLECTIBLES_TYPE_RANGE = {10,100}; //included
-    public static final int MAX_COLLECTIBLES_SPAWN = 10;
+    public static final int MAX_COLLECTIBLES_SPAWN = 15;
 
-    public static final int EXP_GLOBE_TYPE = 10;
-    public static final int EXP_GLOBE_EXP_GIVEN = 50;
-    public static final int EXP_GLOBE_WIDTH = Constants.TILE_SIZE;
-    public static final int EXP_GLOBE_HEIGHT = Constants.TILE_SIZE;
-    public static final String EXP_GLOBE_SPRITE_PATH = "BLUE"; //find sprite of golden color
+    public static final double GLOBE_MAX_HP = 1; //destroyed on hit
 
-    public static final int HEALTH_GLOBE_TYPE = 20;
-    public static final int HEALTH_GLOBE_HEALTH_GIVEN = 25;
-    public static final int HEALTH_GLOBE_WIDTH = Constants.TILE_SIZE;
-    public static final int HEALTH_GLOBE_HEIGHT = Constants.TILE_SIZE;
-    public static final String HEALTH_GLOBE_SPRITE_PATH = "RED";
+    public static final int XP_GLOBE_TYPE = 10;
+    public static final int XP_GLOBE_WIDTH = Constants.TILE_SIZE/2;
+    public static final int XP_GLOBE_HEIGHT = Constants.TILE_SIZE/2;
+    public static final double XP_GLOBE_GIVEN_VALUE = 50;
+    public static final String XP_GLOBE_SPRITE_PATH = "BLUE"; //find sprite of golden color
+
+    public static final int HP_GLOBE_TYPE = 20;
+    public static final int HP_GLOBE_WIDTH = Constants.TILE_SIZE/2;
+    public static final int HP_GLOBE_HEIGHT = Constants.TILE_SIZE/2;
+    public static final double HP_GLOBE_GIVEN_VALUE = 25;
+    public static final String HP_GLOBE_SPRITE_PATH = "RED";
+
+    public static final int[] AVAILABLE_COLLECTIBLES_TYPES = {XP_GLOBE_TYPE, HP_GLOBE_TYPE};
     
     //! PROJECTILES -------------------------------------------------------------------------------------
     public static final int[] PROJECTILES_TYPE_RANGE = {400,700};
-    public static final int MAX_PROJECTILES_SPAWN = 15;
+    public static final int MAX_PROJECTILES_SPAWN = 10;
 
     public static final int BASE_PROJ_TYPE = 400;
     public static final int BASE_PROJ_WIDTH = (int) (Constants.TILE_SIZE*0.5);
@@ -162,6 +185,9 @@ public class EntityData {
     //! STATS OF ALL ENTITY mapped with the type as the key
     //  to easily extract data when assignign them to spawned enemies
     public static final Map<Integer, EntityStats> STATS = Map.of( //creates immutable map
+        //collectibles
+        XP_GLOBE_TYPE, new EntityStats(XP_GLOBE_WIDTH, XP_GLOBE_HEIGHT, GLOBE_MAX_HP, XP_GLOBE_SPRITE_PATH, XP_GLOBE_GIVEN_VALUE),
+        HP_GLOBE_TYPE, new EntityStats(HP_GLOBE_WIDTH, HP_GLOBE_HEIGHT, GLOBE_MAX_HP, HP_GLOBE_SPRITE_PATH, HP_GLOBE_GIVEN_VALUE),
         //projectiles
         BASE_PROJ_TYPE, new EntityStats(BASE_PROJ_WIDTH, BASE_PROJ_HEIGHT, BASE_PROJ_SPD, BASE_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, BASE_PROJ_SPRITE_PATH, BASE_PROJ_RATE_MOD, BASE_PROJ_DMG_MOD),
         PIERCING_PROJ_TYPE, new EntityStats(PIERCING_PROJ_WIDTH, PIERCING_PROJ_HEIGHT, PIERCING_PROJ_SPD, PIERCING_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, PIERCING_PROJ_SPRITE_PATH, PIERCING_PROJ_RATE_MOD, PIERCING_PROJ_DMG_MOD),
