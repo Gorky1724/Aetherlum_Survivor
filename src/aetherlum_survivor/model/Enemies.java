@@ -125,7 +125,7 @@ public class Enemies extends Entity {
             double minDistanceY = ((this.getEntityLogicalData().getHeight() + other.getEntityLogicalData().getHeight()) * Constants.SOVRAPPOSITION_LIMIT_VALUE) / 2.0;
             double minDistance = Math.max(minDistanceX, minDistanceY);
 
-            if (dist < minDistance && dist > 0.0001) { //TODO - change to constant
+            if (dist < minDistance && dist > Constants.DISTANCE_POSITIVE_NOT_INFINITESIMAL) { //TODO - change to constant
                 // repulsive force proportional to their vicinance - with normalization
                 double force = (minDistance - dist) / minDistance; //max for dist->0, min for dist->minDistance
                 repelX += (distX / dist) * force;

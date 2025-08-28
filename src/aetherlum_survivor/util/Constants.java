@@ -30,6 +30,7 @@ public class Constants {
 
     //! ENEMIES MOVEMENT
     public static final double SOVRAPPOSITION_LIMIT_VALUE = 0.8;
+    public static final double DISTANCE_POSITIVE_NOT_INFINITESIMAL = 0.0001;
 
     //---------------------------------------------------------------
 

@@ -1,7 +1,5 @@
 package aetherlum_survivor.controller;
 
-import javax.swing.SwingUtilities;
-
 import java.util.List;
 import java.util.Map;
 
@@ -28,106 +26,57 @@ public class Controller implements InterfaceController{
 
     @Override
     public void startApplication() {
-        SwingUtilities.invokeLater(new Runnable() { 
-            @Override
-            public void run() {
-                View.getInstance().openGameFrame(); //per avere un unico frame su cui inserire i panel 
-                openStartPanel();
-            }
-        });
+        View.getInstance().openGameFrame(); //only one frame with all the panels 
+        openStartPanel();
     }
 
     //PANEL MANAGEMENT_____________________________
     @Override
     public void openStartPanel() {
-        SwingUtilities.invokeLater(new Runnable() { 
-            @Override
-            public void run() {
-                View.getInstance().openStartPanel();
-            }
-        });
+        View.getInstance().openStartPanel();
     }
 
     @Override
     public void openSettingsPanel() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().openSettingsPanel();
-            }
-        });
+        View.getInstance().openSettingsPanel();
     }
 
     @Override
     public void openScenarioPanel() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().openScenarioPanel();
-            }
-        });
+        View.getInstance().openScenarioPanel();
     }
 
     @Override
     public void openGamePanel() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().openGamePanel();
-            }
-        });
+        View.getInstance().openGamePanel();
     }
 
     @Override
     public void handleGameOver() {
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().openGameOverPanel();
-            }
-        });
+        View.getInstance().openGameOverPanel();
     }
 
     @Override
     public void handlePauseGame() {
-
         this.stopGameLoop();
         KeyHandler.getInstance().resetKeys(); //makes sure that no player movement keys remains pressed when the game reopens
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().openPausePanel();
-            }
-        });
+        View.getInstance().openPausePanel();
     }
 
     @Override
     public void handleLevelUp(Map<Integer, LevelUpOptions> randomLvlUp) {
-
         this.stopGameLoop();
         KeyHandler.getInstance().resetKeys(); //makes sure that no player movement keys remains pressed when the game reopens
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().openLevelUpPanel(randomLvlUp);
-            }
-        });
+        View.getInstance().openLevelUpPanel(randomLvlUp);
     }
 
     @Override
     public void handleResumeGame() {
-
         this.resumeGameLoop();
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                View.getInstance().openGamePanel();
-            }
-        });
+        View.getInstance().openGamePanel();
     }
     
     // HANLDE GAMELOOP_____________________________
