@@ -61,7 +61,7 @@ public class Projectiles extends Entity{
 
     //! INSTANCE METHODS - update
     //spawn
-    public List<Projectiles> shoot(List<Projectiles> projectiles, Player player, long currentTime, List<Enemies> enemies) {
+    public List<Projectiles> shoot(List<Projectiles> projectiles, Player player, long currentCycle, List<Enemies> enemies) {
 
         int currentlyActive = countActive(projectiles);
         int maxProjectiles = EntityData.MAX_PROJECTILES_SPAWN;
@@ -82,10 +82,10 @@ public class Projectiles extends Entity{
             //extracs type fire rate
             EntityStats stats = EntityData.STATS.get(projType);
             double prj_rateMod = stats.proj_rate_mod;
-            if(lastShot + (player.getFireRate()*prj_rateMod) <= currentTime) { //if can shoot
+            if(lastShot + (player.getFireRate()*prj_rateMod) <= currentCycle) { //if can shoot
                 for(Projectiles prj: projectiles) {
                     if(!prj.isActive()) {
-                        projData[1] = currentTime; //updates type_lastShot
+                        projData[1] = currentCycle; //updates type_lastShot
                         EntityLogicalData eld = prj.getEntityLogicalData();
                         //based on enemy type
                         eld = prj.setValuesDependingOnProjectileType(projType, eld, player);

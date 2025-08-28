@@ -60,7 +60,7 @@ public class Player extends Entity {
 
         //firing projectiles
         this.fireRate = EntityData.PLAYER_FIRE_RATE;
-        long lastShot = System.currentTimeMillis(); //saves last time the projectile of TYPE has been shot
+        long lastShot = Model.getInstance().getClockCyle(); //saves last time the projectile of TYPE has been shot
         this.availableProjectiles = new ArrayList<>();
         Long[] type_lastShot = {(long) EntityData.BASE_PROJ_TYPE, lastShot};
         this.availableProjectiles.add(type_lastShot);
@@ -237,7 +237,7 @@ public class Player extends Entity {
         }
 
         if(data.newProjType != LevelUpData.NULL_VALUE) {
-            long lastShot = System.currentTimeMillis();
+            long lastShot = Model.getInstance().getClockCyle();
             this.numProjOwned++;
             switch (code) {
                 case LevelUpData.CODE_UNLOCK_PIERCING_PROJ:

@@ -17,6 +17,8 @@ public interface InterfaceModel {
 
     public void setGameOver();
 
+    public long getClockCyle();
+
     //ingame timer
     public int getTimePassed();
 

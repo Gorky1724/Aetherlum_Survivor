@@ -37,7 +37,7 @@ public class LevelUpData {
 
     //! LEVEL UP DATA
     public static final int NUM_OPTIONS = 3; // possible upgrades every level-up
-    public static final int LVL_PRJ_UNLOCK_INTERVAL = 4; //every N levels is granted the unlocking of a new projectile
+    public static final int LVL_PRJ_UNLOCK_INTERVAL = 3; //every N levels is granted the unlocking of a new projectile
 
     //! LEVEL UP OPTIONS
     // FV = incresed with flat value || PV = increased with percentage value
@@ -64,8 +64,8 @@ public class LevelUpData {
     public static final String DMG_RST_FV_DESCR = "DAMAGE RESISTANCE (%): +" + DMG_RST_FV;
 
     public static final int CODE_FIRE_RATE_PV = 5;
-    public static final double FIRE_RATE_PV = 0.97;
-    public static final String FIRE_RATE_PV_DESCR = "FIRE RATE: -" + (int)((1 - FIRE_RATE_PV)*100) + "%";
+    public static final double FIRE_RATE_PV = 0.93;
+    public static final String FIRE_RATE_PV_DESCR = "FIRE RATE: -" + (int)(Math.round((1 - FIRE_RATE_PV)*100)) + "%";
 
     //! LEVEL UP UNLOCK PROJECTILE OPTIONS
     public static final int[] PRJ_UNLOCK_RANGE = {101,102}; //included

@@ -22,10 +22,9 @@ public class Model implements InterfaceModel {
 
     private static Model instance = null;
 	private GameLoop gameLoop;
-
-	//ingame timer
-	private int secondsPassed;
-	private long lastUpdatedSeconds = System.currentTimeMillis();
+	
+	//saves number of clock cycles that are passed
+	private long clockCycle = 0;
 
 	//selected scenario
 	private ScenarioData scenarioData;
@@ -46,12 +45,12 @@ public class Model implements InterfaceModel {
 	private int max_enemies_number;
 
 	// i want the spawn/respawn to not happen every timer tick
-	private long lastEntitiesSpawnDespawn = System.currentTimeMillis(); //starting value
+	private long lastEntitiesSpawnDespawn = this.getClockCyle(); //starting value
 	private int spawnDespawnCadence = Constants.SPAWN_DESPAWN_CADENCE; //every cadence-time entities are spawned/despawned
 
-	// entities doesen't move every tick as the player does but with a short imposed time delay
-	private long lastEntitiesMoved = System.currentTimeMillis();
-	private int movingCadence = Constants.MOVING_CADENCE;
+	//ingame timer - only instance with currentTimeMillis() for more precision
+	private int secondsPassed;
+	private long lastUpdatedSeconds = this.getClockCyle();
     //---------------------------------------------------------------
 
     //---------------------------------------------------------------
@@ -61,9 +60,10 @@ public class Model implements InterfaceModel {
 	@Override
 	public void startGameLoop() {
 		
-		this.gameLoop = new GameLoop(e -> {
+		this.gameLoop = new GameLoop(e -> { //implements GameLoop ActionListener 'update'
 			//System.out.println("<<< Running >>>");
 
+			clockCycle++;
 			handleTimePassed();
 
 			update();
@@ -121,8 +121,12 @@ public class Model implements InterfaceModel {
 	@Override
 	public void setGameOver() {
 		this.stopGameLoop();
-		System.out.println(">> GAME OVER");
 		Controller.getInstance().handleGameOver();
+	}
+
+	@Override
+	public long getClockCyle() { //used to calibrate in-game event based on time (spawn/despawn, shoot,)
+		return this.clockCycle;
 	}
 
 	// INGAME TIMER_____________________________
@@ -151,8 +155,8 @@ public class Model implements InterfaceModel {
 		);
 
 		//despawns and spawns entities every cadence
-		long currentTime = System.currentTimeMillis();
-		if ((currentTime - this.lastEntitiesSpawnDespawn) >= this.spawnDespawnCadence) {
+		long currentCycle = this.getClockCyle();
+		if ((currentCycle - this.lastEntitiesSpawnDespawn) >= this.spawnDespawnCadence) {
 			//despawns enemies too distant and spawns new enemies
 			this.enemies = this.enemyHandler.despawn(this.enemies, this.player.getEntityLogicalData());
 			this.enemies = this.enemyHandler.spawn(this.enemies, this.scenarioData, this.player.getEntityLogicalData());
@@ -163,24 +167,18 @@ public class Model implements InterfaceModel {
 			//despawns projectiles
 			this.projectiles = this.projectileHandler.despawn(this.projectiles, this.player.getEntityLogicalData());
 
-
-			this.lastEntitiesSpawnDespawn = System.currentTimeMillis();
+			this.lastEntitiesSpawnDespawn = this.getClockCyle();
 		}
 		//projectiles spawn depends from playerFireRate*projectileRateModifier
-		currentTime = System.currentTimeMillis();
-		this.projectiles = this.projectileHandler.shoot(this.projectiles, this.player, currentTime, this.enemies);
+		currentCycle = this.getClockCyle();
+		this.projectiles = this.projectileHandler.shoot(this.projectiles, this.player, currentCycle, this.enemies);
 
 		//moves entities
-		currentTime = System.currentTimeMillis();
-		if((currentTime - this.lastEntitiesMoved) >= this.movingCadence) {
-			for(Enemies en : this.enemies) { //enemies
-				en.moveTowardsPlayer(this.player.getEntityLogicalData(), this.enemies);
-			}
-
-			for(Projectiles prj : this.projectiles) {
-				prj.advance();
-			}
-
+		for(Enemies en : this.enemies) { //enemies
+			en.moveTowardsPlayer(this.player.getEntityLogicalData(), this.enemies);
+		}
+		for(Projectiles prj : this.projectiles) {
+			prj.advance();
 		}
 
 		//check collision
