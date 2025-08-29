@@ -96,7 +96,6 @@ public class View implements InterfaceView {
                 }
             }
         });
-
     }
 
     @Override
