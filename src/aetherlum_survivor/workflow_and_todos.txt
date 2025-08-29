@@ -5,8 +5,9 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________________________________________
 
 
-- modificare la mira dei proiettili in modo che non sia mirato il TopLeftCorner ma il centro
-  > con x+enemyWidth/2 e y+enemyWidth/2
+- vedere se il load image unito ad un print (vedi Claude - credo)
+
+- vedere se riproduzione clip audio funziona
 
 ->>> FUTURE
 

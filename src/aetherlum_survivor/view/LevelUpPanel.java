@@ -43,7 +43,7 @@ public class LevelUpPanel extends JPanel {
         //off screen drawing buffer, then reported on screen - for rendering fluidity
         this.setDoubleBuffered(true);
 
-        JLabel askLabel = new JLabel("Choose your upgrade:");
+        JLabel askLabel = new JLabel("The divine beings bestow their power upon thee.");
         askLabel.setOpaque(true);
         askLabel.setBackground(new Color(0, 0, 0, 150)); // black, semitransparent
         askLabel.setForeground(Color.WHITE); //text color
