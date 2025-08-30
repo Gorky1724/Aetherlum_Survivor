@@ -63,7 +63,7 @@ public class AnimationData {
 
 
     //! PROJECTILES -------------------------------------------------------------------------------------
-    public static final int PROJECTILES_FRAME_DURTN = 20; //clock cycles
+    public static final int PROJECTILES_FRAME_DURTN = 5; //clock cycles
 
     //! ALL DATA MAPPED BY TYPE AND THEN BY CONDITION
     public static final Map<Integer, Map<Integer, AnimationStats>> ANIMATION_STATS = Map.of( //creates immutable map

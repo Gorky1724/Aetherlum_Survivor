@@ -24,7 +24,6 @@ public class EntityData {
         //common data
         public final int width, height;
         public final double speed, maxHP, damage, damageResistance;
-        public final String spritePath;
 
         //enemies data
         public final double expGiven;
@@ -36,10 +35,9 @@ public class EntityData {
         public final double collectibleValue;
         
         //enemies data constructor
-        public EntityStats(int width, int height, double speed, double maxHP, double damage, double damageResistance, String spritePath, double expGiven) {
+        public EntityStats(int width, int height, double speed, double maxHP, double damage, double damageResistance, double expGiven) {
             this.width = width; this.height = height;
             this.speed = speed; this.maxHP = maxHP; this.damage = damage; this.damageResistance = damageResistance;
-            this.spritePath = spritePath;
 
             //enemies data
             this.expGiven = expGiven;
@@ -51,10 +49,9 @@ public class EntityData {
         }
 
         //projectile data constructor
-        public EntityStats(int width, int height, double speed, double maxHP, double damage, double damageResistance, String spritePath, double proj_rate_mod, double proj_dmg_mod) {
+        public EntityStats(int width, int height, double speed, double maxHP, double damage, double damageResistance, double proj_rate_mod, double proj_dmg_mod) {
             this.width = width; this.height = height;
             this.speed = speed; this.maxHP = maxHP; this.damage = damage; this.damageResistance = damageResistance;
-            this.spritePath = spritePath;
 
             //projectiles data
             this.proj_rate_mod = proj_rate_mod;
@@ -66,9 +63,8 @@ public class EntityData {
         }
 
         //collectibles data constructor
-        public EntityStats(int width, int height, double maxHP, String spritePath, double collectibleValue) {
+        public EntityStats(int width, int height, double maxHP, double collectibleValue) {
             this.width = width; this.height = height; this.maxHP = maxHP;
-            this.spritePath = spritePath;
 
             //collectibles data
             this.collectibleValue = collectibleValue;
@@ -89,7 +85,6 @@ public class EntityData {
     public static final double PLAYER_MAX_HP = 1000;
     public static final double PLAYER_DMG = 10;
     public static final double PLAYER_DMG_RST = 0; //0 <= dmg_rst <= 1 -- 1 = undamagable
-    public static final String PLAYER_SPRITE_PATH = "WHITE";
 
     public static final double XP_BAR = 200;
     public static final int MAX_LEVEL = 25;
@@ -106,13 +101,11 @@ public class EntityData {
     public static final int XP_GLOBE_WIDTH = Constants.TILE_SIZE/2;
     public static final int XP_GLOBE_HEIGHT = Constants.TILE_SIZE/2;
     public static final double XP_GLOBE_GIVEN_VALUE = 50;
-    public static final String XP_GLOBE_SPRITE_PATH = "BLUE"; //find sprite of golden color
 
     public static final int HP_GLOBE_TYPE = 20;
     public static final int HP_GLOBE_WIDTH = Constants.TILE_SIZE/2;
     public static final int HP_GLOBE_HEIGHT = Constants.TILE_SIZE/2;
     public static final double HP_GLOBE_GIVEN_VALUE = 25;
-    public static final String HP_GLOBE_SPRITE_PATH = "RED";
 
     public static final int[] AVAILABLE_COLLECTIBLES_TYPES = {XP_GLOBE_TYPE, HP_GLOBE_TYPE};
     
@@ -127,7 +120,6 @@ public class EntityData {
     public static final double BASE_PROJ_DMG_MOD = 1;
     public static final double BASE_PROJ_SPD = PLAYER_SPD*2; //initial value based on initial player spd value
     public static final double BASE_PROJ_MAX_HP = 1; //destroyed when hits first enemy
-    public static final String BASE_PROJ_SPRITE_PATH = "CYAN";
     //dmg is based on player damage value
 
     //pierces enemies by not being destroyed by first impact bcause it has more hp
@@ -138,7 +130,6 @@ public class EntityData {
     public static final double PIERCING_PROJ_DMG_MOD = 0.8; //deals less dmg
     public static final double PIERCING_PROJ_SPD = PLAYER_SPD*1.4; 
     public static final double PIERCING_PROJ_MAX_HP = PLAYER_MAX_HP*0.3; //based on player base hp value
-    public static final String PIERCING_PROJ_SPRITE_PATH = "RED";
 
     public static final int FAST_PROJ_TYPE = 420;
     public static final int FAST_PROJ_WIDTH = (int) (Constants.TILE_SIZE*0.2);
@@ -147,7 +138,6 @@ public class EntityData {
     public static final double FAST_PROJ_DMG_MOD = 0.6; //deals less dmg
     public static final double FAST_PROJ_SPD = PLAYER_SPD*2.5; 
     public static final double FAST_PROJ_MAX_HP = 1;
-    public static final String FAST_PROJ_SPRITE_PATH = "PINK";
 
     //! ENEMIES -------------------------------------------------------------------------------------
     public static final int[] ENEMIES_TYPE_RANGE = {1000,1200};
@@ -160,7 +150,6 @@ public class EntityData {
     public static final double BASE_ENEMY_DMG = 10;
     public static final double BASE_ENEMY_DMG_RST = 0;
     public static final int BASE_ENEMY_EXP_GIVEN = 50;
-    public static final String BASE_ENEMY_SPRITE_PATH = "MAGENTA";
 
     public static final int FAST_ENEMY_TYPE = 1001;
     public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*0.7);
@@ -170,7 +159,6 @@ public class EntityData {
     public static final double FAST_ENEMY_DMG = 10;
     public static final double FAST_ENEMY_DMG_RST = 0;
     public static final int FAST_ENEMY_EXP_GIVEN = 100;
-    public static final String FAST_ENEMY_SPRITE_PATH = "GRAY";
 
     public static final int TANK_ENEMY_TYPE = 1002;
     public static final int TANK_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*1.5);
@@ -180,7 +168,6 @@ public class EntityData {
     public static final double TANK_ENEMY_DMG = 7;
     public static final double TANK_ENEMY_DMG_RST = 0.2;
     public static final int TANK_ENEMY_EXP_GIVEN = 100;
-    public static final String TANK_ENEMY_SPRITE_PATH = "GREEN";
 
     public static final int STATIC_ENEMY_TYPE = 1010;
     public static final int STATIC_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*3);
@@ -190,23 +177,22 @@ public class EntityData {
     public static final double STATIC_ENEMY_DMG = 15;
     public static final double STATIC_ENEMY_DMG_RST = 0.3;
     public static final int STATIC_ENEMY_EXP_GIVEN = 20;
-    public static final String STATIC_ENEMY_SPRITE_PATH = "YELLOW";
 
     //! STATS OF ALL ENTITY mapped with the type as the key
     //  to easily extract data when assignign them to spawned enemies
     public static final Map<Integer, EntityStats> STATS = Map.of( //creates immutable map
         //collectibles
-        XP_GLOBE_TYPE, new EntityStats(XP_GLOBE_WIDTH, XP_GLOBE_HEIGHT, GLOBE_MAX_HP, XP_GLOBE_SPRITE_PATH, XP_GLOBE_GIVEN_VALUE),
-        HP_GLOBE_TYPE, new EntityStats(HP_GLOBE_WIDTH, HP_GLOBE_HEIGHT, GLOBE_MAX_HP, HP_GLOBE_SPRITE_PATH, HP_GLOBE_GIVEN_VALUE),
+        XP_GLOBE_TYPE, new EntityStats(XP_GLOBE_WIDTH, XP_GLOBE_HEIGHT, GLOBE_MAX_HP, XP_GLOBE_GIVEN_VALUE),
+        HP_GLOBE_TYPE, new EntityStats(HP_GLOBE_WIDTH, HP_GLOBE_HEIGHT, GLOBE_MAX_HP, HP_GLOBE_GIVEN_VALUE),
         //projectiles
-        BASE_PROJ_TYPE, new EntityStats(BASE_PROJ_WIDTH, BASE_PROJ_HEIGHT, BASE_PROJ_SPD, BASE_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, BASE_PROJ_SPRITE_PATH, BASE_PROJ_RATE_MOD, BASE_PROJ_DMG_MOD),
-        PIERCING_PROJ_TYPE, new EntityStats(PIERCING_PROJ_WIDTH, PIERCING_PROJ_HEIGHT, PIERCING_PROJ_SPD, PIERCING_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, PIERCING_PROJ_SPRITE_PATH, PIERCING_PROJ_RATE_MOD, PIERCING_PROJ_DMG_MOD),
-        FAST_PROJ_TYPE, new EntityStats(FAST_PROJ_WIDTH, FAST_PROJ_HEIGHT, FAST_PROJ_SPD, FAST_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, FAST_PROJ_SPRITE_PATH, FAST_PROJ_RATE_MOD, FAST_PROJ_DMG_MOD),
+        BASE_PROJ_TYPE, new EntityStats(BASE_PROJ_WIDTH, BASE_PROJ_HEIGHT, BASE_PROJ_SPD, BASE_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, BASE_PROJ_RATE_MOD, BASE_PROJ_DMG_MOD),
+        PIERCING_PROJ_TYPE, new EntityStats(PIERCING_PROJ_WIDTH, PIERCING_PROJ_HEIGHT, PIERCING_PROJ_SPD, PIERCING_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, PIERCING_PROJ_RATE_MOD, PIERCING_PROJ_DMG_MOD),
+        FAST_PROJ_TYPE, new EntityStats(FAST_PROJ_WIDTH, FAST_PROJ_HEIGHT, FAST_PROJ_SPD, FAST_PROJ_MAX_HP, NOT_USEFUL_VALUE, NOT_USEFUL_VALUE, FAST_PROJ_RATE_MOD, FAST_PROJ_DMG_MOD),
         //enemies
-        BASE_ENEMY_TYPE, new EntityStats(BASE_ENEMY_WIDTH, BASE_ENEMY_HEIGHT, BASE_ENEMY_SPD, BASE_ENEMY_MAX_HP, BASE_ENEMY_DMG, BASE_ENEMY_DMG_RST, BASE_ENEMY_SPRITE_PATH, BASE_ENEMY_EXP_GIVEN),
-        FAST_ENEMY_TYPE, new EntityStats(FAST_ENEMY_WIDTH, FAST_ENEMY_HEIGHT, FAST_ENEMY_SPD, FAST_ENEMY_MAX_HP, FAST_ENEMY_DMG, FAST_ENEMY_DMG_RST, FAST_ENEMY_SPRITE_PATH, FAST_ENEMY_EXP_GIVEN),
-        TANK_ENEMY_TYPE, new EntityStats(TANK_ENEMY_WIDTH, TANK_ENEMY_HEIGHT, TANK_ENEMY_SPD, TANK_ENEMY_MAX_HP, TANK_ENEMY_DMG, TANK_ENEMY_DMG_RST, TANK_ENEMY_SPRITE_PATH, TANK_ENEMY_EXP_GIVEN),
-        STATIC_ENEMY_TYPE, new EntityStats(STATIC_ENEMY_WIDTH, STATIC_ENEMY_HEIGHT, STATIC_ENEMY_SPD, STATIC_ENEMY_MAX_HP, STATIC_ENEMY_DMG, STATIC_ENEMY_DMG_RST, STATIC_ENEMY_SPRITE_PATH, STATIC_ENEMY_EXP_GIVEN)
+        BASE_ENEMY_TYPE, new EntityStats(BASE_ENEMY_WIDTH, BASE_ENEMY_HEIGHT, BASE_ENEMY_SPD, BASE_ENEMY_MAX_HP, BASE_ENEMY_DMG, BASE_ENEMY_DMG_RST, BASE_ENEMY_EXP_GIVEN),
+        FAST_ENEMY_TYPE, new EntityStats(FAST_ENEMY_WIDTH, FAST_ENEMY_HEIGHT, FAST_ENEMY_SPD, FAST_ENEMY_MAX_HP, FAST_ENEMY_DMG, FAST_ENEMY_DMG_RST, FAST_ENEMY_EXP_GIVEN),
+        TANK_ENEMY_TYPE, new EntityStats(TANK_ENEMY_WIDTH, TANK_ENEMY_HEIGHT, TANK_ENEMY_SPD, TANK_ENEMY_MAX_HP, TANK_ENEMY_DMG, TANK_ENEMY_DMG_RST, TANK_ENEMY_EXP_GIVEN),
+        STATIC_ENEMY_TYPE, new EntityStats(STATIC_ENEMY_WIDTH, STATIC_ENEMY_HEIGHT, STATIC_ENEMY_SPD, STATIC_ENEMY_MAX_HP, STATIC_ENEMY_DMG, STATIC_ENEMY_DMG_RST, STATIC_ENEMY_EXP_GIVEN)
     );
     
 }
