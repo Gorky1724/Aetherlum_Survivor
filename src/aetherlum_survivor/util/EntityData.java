@@ -8,7 +8,17 @@ public class EntityData {
     public static final boolean INACTIVE_STATUS = false;
     public static final int NULL_VALUE = -1;
     public static final int NOT_USEFUL_VALUE = 0;
-
+    
+    //! CONDITION VALUES
+    //direction
+    public static final int RIGHT = 1;
+    public static final int LEFT = -1;
+    //condition
+    public static final int IDLE = 2;
+    public static final int WALKING = 1;
+    public static final int DYING = 0;
+    public static final int DEAD = -1;
+    
     //! INNER CLASS structur for having compact data
     public static class EntityStats {
         //common data
@@ -71,7 +81,7 @@ public class EntityData {
 
     }
 
-    //! PLAYER FIRENDLY-------------------------------------------------------------------------------------
+    //! PLAYER -------------------------------------------------------------------------------------
     public static final int PLAYER_TYPE = 0;
     public static final int PLAYER_WIDTH = Constants.TILE_SIZE;
     public static final int PLAYER_HEIGHT = Constants.TILE_SIZE;

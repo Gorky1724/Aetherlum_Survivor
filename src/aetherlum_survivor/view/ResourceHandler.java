@@ -28,6 +28,9 @@ public class ResourceHandler { //makes use of InputStream
             throw new RuntimeException("!!!> Error in loading image: " + path, e);
         }
     }
+
+    //TODO- imposta quando lavori su audio sin da subito il fatto che possano essere disattivati
+    // dai settings switchando un impostazione a off
     
     //! AUDIO
     public static Clip loadAudioClip(String path) { //supports .wav

@@ -130,6 +130,11 @@ public class Controller implements InterfaceController{
     }
 
     @Override
+    public long getClockCycle() {
+        return Model.getInstance().getClockCyle();
+    }
+
+    @Override
     public int getTimePassed() {
         return Model.getInstance().getTimePassed();
     }

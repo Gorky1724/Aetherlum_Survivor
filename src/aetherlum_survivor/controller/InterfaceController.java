@@ -50,6 +50,8 @@ public interface InterfaceController {
 
     public List<EntityLogicalData> getCollectiblesELD();
 
+    public long getClockCycle();
+
     public int getTimePassed();
 
     public double[] getPlayerInfo();

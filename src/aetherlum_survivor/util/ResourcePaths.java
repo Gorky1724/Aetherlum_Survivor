@@ -26,6 +26,9 @@ public class ResourcePaths {
 
         //player
         private static final String PLAYER = SPRITES + "player/";
+        public static final String PLAYER_IDLE = PLAYER + "Idle.png";
+        public static final String PLAYER_WALKING = PLAYER + "Run.png";
+        public static final String PLAYER_DYING = PLAYER + "Dead.png";
 
         //collectibles
         private static final String COLLECTIBLES = SPRITES + "collectibles/";
@@ -34,9 +37,16 @@ public class ResourcePaths {
 
         //projectiles
         private static final String PROJECTILES = SPRITES + "projectiles/";
+        public static final String BASE_PROJECTILE = PROJECTILES + "base.png";
+        public static final String FAST_PROJECTILE = PROJECTILES + "fast.png";
+        public static final String PIERCING_PROJECTILE = PROJECTILES + "piercing.png";
 
         //enemies
         private static final String ENEMIES = SPRITES + "enemies/";
+        public static final String BASE_ENEMY = ENEMIES + "base.png";
+        public static final String FAST_ENEMY = ENEMIES + "fast.png";
+        public static final String STATIC_ENEMY = ENEMIES + "static.png";
+        public static final String TANK_ENEMY = ENEMIES + "tank.png";
 
     }
 
