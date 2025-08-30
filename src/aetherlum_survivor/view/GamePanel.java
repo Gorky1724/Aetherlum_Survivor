@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 
 public class GamePanel extends JPanel {
@@ -78,9 +79,17 @@ public class GamePanel extends JPanel {
         Point playerLoc = convertLogicalToGraphical(playerELD.getCoordX(), playerELD.getCoordY(), playerELD);
         //System.out.println("Player graphical coord: " + playerLoc.x + ", " + playerLoc.y + ", " + (int) playerELD.getWidth() + ", " + (int) playerELD.getHeight());
 
+        Image frameToDraw = AnimationHandler.getFrameToDraw(playerELD);
+
+        //TODO - verify if correct
+        g2d.drawImage(frameToDraw,playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight(),this);
+                
+
+        /*
         g2d.setColor(Color.WHITE);
         //getX() and getY() return 'double' values - here is needed an int so i use the attribute
         g2d.fillRect(playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight());
+        */
     }
 
     public void paintEnemies(Graphics2D g2d, EntityLogicalData playerELD) {
@@ -89,20 +98,7 @@ public class GamePanel extends JPanel {
         for (EntityLogicalData enELD: enemyELD_list) {
             if(enELD.isActive()) {
                 Point enemyLoc = convertLogicalToGraphical(enELD.getCoordX(),enELD.getCoordY(), playerELD);
-                switch (enELD.getSpritePath()) {
-                    case "YELLOW":
-                        g2d.setColor(Color.YELLOW);
-                        break;
-                    case "GRAY":
-                        g2d.setColor(Color.GRAY);
-                        break;
-                    case "MAGENTA":
-                        g2d.setColor(Color.MAGENTA);
-                        break;
-                    case "GREEN":
-                        g2d.setColor(Color.GREEN);
-                        break;
-                }
+                
                 //getX() and getY() return 'double' values - here is needed an int so i use the attribute
                 g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
             }
@@ -117,17 +113,7 @@ public class GamePanel extends JPanel {
             if(prjELD.isActive()) {
                 Point projectileLoc = convertLogicalToGraphical(prjELD.getCoordX(), prjELD.getCoordY(), playerELD);
                 //System.out.println("Projectile graphical coord: " + projectileLoc.x + ", " + projectileLoc.y + ", " + (int) prjELD.getWidth() + ", " + (int) prjELD.getHeight());
-                switch (prjELD.getSpritePath()) {
-                    case "CYAN":
-                        g2d.setColor(Color.CYAN);
-                        break;
-                    case "RED":
-                        g2d.setColor(Color.RED);
-                        break;
-                    case "PINK":
-                        g2d.setColor(Color.PINK);
-                        break;
-                }
+                
                 g2d.fillRect(projectileLoc.x, projectileLoc.y, (int) prjELD.getWidth(), (int) prjELD.getHeight());
             }
         }
@@ -139,15 +125,12 @@ public class GamePanel extends JPanel {
         for(EntityLogicalData cltELD: collectiblesELD_list) {
             if(cltELD.isActive()) {
                 Point collectibleLoc = convertLogicalToGraphical(cltELD.getCoordX(), cltELD.getCoordY(), playerELD);
-                switch (cltELD.getSpritePath()) {
-                    case "RED":
-                        g2d.setColor(Color.RED);
-                        break;
-                    case "BLUE":
-                        g2d.setColor(Color.BLUE);
-                        break;
-                }
-                g2d.fillRect(collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight());
+                Image frameToDraw = AnimationHandler.getFrameToDraw(cltELD);
+
+                //TODO - verify if correct
+                g2d.drawImage(frameToDraw,collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight(),this);
+                
+                //g2d.fillRect(collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight());
             }
         }
     }

@@ -52,6 +52,9 @@ public class Player extends Entity {
         this.damage = EntityData.PLAYER_DMG;
         this.damageResistance = EntityData.PLAYER_DMG_RST;
         this.createAndSetEntityLogicalData(startY, startX, baseWidth, baseHeight);
+        this.eld.setCondition(EntityData.IDLE);
+        this.eld.setDirection(EntityData.RIGHT);
+        this.eld.setStartingClockOfCondition(Model.getInstance().getClockCyle());
 
         this.setActive(); //set status - not actually needed
 

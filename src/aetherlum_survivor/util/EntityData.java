@@ -83,7 +83,7 @@ public class EntityData {
 
     //! PLAYER -------------------------------------------------------------------------------------
     public static final int PLAYER_TYPE = 0;
-    public static final int PLAYER_WIDTH = Constants.TILE_SIZE;
+    public static final int PLAYER_WIDTH = Constants.TILE_SIZE/2;
     public static final int PLAYER_HEIGHT = Constants.TILE_SIZE;
     public static final double PLAYER_SPD = 7;
     public static final double PLAYER_MAX_HP = 1000;

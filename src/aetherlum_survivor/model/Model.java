@@ -84,7 +84,7 @@ public class Model implements InterfaceModel {
 		this.enemies = new ArrayList<>(this.max_enemies_number);
 		for (int i = 0; i < this.max_enemies_number; i++) {
 			Enemies en = new Enemies(EntityData.NULL_VALUE);
-			en.createAndSetEntityLogicalData(EntityData.INACTIVE_STATUS, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, ""+EntityData.NULL_VALUE);
+			en.createAndSetEntityLogicalData(EntityData.INACTIVE_STATUS, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
 			this.enemies.add(en);
 		}
 
@@ -93,7 +93,7 @@ public class Model implements InterfaceModel {
 		this.projectiles = new ArrayList<>(this.max_projectiles_number);
 		for(int i = 0; i < this.max_projectiles_number; i++) {
 			Projectiles prj = new Projectiles(EntityData.NULL_VALUE);
-			prj.createAndSetEntityLogicalData(EntityData.INACTIVE_STATUS, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, ""+EntityData.NULL_VALUE);
+			prj.createAndSetEntityLogicalData(EntityData.INACTIVE_STATUS, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
 			this.projectiles.add(prj);
 		}
 
@@ -102,7 +102,7 @@ public class Model implements InterfaceModel {
 		this.collectibles = new ArrayList<>(this.max_collectibles_number);
 		for(int i = 0; i < this.max_collectibles_number; i++) {
 			Collectibles clt = new Collectibles(EntityData.NULL_VALUE);
-			clt.createAndSetEntityLogicalData(EntityData.INACTIVE_STATUS, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, ""+EntityData.NULL_VALUE);
+			clt.createAndSetEntityLogicalData(EntityData.INACTIVE_STATUS, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE, EntityData.NULL_VALUE);
 			this.collectibles.add(clt);
 		}
 

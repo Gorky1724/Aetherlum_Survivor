@@ -28,11 +28,11 @@ public class AnimationData {
     }
 
     //! PLAYER -------------------------------------------------------------------------------------
-    BufferedImage player_idle_sprite = ResourceHandler.loadImage(ResourcePaths.Images.PLAYER_IDLE);
+    public static final BufferedImage player_idle_sprite = ResourceHandler.loadImage(ResourcePaths.Images.PLAYER_IDLE);
     public static final int PL_IDLE_NUM_FRAMES = 7; //num frames
-    public static final int PL_IDLE_FRAME_DURTN = 8; //clock cycles
+    public static final int PL_IDLE_FRAME_DURTN = 5; //clock cycles
     public static Image[] pl_IDLE_ANIMATION_FRAMES; // {xUpperLeftCorner, yUpperLeftCorner, width, height}
-        {
+        static {//initialized animationframes
         pl_IDLE_ANIMATION_FRAMES = new Image[PL_IDLE_NUM_FRAMES];
         pl_IDLE_ANIMATION_FRAMES[0] = player_idle_sprite.getSubimage(36,62,28,66);
         pl_IDLE_ANIMATION_FRAMES[1] = player_idle_sprite.getSubimage(164,62,28,66);
@@ -41,6 +41,24 @@ public class AnimationData {
         pl_IDLE_ANIMATION_FRAMES[4] = player_idle_sprite.getSubimage(545,62,31,66);
         pl_IDLE_ANIMATION_FRAMES[5] = player_idle_sprite.getSubimage(673,62,31,66);
         pl_IDLE_ANIMATION_FRAMES[6] = player_idle_sprite.getSubimage(804,62,28,66);
+    }
+
+    //! COLLECTIBLES -------------------------------------------------------------------------------------
+    public static final int CLT_NUM_FRAMES = 1; //num frames
+    public static final int CLT_FRAME_DURTN = 1;
+
+    public static final BufferedImage health_globe_sprite = ResourceHandler.loadImage(ResourcePaths.Images.HEALTH_GLOBE);
+    public static Image[] hp_GLOBE_ANIMATION_FRAMES;
+        static {
+            hp_GLOBE_ANIMATION_FRAMES = new Image[CLT_NUM_FRAMES];
+            hp_GLOBE_ANIMATION_FRAMES[0] = health_globe_sprite.getSubimage(8, 2, 16, 28);
+    }
+
+    public static final BufferedImage exp_globe_sprite = ResourceHandler.loadImage(ResourcePaths.Images.EXP_GLOBE);
+    public static Image[] xp_GLOBE_ANIMATION_FRAMES;
+        static {
+            xp_GLOBE_ANIMATION_FRAMES = new Image[CLT_NUM_FRAMES];
+            xp_GLOBE_ANIMATION_FRAMES[0] = exp_globe_sprite.getSubimage(9, 1, 16, 30);
     }
 
 
@@ -55,6 +73,12 @@ public class AnimationData {
             //EntityData.DYING, new AnimationStats(PL_DYING_NUM_FRAMES, PL_DYING_FRAME_DURTN, pl_DYING_ANIMATION_FRAMES)
         ),
         //collectibles (?)
+        EntityData.HP_GLOBE_TYPE, Map.of(
+            EntityData.IDLE, new AnimationStats(CLT_NUM_FRAMES, CLT_FRAME_DURTN, hp_GLOBE_ANIMATION_FRAMES)
+        ),
+        EntityData.XP_GLOBE_TYPE, Map.of(
+            EntityData.IDLE, new AnimationStats(CLT_NUM_FRAMES, CLT_FRAME_DURTN, xp_GLOBE_ANIMATION_FRAMES)
+        ),
 
         //projectiles
 

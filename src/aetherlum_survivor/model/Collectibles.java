@@ -24,12 +24,17 @@ public class Collectibles extends Entity {
             System.out.println("!!!>> NULL COLLECTIBLE TYPE NUMBER - This should never print out");
         }
 
-        eld.setWidth(stats.width); eld.setHeight(stats.height); eld.setSpritePath(stats.spritePath);
+        eld.setWidth(stats.width); eld.setHeight(stats.height); 
         this.speed = stats.speed;
         this.maxHitPoints = stats.maxHP; this.currentHP = this.maxHitPoints;
         this.damage = stats.damage; this.damageResistance = stats.damageResistance;
 
         this.collectibleValue = stats.collectibleValue;
+
+        eld.setType(type);
+        eld.setDirection(EntityData.RIGHT);
+        eld.setCondition(EntityData.IDLE);
+        eld.setStartingClockOfCondition(Model.getInstance().getClockCyle());
 
         return eld;
     }

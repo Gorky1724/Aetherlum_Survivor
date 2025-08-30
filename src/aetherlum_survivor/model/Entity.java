@@ -102,12 +102,12 @@ public  class Entity{
     }
 
     //status + visualization
-    protected EntityLogicalData createEntityLogicalData(boolean status, double coordX, double coordY, double width, double height, String spritePath) {
-        return new EntityLogicalData(status, coordX, coordY, width, height, spritePath);
+    protected EntityLogicalData createEntityLogicalData(boolean status, double coordX, double coordY, double width, double height, int type) {
+        return new EntityLogicalData(status, coordX, coordY, width, height, type);
     }
 
-    protected void createAndSetEntityLogicalData(boolean status, double coordX, double coordY, double width, double height, String spritePath) {
-        this.eld = new EntityLogicalData(status, coordX, coordY, width, height, spritePath);
+    protected void createAndSetEntityLogicalData(boolean status, double coordX, double coordY, double width, double height, int type) {
+        this.eld = new EntityLogicalData(status, coordX, coordY, width, height, type);
     }
 
     // COLLISION_____________________________

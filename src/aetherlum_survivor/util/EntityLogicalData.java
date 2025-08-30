@@ -11,8 +11,11 @@ public class EntityLogicalData {
     private double width;
     private double height;
 
-    //visualization
-    private String spritePath;
+    //type and condition data
+    private int type;
+    private int direction;
+    private int condition;
+    private long startingClockOfCondition;
 
     public EntityLogicalData(double coordX, double coordY, double width, double height) {
         this.coordX = coordX;
@@ -21,7 +24,7 @@ public class EntityLogicalData {
         this.height = height;
     }
 
-    public EntityLogicalData(boolean status, double coordX, double coordY, double width, double height, String spritePath) {
+    public EntityLogicalData(boolean status, double coordX, double coordY, double width, double height, int type) {
         this.status = status;
         
         this.coordX = coordX;
@@ -29,7 +32,7 @@ public class EntityLogicalData {
         this.width = width;
         this.height = height;
 
-        this.spritePath = spritePath;
+        this.type = type;
     }
 
     // STATUS_____________________________
@@ -76,13 +79,33 @@ public class EntityLogicalData {
         this.height = newHeight;
     }
 
-    // VISUALIZATION_____________________________
-    public String getSpritePath() {
-        return this.spritePath;
+    // TYPE AND CONDITION_____________________________
+    public int getType() {
+        return this.type;
+    }
+    public void setType(int type) {
+        this.type = type;
     }
 
-    public void setSpritePath(String newSpritePath) {
-        this.spritePath = newSpritePath;
+    public int getDirection() {
+        return this.direction;
+    }
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public int getCondition() {
+        return this.condition;
+    }
+    public void setCondition(int condition) {
+        this.condition = condition;
+    }
+
+    public long getStartingClockOfCondition() {
+        return this.startingClockOfCondition;
+    }
+    public void setStartingClockOfCondition(long startingClockOfCondition) {
+        this.startingClockOfCondition = startingClockOfCondition;
     }
 
     //---------------------------------------------------------------

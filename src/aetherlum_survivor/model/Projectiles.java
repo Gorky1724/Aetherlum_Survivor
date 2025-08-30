@@ -33,7 +33,7 @@ public class Projectiles extends Entity{
         
         eld.setWidth(stats.width);
         eld.setHeight(stats.height);
-        eld.setSpritePath(stats.spritePath);
+        eld.setType(type);
         this.speed = stats.speed;
         this.maxHitPoints = stats.maxHP;
         this.currentHP = this.maxHitPoints;
