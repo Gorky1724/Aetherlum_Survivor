@@ -153,7 +153,7 @@ public class GamePanel extends JPanel {
 
 
             //TODO temporrary - remove when implemented types
-            if(eld.getType() == EntityData.XP_GLOBE_TYPE || eld.getType() == EntityData.HP_GLOBE_TYPE || eld.getType() == EntityData.PIERCING_PROJ_TYPE || eld.getType() == EntityData.FAST_PROJ_TYPE || eld.getType() == EntityData.BASE_PROJ_TYPE) {
+            if(eld.getType() == EntityData.PIERCING_PROJ_TYPE || eld.getType() == EntityData.FAST_PROJ_TYPE || eld.getType() == EntityData.BASE_PROJ_TYPE) {
                 continue;
             }//
 

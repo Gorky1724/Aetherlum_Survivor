@@ -76,7 +76,16 @@ Possibili soluzioni:
  > passare ad un GameLoop con Thread separato
  +aggiungere un deltaTime
  +far sì che le liste modificate non siano le stesse lette dal repaint evidanto l'errore di modifica e lettura contemporanea di un documento
+---
 
+---trovare sprite
+Alla fine mi sono accontentato di sprite per i nemici con un contorno bianco, in quanto molto complicato trovare sprite gratuite e coerenti
+le une con le altre.
+---
+
+---dover risistemare l'ampiezza di ciascun frame di ciascuno sprite di morte, dove le dimensioni cambiano notevolmente da un frame al seguente
+Spero di averne avuto voglia e alla fine averlo fatto
+---
 ___________________________________________________________________________________________________________________________
 >> COSE USATE FORSE NON FATTE A LEZIONE
 ___________________________________________________________________________________________________________________________

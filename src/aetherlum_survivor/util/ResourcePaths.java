@@ -33,7 +33,9 @@ public class ResourcePaths {
         //collectibles
         private static final String COLLECTIBLES = SPRITES + "collectibles/";
         public static final String HEALTH_GLOBE = COLLECTIBLES + "health_globe.png";
+        public static final String HEALTH_TAKEN = COLLECTIBLES + "health_taken.png";
         public static final String EXP_GLOBE = COLLECTIBLES + "exp_globe.png";
+        public static final String EXP_TAKEN = COLLECTIBLES + "exp_taken.png";
 
         //projectiles
         private static final String PROJECTILES = SPRITES + "projectiles/";

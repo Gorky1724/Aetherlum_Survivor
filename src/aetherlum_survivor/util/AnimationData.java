@@ -85,12 +85,40 @@ public class AnimationData {
             hp_GLOBE_ANIMATION_FRAMES = new Image[CLT_NUM_FRAMES];
             hp_GLOBE_ANIMATION_FRAMES[0] = health_globe_sprite.getSubimage(8, 2, 16, 28);
     }
+    public static final BufferedImage health_glb_taken_sprite = ResourceHandler.loadImage(ResourcePaths.Images.HEALTH_TAKEN);
+    public static final int HEALTH_TAKEN_NUM_FRAMES = 6; 
+    public static final int HEALTH_TAKEN_FRAME_DURTN = 5; 
+    public static Image[] health_TAKEN_ANIMATION_FRAMES; //death animation 
+        static {
+            health_TAKEN_ANIMATION_FRAMES = new Image[HEALTH_TAKEN_NUM_FRAMES];
+            health_TAKEN_ANIMATION_FRAMES[0] = health_glb_taken_sprite.getSubimage(24,470,18,18);
+            health_TAKEN_ANIMATION_FRAMES[1] = health_glb_taken_sprite.getSubimage(82,464,28,28);
+            health_TAKEN_ANIMATION_FRAMES[2] = health_glb_taken_sprite.getSubimage(142,461,36,35);
+            health_TAKEN_ANIMATION_FRAMES[3] = health_glb_taken_sprite.getSubimage(202,459,42,40);
+            health_TAKEN_ANIMATION_FRAMES[4] = health_glb_taken_sprite.getSubimage(265,456,45,44);
+            health_TAKEN_ANIMATION_FRAMES[5] = health_glb_taken_sprite.getSubimage(516,452,55,53);
+    }
 
     public static final BufferedImage exp_globe_sprite = ResourceHandler.loadImage(ResourcePaths.Images.EXP_GLOBE);
     public static Image[] xp_GLOBE_ANIMATION_FRAMES;
         static {
             xp_GLOBE_ANIMATION_FRAMES = new Image[CLT_NUM_FRAMES];
             xp_GLOBE_ANIMATION_FRAMES[0] = exp_globe_sprite.getSubimage(9, 1, 16, 30);
+    }
+    public static final BufferedImage exp_glb_taken_sprite = ResourceHandler.loadImage(ResourcePaths.Images.EXP_TAKEN);
+    public static final int EXP_TAKEN_NUM_FRAMES = 8; 
+    public static final int EXP_TAKEN_FRAME_DURTN = 5; 
+    public static Image[] exp_TAKEN_ANIMATION_FRAMES; //death animation 
+        static {
+            exp_TAKEN_ANIMATION_FRAMES = new Image[EXP_TAKEN_NUM_FRAMES];
+            exp_TAKEN_ANIMATION_FRAMES[0] = exp_glb_taken_sprite.getSubimage(403,273,23,35);
+            exp_TAKEN_ANIMATION_FRAMES[1] = exp_glb_taken_sprite.getSubimage(467,270,24,37);
+            exp_TAKEN_ANIMATION_FRAMES[2] = exp_glb_taken_sprite.getSubimage(531,269,24,39);
+            exp_TAKEN_ANIMATION_FRAMES[3] = exp_glb_taken_sprite.getSubimage(595,268,24,39);
+            exp_TAKEN_ANIMATION_FRAMES[4] = exp_glb_taken_sprite.getSubimage(659,267,23,37);
+            exp_TAKEN_ANIMATION_FRAMES[5] = exp_glb_taken_sprite.getSubimage(722,266,25,37);
+            exp_TAKEN_ANIMATION_FRAMES[6] = exp_glb_taken_sprite.getSubimage(786,265,25,36);
+            exp_TAKEN_ANIMATION_FRAMES[7] = exp_glb_taken_sprite.getSubimage(850,264,24,35);
     }
 
 
@@ -215,10 +243,12 @@ public class AnimationData {
         ),
         //collectibles
         EntityData.HP_GLOBE_TYPE, Map.of(
-            EntityData.IDLE, new AnimationStats(CLT_NUM_FRAMES, CLT_FRAME_DURTN, hp_GLOBE_ANIMATION_FRAMES)
+            EntityData.IDLE, new AnimationStats(CLT_NUM_FRAMES, CLT_FRAME_DURTN, hp_GLOBE_ANIMATION_FRAMES),
+            EntityData.DYING, new AnimationStats(HEALTH_TAKEN_NUM_FRAMES, HEALTH_TAKEN_FRAME_DURTN, health_TAKEN_ANIMATION_FRAMES)
         ),
         EntityData.XP_GLOBE_TYPE, Map.of(
-            EntityData.IDLE, new AnimationStats(CLT_NUM_FRAMES, CLT_FRAME_DURTN, xp_GLOBE_ANIMATION_FRAMES)
+            EntityData.IDLE, new AnimationStats(CLT_NUM_FRAMES, CLT_FRAME_DURTN, xp_GLOBE_ANIMATION_FRAMES),
+            EntityData.DYING, new AnimationStats(EXP_TAKEN_NUM_FRAMES, EXP_TAKEN_FRAME_DURTN, exp_TAKEN_ANIMATION_FRAMES)
         ),
 
         //projectiles
@@ -240,7 +270,5 @@ public class AnimationData {
             EntityData.WALKING, new AnimationStats(TANKEN_WALKING_NUM_FRAMES, TANKEN_WALKING_FRAME_DURTN, tanken_WALKING_ANIMATION_FRAMES),
             EntityData.DYING, new AnimationStats(TANKEN_DYING_NUM_FRAMES, TANKEN_DYING_FRAME_DURTN, tanken_DYING_ANIMATION_FRAMES)
         )
-        
     );
-
 }
