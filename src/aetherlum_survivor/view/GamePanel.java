@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.model.Model;
 import aetherlum_survivor.util.EntityLogicalData;
-import aetherlum_survivor.util.AnimationData;
+import aetherlum_survivor.util.AnimationData.AnimationStats;
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
 
@@ -90,10 +90,8 @@ public class GamePanel extends JPanel {
     public void paintPlayer(Graphics2D g2d, EntityLogicalData playerELD) {
         //the player must always be centered on the screen: gX = halfScreenWidth - halfCharacterDimension, gY = halfScreenHeight - halfCharacterDimension
         Point playerLoc = convertLogicalToGraphical(playerELD.getCoordX(), playerELD.getCoordY(), playerELD);
-        //System.out.println("Player graphical coord: " + playerLoc.x + ", " + playerLoc.y + ", " + (int) playerELD.getWidth() + ", " + (int) playerELD.getHeight());
 
         Image frameToDraw = AnimationHandler.getFrameToDraw(playerELD);
-
         if(playerELD.getDirection() == EntityData.RIGHT && playerELD.isActive()) {
             AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight());
         } else if (playerELD.getDirection() == EntityData.LEFT && playerELD.isActive()){
@@ -108,9 +106,12 @@ public class GamePanel extends JPanel {
             if(enELD.isActive()) {
                 Point enemyLoc = convertLogicalToGraphical(enELD.getCoordX(),enELD.getCoordY(), playerELD);
 
-                g2d.setColor(Color.WHITE);
-                //getX() and getY() return 'double' values - here is needed an int so i use the attribute
-                g2d.fillRect(enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
+                Image frameToDraw = AnimationHandler.getFrameToDraw(enELD);
+                if(enELD.getDirection() == EntityData.LEFT && enELD.isActive()) {
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
+                } else if (enELD.getDirection() == EntityData.RIGHT && enELD.isActive()){
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, enemyLoc.x, enemyLoc.y, (int) enELD.getWidth(), (int) enELD.getHeight());
+                }
             }
         }
 
@@ -152,7 +153,7 @@ public class GamePanel extends JPanel {
 
 
             //TODO temporrary - remove when implemented types
-            if(eld.getType() != EntityData.PLAYER_TYPE) {
+            if(eld.getType() == EntityData.XP_GLOBE_TYPE || eld.getType() == EntityData.HP_GLOBE_TYPE || eld.getType() == EntityData.PIERCING_PROJ_TYPE || eld.getType() == EntityData.FAST_PROJ_TYPE || eld.getType() == EntityData.BASE_PROJ_TYPE) {
                 continue;
             }//
 
@@ -165,11 +166,11 @@ public class GamePanel extends JPanel {
                 AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
             } 
 
-            long animationLasted = Model.getInstance().getClockCyle() - eld.getStartingClockOfCondition(); 
-            System.out.println("an last:" + animationLasted);
-            if( animationLasted >= AnimationData.DEATH_ANIMATION_DEFAULT_DURATION) {
-                //removes creature with deathanimation ended
-                it.remove(); //if animation is finished
+            long animationLasted = Model.getInstance().getClockCyle() - eld.getStartingClockOfCondition();
+            AnimationStats st = AnimationHandler.getAnimationStatsBasedOnTypeAndCondition(eld.getType(), EntityData.DYING);
+            int animDuration = st.animationNumFrames*st.frameDuration;
+            if(animationLasted >= animDuration) {
+                it.remove();
 
                 //if it was the player that was dying and animation in finished = gameOver
                 if(eld.getType() == EntityData.PLAYER_TYPE) {

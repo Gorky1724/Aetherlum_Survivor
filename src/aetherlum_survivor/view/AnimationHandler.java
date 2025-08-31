@@ -10,8 +10,8 @@ import aetherlum_survivor.util.EntityLogicalData;
 
 public class AnimationHandler {
 
-    //! helper for Animation Handler
-    private static AnimationStats getAnimationStatsBasedOnTypeAndCondition(int type, int condition) {
+    //! helper for Animation Handler and view
+    public static AnimationStats getAnimationStatsBasedOnTypeAndCondition(int type, int condition) {
         return AnimationData.ANIMATION_STATS.get(type).get(condition);
     }
 

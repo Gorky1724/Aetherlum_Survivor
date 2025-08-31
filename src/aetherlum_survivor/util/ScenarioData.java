@@ -10,8 +10,8 @@ public class ScenarioData {
         switch (selected_scenario_num) {
         case 1: {
             // SCENARIO 1
-            SCENARIO_ENEMIES = new int[] {EntityData.BASE_ENEMY_TYPE};
-            SCENARIO_MAX_NUM = 10;
+            SCENARIO_ENEMIES = new int[] {EntityData.FAST_ENEMY_TYPE};
+            SCENARIO_MAX_NUM = 40;
             break;
             }
         case 2:{

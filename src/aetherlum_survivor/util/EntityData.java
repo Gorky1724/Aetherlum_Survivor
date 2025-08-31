@@ -105,7 +105,7 @@ public class EntityData {
     public static final int HP_GLOBE_TYPE = 20;
     public static final int HP_GLOBE_WIDTH = Constants.TILE_SIZE/2;
     public static final int HP_GLOBE_HEIGHT = Constants.TILE_SIZE/2;
-    public static final double HP_GLOBE_GIVEN_VALUE = 25;
+    public static final double HP_GLOBE_GIVEN_VALUE = 100;
 
     public static final int[] AVAILABLE_COLLECTIBLES_TYPES = {XP_GLOBE_TYPE, HP_GLOBE_TYPE};
     
@@ -143,7 +143,7 @@ public class EntityData {
     public static final int[] ENEMIES_TYPE_RANGE = {1000,1200};
 
     public static final int BASE_ENEMY_TYPE = 1000;
-    public static final int BASE_ENEMY_WIDTH = Constants.TILE_SIZE;
+    public static final int BASE_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*1.2);
     public static final int BASE_ENEMY_HEIGHT = Constants.TILE_SIZE;
     public static final double BASE_ENEMY_SPD = 3;
     public static final double BASE_ENEMY_MAX_HP = 30;
@@ -152,8 +152,8 @@ public class EntityData {
     public static final int BASE_ENEMY_EXP_GIVEN = 50;
 
     public static final int FAST_ENEMY_TYPE = 1001;
-    public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*0.7);
-    public static final int FAST_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*0.7);
+    public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*0.7*5);
+    public static final int FAST_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*0.7*5);
     public static final double FAST_ENEMY_SPD = 5;
     public static final double FAST_ENEMY_MAX_HP = 20;
     public static final double FAST_ENEMY_DMG = 10;

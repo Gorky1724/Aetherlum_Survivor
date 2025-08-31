@@ -37,6 +37,11 @@ public class Enemies extends Entity {
         
         this.expGiven = stats.expGiven;
         //System.out.println(">>> Entity data of type " + type + " set");
+
+        eld.setType(type);
+        eld.setDirection(EntityData.RIGHT);
+        eld.setCondition(EntityData.WALKING);
+        eld.setStartingClockOfCondition(Model.getInstance().getClockCyle());
         
         return eld;
     }
@@ -143,6 +148,12 @@ public class Enemies extends Entity {
         // set final movement
         this.eld.setCoordX(this.eld.getCoordX() + Math.cos(angle) * this.speed);
         this.eld.setCoordY(this.eld.getCoordY() + Math.sin(angle) * this.speed);
+
+        if(finalX > 0) {
+            this.eld.setDirection(EntityData.RIGHT);
+        } else if(finalX < 0) {
+            this.eld.setDirection(EntityData.LEFT);
+        }
     }
 
     //collision
