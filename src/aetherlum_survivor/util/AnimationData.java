@@ -3,7 +3,6 @@ package aetherlum_survivor.util;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
-import aetherlum_survivor.util.EntityData.EntityStats;
 import aetherlum_survivor.view.ResourceHandler;
 
 import java.awt.Image;
@@ -26,6 +25,9 @@ public class AnimationData {
         }
 
     }
+
+    //! GENERAL
+    public static final int DEATH_ANIMATION_DEFAULT_DURATION = 36; //numframes*frameduration - common number to all animations
 
     //! PLAYER -------------------------------------------------------------------------------------
     public static final BufferedImage player_idle_sprite = ResourceHandler.loadImage(ResourcePaths.Images.PLAYER_IDLE);
@@ -59,9 +61,9 @@ public class AnimationData {
         pl_WALKING_ANIMATION_FRAMES[7] = player_walking_sprite.getSubimage(927,68,36,60);
     }
 
-    public static final BufferedImage player_dying_sprite = ResourceHandler.loadImage(ResourcePaths.Images.PLAYER_WALKING);
+    public static final BufferedImage player_dying_sprite = ResourceHandler.loadImage(ResourcePaths.Images.PLAYER_DYING);
     public static final int PL_DYING_NUM_FRAMES = 6; //num frames
-    public static final int PL_DYING_FRAME_DURTN = 8; //clock cycles
+    public static final int PL_DYING_FRAME_DURTN = 7; //clock cycles
     public static Image[] pl_DYING_ANIMATION_FRAMES; // {xUpperLeftCorner, yUpperLeftCorner, width, height}
         static {//initialized animationframes
         pl_DYING_ANIMATION_FRAMES = new Image[PL_DYING_NUM_FRAMES];
@@ -99,8 +101,8 @@ public class AnimationData {
     public static final Map<Integer, Map<Integer, AnimationStats>> ANIMATION_STATS = Map.of( //creates immutable map
         EntityData.PLAYER_TYPE, Map.of(
             EntityData.IDLE, new AnimationStats(PL_IDLE_NUM_FRAMES, PL_IDLE_FRAME_DURTN, pl_IDLE_ANIMATION_FRAMES),
-            EntityData.WALKING, new AnimationStats(PL_WALKING_NUM_FRAMES, PL_WALKING_FRAME_DURTN, pl_WALKING_ANIMATION_FRAMES)
-            //EntityData.DYING, new AnimationStats(PL_DYING_NUM_FRAMES, PL_DYING_FRAME_DURTN, pl_DYING_ANIMATION_FRAMES)
+            EntityData.WALKING, new AnimationStats(PL_WALKING_NUM_FRAMES, PL_WALKING_FRAME_DURTN, pl_WALKING_ANIMATION_FRAMES),
+            EntityData.DYING, new AnimationStats(PL_DYING_NUM_FRAMES, PL_DYING_FRAME_DURTN, pl_DYING_ANIMATION_FRAMES)
         ),
         //collectibles (?)
         EntityData.HP_GLOBE_TYPE, Map.of(

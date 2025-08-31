@@ -3,10 +3,14 @@ package aetherlum_survivor.view;
 import javax.swing.JPanel;
 
 import aetherlum_survivor.controller.Controller;
+import aetherlum_survivor.model.Model;
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.AnimationData;
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import java.awt.Color;
@@ -18,6 +22,8 @@ import java.awt.Point;
 
 public class GamePanel extends JPanel {
 
+    public final List<EntityLogicalData> deathAnimations = new ArrayList<>();
+
     public GamePanel() {
 
         //off screen drawing buffer, then reported on screen - for rendering fluidity
@@ -26,6 +32,7 @@ public class GamePanel extends JPanel {
         this.setBackground(Color.black);
     }
 
+    //! PAINTCOMPONENT OVERRIDE_____________________________
     // to be able to repaint as desired - UPDATES the JPanel shown in the JFrame
     @Override
 	public void paintComponent(Graphics g) {
@@ -42,6 +49,7 @@ public class GamePanel extends JPanel {
         paintEnemies(g2d, playerELD);
         paintProjectiles(g2d, playerELD);
         paintCollectibles(g2d, playerELD);
+        paintDeathAnimations(g2d, playerELD);
 
         paintAdditionalElements(g2d);
 
@@ -49,7 +57,7 @@ public class GamePanel extends JPanel {
         
 	}
 
-    // LOGIC COORDINATES TO VIEW CONVERSION_______
+    //! LOGIC COORDINATES TO GRAPHICAL COORDINATES CONVERSION__________________________________
     public Point convertLogicalToGraphical(double logicalX, double logicalY, EntityLogicalData playerELD) {
 
         int screenCenterX = (int) (Constants.SCREEN_WIDTH / 2 - playerELD.getWidth() / 2);
@@ -59,6 +67,11 @@ public class GamePanel extends JPanel {
         int screenY = (int) (logicalY - playerELD.getCoordY() + screenCenterY);
         
         return new Point(screenX, screenY);
+    }
+
+    //! RELATED TO DEATH ANIMATION__________________________________
+    public void updateDeathAnimationList(EntityLogicalData eld) {
+        this.deathAnimations.add(eld);
     }
 
     //! PAINT ELEMENTS_____________________________
@@ -81,9 +94,9 @@ public class GamePanel extends JPanel {
 
         Image frameToDraw = AnimationHandler.getFrameToDraw(playerELD);
 
-        if(playerELD.getDirection() == EntityData.RIGHT) {
+        if(playerELD.getDirection() == EntityData.RIGHT && playerELD.isActive()) {
             AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight());
-        } else if (playerELD.getDirection() == EntityData.LEFT){
+        } else if (playerELD.getDirection() == EntityData.LEFT && playerELD.isActive()){
             AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight());
         }                
     }
@@ -127,6 +140,41 @@ public class GamePanel extends JPanel {
 
                 //doesen't need to be flipped
                 g2d.drawImage(frameToDraw,collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight(),null);
+            }
+        }
+    }
+
+    public void paintDeathAnimations(Graphics2D g2d, EntityLogicalData playerELD) {
+
+        Iterator<EntityLogicalData> it = this.deathAnimations.iterator();
+        while (it.hasNext()) {
+            EntityLogicalData eld = it.next();
+
+
+            //TODO temporrary - remove when implemented types
+            if(eld.getType() != EntityData.PLAYER_TYPE) {
+                continue;
+            }//
+
+            Image frameToDraw = AnimationHandler.getFrameToDraw(eld);
+            Point eldLoc = convertLogicalToGraphical(eld.getCoordX(), eld.getCoordY(), playerELD);
+
+            if(eld.getDirection() == EntityData.RIGHT) { //TODO - should be fixed width and height based on each different animation
+                AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
+            } else if (eld.getDirection() == EntityData.LEFT){
+                AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
+            } 
+
+            long animationLasted = Model.getInstance().getClockCyle() - eld.getStartingClockOfCondition(); 
+            System.out.println("an last:" + animationLasted);
+            if( animationLasted >= AnimationData.DEATH_ANIMATION_DEFAULT_DURATION) {
+                //removes creature with deathanimation ended
+                it.remove(); //if animation is finished
+
+                //if it was the player that was dying and animation in finished = gameOver
+                if(eld.getType() == EntityData.PLAYER_TYPE) {
+                    Controller.getInstance().handleGameOver();
+                }
             }
         }
     }

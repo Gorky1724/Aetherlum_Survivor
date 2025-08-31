@@ -10,12 +10,12 @@ import aetherlum_survivor.util.EntityLogicalData;
 
 public class AnimationHandler {
 
-    //! UTILITY METHODS FOR VIEW
-    public static AnimationStats getAnimationStatsBasedOnTypeAndCondition(int type, int condition) {
+    //! helper for Animation Handler
+    private static AnimationStats getAnimationStatsBasedOnTypeAndCondition(int type, int condition) {
         return AnimationData.ANIMATION_STATS.get(type).get(condition);
     }
 
-    public static int getCurrentFrameNum(EntityLogicalData eld) {
+    private static int getCurrentFrameNum(EntityLogicalData eld) {
         long currentClockCycle = Controller.getInstance().getClockCycle();
         long startingClockOfCondition = eld.getStartingClockOfCondition();
 
@@ -35,12 +35,12 @@ public class AnimationHandler {
         return currentFrame;
     }
 
-    public static Image[] getAnimationFrames(int type, int condition) {
+    private static Image[] getAnimationFrames(int type, int condition) {
         AnimationStats stats = getAnimationStatsBasedOnTypeAndCondition(type, condition);
         return stats.animationFrames;
     }
 
-    //unic method that directly return the frame to paint
+    //! unic method that directly return the frame to paint
     public static Image getFrameToDraw(EntityLogicalData eld) {
         //System.out.println("type: "+eld.getType()+"\n cond: "+eld.getCondition());
         Image[] animationFrames = getAnimationFrames(eld.getType(), eld.getCondition());
@@ -48,6 +48,7 @@ public class AnimationHandler {
         return animationFrames[currentFrame];
     }
 
+    //! draws with option to flip
     public static void drawSprite(Graphics2D g2d, Image ftd, boolean flipped, int x, int y, int width, int height) {
         
         if(flipped) { //draws flipped
@@ -56,5 +57,8 @@ public class AnimationHandler {
             g2d.drawImage(ftd,x,y,width,height,null);
         }
     }
+
+    //! utilities for View
+    //TODO - something to adequately rescale death animation when they happens
     
 }

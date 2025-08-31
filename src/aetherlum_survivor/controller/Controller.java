@@ -53,6 +53,7 @@ public class Controller implements InterfaceController{
 
     @Override
     public void handleGameOver() {
+        Model.getInstance().setGameOver();
         View.getInstance().openGameOverPanel();
     }
 
@@ -109,6 +110,11 @@ public class Controller implements InterfaceController{
     @Override
     public void upgradePlayer(Map<Integer, LevelUpOptions> powerUpData) {
         Model.getInstance().upgradePlayer(powerUpData);
+    }
+
+    @Override
+    public void updateDeathAnimationList(EntityLogicalData eld) {
+        View.getInstance().updateDeathAnimationList(eld);
     }
 
     // EXPOSES DATA_____________________________

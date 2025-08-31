@@ -1,6 +1,8 @@
 package aetherlum_survivor.view;
 
 import java.util.Map;
+
+import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 public interface InterfaceView {
@@ -24,6 +26,8 @@ public interface InterfaceView {
 
     //update view
     public void update();
+
+    public void updateDeathAnimationList(EntityLogicalData eld);
 
     //keylistener for game panel
     public void attachKeyListenerToGamePanel();

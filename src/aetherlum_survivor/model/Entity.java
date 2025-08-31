@@ -1,6 +1,9 @@
 package aetherlum_survivor.model;
 
+import aetherlum_survivor.controller.Controller;
+
 import aetherlum_survivor.util.Constants;
+import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityLogicalData;
 
 import java.awt.geom.Rectangle2D;
@@ -158,6 +161,11 @@ public  class Entity{
     }
     public void death() {
         this.setInactive();
+        if(this.eld.getCondition() != EntityData.DYING) {
+            this.eld.setCondition(EntityData.DYING);
+            this.eld.setStartingClockOfCondition(Model.getInstance().getClockCyle());
+        }
+        Controller.getInstance().updateDeathAnimationList(this.eld);
     }
 
     //---------------------------------------------------------------

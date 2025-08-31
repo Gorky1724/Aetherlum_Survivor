@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import aetherlum_survivor.util.Constants;
+import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 import java.awt.Dimension;
@@ -207,6 +208,11 @@ public class View implements InterfaceView {
     @Override
     public void update(){
         this.gamePanel.repaint();
+    }
+
+    @Override
+    public void updateDeathAnimationList(EntityLogicalData eld) {
+        this.gamePanel.updateDeathAnimationList(eld);
     }
 
     // keyListener for GamePanel

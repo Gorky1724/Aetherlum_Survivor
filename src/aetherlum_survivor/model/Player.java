@@ -162,7 +162,7 @@ public class Player extends Entity {
             this.takeDamage(ent.getDamage());
             //System.out.println("#> currenthp: " + this.currentHP);
             if(!this.isAlive()) {
-                Model.getInstance().setGameOver();
+                this.death();
             }
         }
 

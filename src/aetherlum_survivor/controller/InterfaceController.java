@@ -41,6 +41,8 @@ public interface InterfaceController {
 
     public void upgradePlayer(Map<Integer, LevelUpOptions> powerUpData);
 
+    public void updateDeathAnimationList(EntityLogicalData eld);
+
     //exposes data
     public EntityLogicalData getPlayerELD();
 

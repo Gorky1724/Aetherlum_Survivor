@@ -121,7 +121,6 @@ public class Model implements InterfaceModel {
 	@Override
 	public void setGameOver() {
 		this.stopGameLoop();
-		Controller.getInstance().handleGameOver();
 	}
 
 	@Override
@@ -147,13 +146,6 @@ public class Model implements InterfaceModel {
 	@Override
 	public void update() {
 
-		// if key input: moves player 
-		this.player.movePlayer(KeyHandler.getInstance().getUpPressed(),
-								KeyHandler.getInstance().getRightPressed(),
-								KeyHandler.getInstance().getDownPressed(),
-								KeyHandler.getInstance().getLeftPressed()
-		);
-
 		//despawns if too distant and spawns entities every cadence
 		long currentCycle = this.getClockCyle();
 		if ((currentCycle - this.lastEntitiesSpawnDespawn) >= this.spawnDespawnCadence) {
@@ -169,14 +161,28 @@ public class Model implements InterfaceModel {
 		}
 		//projectiles spawn depends from playerFireRate*projectileRateModifier
 		currentCycle = this.getClockCyle();
-		this.projectiles = this.projectileHandler.shoot(this.projectiles, this.player, currentCycle, this.enemies);
+		if(this.player.isActive()) { //if player alive moves and shoot - if Inactive and DYING play animation
+
+			// if key input: moves player 
+			this.player.movePlayer(KeyHandler.getInstance().getUpPressed(),
+									KeyHandler.getInstance().getRightPressed(),
+									KeyHandler.getInstance().getDownPressed(),
+									KeyHandler.getInstance().getLeftPressed()
+			);
+
+			this.projectiles = this.projectileHandler.shoot(this.projectiles, this.player, currentCycle, this.enemies);
+		}
 
 		//moves entities
 		for(Enemies en : this.enemies) { //enemies
-			en.moveTowardsPlayer(this.player.getEntityLogicalData(), this.enemies);
+			if(en.isActive()) {
+				en.moveTowardsPlayer(this.player.getEntityLogicalData(), this.enemies);
+			}
 		}
 		for(Projectiles prj : this.projectiles) {
-			prj.advance();
+			if(prj.isActive()) {
+				prj.advance();
+			}
 		}
 
 		//check collision
