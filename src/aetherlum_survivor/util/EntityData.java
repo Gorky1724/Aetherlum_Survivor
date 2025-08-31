@@ -79,7 +79,7 @@ public class EntityData {
 
     //! PLAYER -------------------------------------------------------------------------------------
     public static final int PLAYER_TYPE = 0;
-    public static final int PLAYER_WIDTH = Constants.TILE_SIZE/2;
+    public static final int PLAYER_WIDTH = (int) (Constants.TILE_SIZE/1.7); //based on sprite model
     public static final int PLAYER_HEIGHT = Constants.TILE_SIZE;
     public static final double PLAYER_SPD = 7;
     public static final double PLAYER_MAX_HP = 1000;
@@ -87,7 +87,7 @@ public class EntityData {
     public static final double PLAYER_DMG_RST = 0; //0 <= dmg_rst <= 1 -- 1 = undamagable
 
     public static final double XP_BAR = 200;
-    public static final int MAX_LEVEL = 25;
+    public static final int MAX_LEVEL = 20;
 
     public static final int PLAYER_FIRE_RATE = 1 * Constants.BASE_CADENCE;
 

@@ -139,6 +139,13 @@ public  class Entity{
         this.eld.setStatus(false);
     }
 
+    protected void setCondition(int newCondition) {
+        if(this.eld.getCondition() != newCondition) {
+            this.eld.setCondition(newCondition);
+            this.eld.setStartingClockOfCondition(Model.getInstance().getClockCyle());
+        }
+    }
+
     // DIRECT DATA VARIATION FROM GAME EVENT_____________________________
     public void takeDamage(double dmgTaken) {
         this.currentHP = this.currentHP - (dmgTaken - dmgTaken*this.damageResistance);

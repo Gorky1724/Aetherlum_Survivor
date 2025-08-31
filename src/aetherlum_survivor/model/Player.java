@@ -127,6 +127,9 @@ public class Player extends Entity {
         double newX;
         double newY;
         if (deltaX == 0 && deltaY == 0) { //if keyboard inputs nullify each other
+            if(this.eld.getCondition() == EntityData.WALKING) {
+                this.setCondition(EntityData.IDLE);
+            }
             return;
         } else if (deltaX != 0 && deltaY != 0) { //diagonal movement - needs normalization
             double normalizationFactor = 0.707; //circa 1/(sqrt(2))
@@ -138,6 +141,16 @@ public class Player extends Entity {
         }
         playerELD.setCoordX(newX);
         playerELD.setCoordY(newY);
+
+        if(deltaX > 0) {
+            this.eld.setDirection(EntityData.RIGHT);
+        } else if(deltaX < 0) {
+            this.eld.setDirection(EntityData.LEFT);
+        }
+        if(this.eld.getCondition() == EntityData.IDLE) {
+            this.setCondition(EntityData.WALKING);
+        }
+
         
         //System.out.println("#> ("+newX+", "+newY+")");
     }

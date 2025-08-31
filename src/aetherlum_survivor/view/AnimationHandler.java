@@ -1,5 +1,6 @@
 package aetherlum_survivor.view;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import aetherlum_survivor.controller.Controller;
@@ -41,9 +42,19 @@ public class AnimationHandler {
 
     //unic method that directly return the frame to paint
     public static Image getFrameToDraw(EntityLogicalData eld) {
+        //System.out.println("type: "+eld.getType()+"\n cond: "+eld.getCondition());
         Image[] animationFrames = getAnimationFrames(eld.getType(), eld.getCondition());
         int currentFrame = getCurrentFrameNum(eld);
         return animationFrames[currentFrame];
+    }
+
+    public static void drawSprite(Graphics2D g2d, Image ftd, boolean flipped, int x, int y, int width, int height) {
+        
+        if(flipped) { //draws flipped
+            g2d.drawImage(ftd, x + width, y, -width, height, null);
+        } else {
+            g2d.drawImage(ftd,x,y,width,height,null);
+        }
     }
     
 }

@@ -81,13 +81,11 @@ public class GamePanel extends JPanel {
 
         Image frameToDraw = AnimationHandler.getFrameToDraw(playerELD);
 
-        g2d.drawImage(frameToDraw,playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight(),this);
-                
-        /*
-        g2d.setColor(Color.WHITE);
-        //getX() and getY() return 'double' values - here is needed an int so i use the attribute
-        g2d.fillRect(playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight());
-        */
+        if(playerELD.getDirection() == EntityData.RIGHT) {
+            AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight());
+        } else if (playerELD.getDirection() == EntityData.LEFT){
+            AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, playerLoc.x, playerLoc.y, (int) playerELD.getWidth(), (int) playerELD.getHeight());
+        }                
     }
 
     public void paintEnemies(Graphics2D g2d, EntityLogicalData playerELD) {
@@ -127,9 +125,8 @@ public class GamePanel extends JPanel {
                 Point collectibleLoc = convertLogicalToGraphical(cltELD.getCoordX(), cltELD.getCoordY(), playerELD);
                 Image frameToDraw = AnimationHandler.getFrameToDraw(cltELD);
 
-                g2d.drawImage(frameToDraw,collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight(),this);
-                
-                //g2d.fillRect(collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight());
+                //doesen't need to be flipped
+                g2d.drawImage(frameToDraw,collectibleLoc.x, collectibleLoc.y, (int) cltELD.getWidth(), (int) cltELD.getHeight(),null);
             }
         }
     }

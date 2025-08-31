@@ -121,7 +121,7 @@ public class StartPanel extends JPanel {
         super.paintComponent(g);
         
         if (bckgImage != null) {
-            g.drawImage(bckgImage, 0, 0, getWidth(), getHeight(), this);
+            g.drawImage(bckgImage, 0, 0, getWidth(), getHeight(), null);
         }
     }
 

@@ -32,6 +32,10 @@ public class Constants {
     public static final double SOVRAPPOSITION_LIMIT_VALUE = 0.8;
     public static final double DISTANCE_POSITIVE_NOT_INFINITESIMAL = 0.0001;
 
+    //! VISUALIZATION
+    public static final boolean FLIPPED = true;
+    public static final boolean NOT_FLIPPED = false;
+
     //---------------------------------------------------------------
 
 }
