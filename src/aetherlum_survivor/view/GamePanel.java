@@ -160,15 +160,24 @@ public class GamePanel extends JPanel {
             Image frameToDraw = AnimationHandler.getFrameToDraw(eld);
             Point eldLoc = convertLogicalToGraphical(eld.getCoordX(), eld.getCoordY(), playerELD);
 
-            if(eld.getDirection() == EntityData.RIGHT) { //TODO - should be fixed width and height based on each different animation
-                AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
-            } else if (eld.getDirection() == EntityData.LEFT){
-                AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
+            //TODO - should be fixed width and height based on each different animation
+            if(eld.getType() >= EntityData.ENEMIES_TYPE_RANGE[0] && eld.getType() <= EntityData.ENEMIES_TYPE_RANGE[1]) { //enemies have sprites in opposite direction
+                if(eld.getDirection() == EntityData.LEFT) {
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
+                } else if (eld.getDirection() == EntityData.RIGHT){
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
+                }
+            } else {
+                if(eld.getDirection() == EntityData.RIGHT) {
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
+                } else if (eld.getDirection() == EntityData.LEFT){
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
+                }
             } 
 
             long animationLasted = Model.getInstance().getClockCyle() - eld.getStartingClockOfCondition();
             AnimationStats st = AnimationHandler.getAnimationStatsBasedOnTypeAndCondition(eld.getType(), EntityData.DYING);
-            int animDuration = st.animationNumFrames*st.frameDuration;
+            int animDuration = st.animationNumFrames*st.frameDuration - 2; //makes last frame last a little less to avoid redraw of the first
             if(animationLasted >= animDuration) {
                 it.remove();
 

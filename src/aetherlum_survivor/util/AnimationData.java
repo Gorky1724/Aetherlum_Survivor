@@ -71,8 +71,8 @@ public class AnimationData {
             pl_DYING_ANIMATION_FRAMES[1] = player_dying_sprite.getSubimage(158,72,34,56);
             pl_DYING_ANIMATION_FRAMES[2] = player_dying_sprite.getSubimage(285,74,35,54);
             pl_DYING_ANIMATION_FRAMES[3] = player_dying_sprite.getSubimage(415,84,38,44);
-            pl_DYING_ANIMATION_FRAMES[3] = player_dying_sprite.getSubimage(543,107,54,21);
-            pl_DYING_ANIMATION_FRAMES[3] = player_dying_sprite.getSubimage(671,117,62,11);
+            pl_DYING_ANIMATION_FRAMES[4] = player_dying_sprite.getSubimage(543,107,54,21);
+            pl_DYING_ANIMATION_FRAMES[5] = player_dying_sprite.getSubimage(671,117,62,11);
     }
 
     //! COLLECTIBLES -------------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ public class AnimationData {
             baseen_WALKING_ANIMATION_FRAMES[2] = base_enemy_sprite.getSubimage(220,25,46,39);
             baseen_WALKING_ANIMATION_FRAMES[3] = base_enemy_sprite.getSubimage(319,23,38,41);
     }
-    public static final int BASEEN_DYING_NUM_FRAMES = 6; 
+    public static final int BASEEN_DYING_NUM_FRAMES = 4; 
     public static final int BASEEN_DYING_FRAME_DURTN = 6;
     public static Image[] baseen_DYING_ANIMATION_FRAMES;
         static {
@@ -119,8 +119,8 @@ public class AnimationData {
             baseen_DYING_ANIMATION_FRAMES[1] = base_enemy_sprite.getSubimage(491,476,60,36);
             baseen_DYING_ANIMATION_FRAMES[2] = base_enemy_sprite.getSubimage(10,548,61,28);
             baseen_DYING_ANIMATION_FRAMES[3] = base_enemy_sprite.getSubimage(106,558,61,18);
-            baseen_DYING_ANIMATION_FRAMES[4] = base_enemy_sprite.getSubimage(199,566,65,10);
-            baseen_DYING_ANIMATION_FRAMES[5] = base_enemy_sprite.getSubimage(288,571,73,5);
+            //baseen_DYING_ANIMATION_FRAMES[4] = base_enemy_sprite.getSubimage(199,566,65,10);
+            //baseen_DYING_ANIMATION_FRAMES[5] = base_enemy_sprite.getSubimage(288,571,73,5);
 
     }
 
@@ -135,7 +135,7 @@ public class AnimationData {
             fasten_WALKING_ANIMATION_FRAMES[2] = fast_enemy_sprite.getSubimage(308,18,48,41);
             fasten_WALKING_ANIMATION_FRAMES[3] = fast_enemy_sprite.getSubimage(436,7,48,56);
     }
-    public static final int FASTEN_DYING_NUM_FRAMES = 8;
+    public static final int FASTEN_DYING_NUM_FRAMES = 6;
     public static final int FASTEN_DYING_FRAME_DURTN = 4;
     public static Image[] fasten_DYING_ANIMATION_FRAMES;
         static {
@@ -146,8 +146,8 @@ public class AnimationData {
             fasten_DYING_ANIMATION_FRAMES[3] = fast_enemy_sprite.getSubimage(440,136,27,34);
             fasten_DYING_ANIMATION_FRAMES[4] = fast_enemy_sprite.getSubimage(57,196,23,37);
             fasten_DYING_ANIMATION_FRAMES[5] = fast_enemy_sprite.getSubimage(183,209,24,25);
-            fasten_DYING_ANIMATION_FRAMES[6] = fast_enemy_sprite.getSubimage(442,218,21,16);
-            fasten_DYING_ANIMATION_FRAMES[7] = fast_enemy_sprite.getSubimage(310,314,21,6);
+            //fasten_DYING_ANIMATION_FRAMES[6] = fast_enemy_sprite.getSubimage(442,218,21,16);
+            //fasten_DYING_ANIMATION_FRAMES[7] = fast_enemy_sprite.getSubimage(310,314,21,6);
     }
 
     public static final BufferedImage static_enemy_sprite = ResourceHandler.loadImage(ResourcePaths.Images.STATIC_ENEMY);
@@ -173,24 +173,23 @@ public class AnimationData {
             staticen_DYING_ANIMATION_FRAMES[2] = static_enemy_sprite.getSubimage(204,136,44,24);
             staticen_DYING_ANIMATION_FRAMES[3] = static_enemy_sprite.getSubimage(7,170,53,22);
             staticen_DYING_ANIMATION_FRAMES[4] = static_enemy_sprite.getSubimage(68,176,60,16);
-            staticen_DYING_ANIMATION_FRAMES[5] = static_enemy_sprite.getSubimage(130,183,52,9);
-            staticen_DYING_ANIMATION_FRAMES[5] = static_enemy_sprite.getSubimage(198,189,52,3);
+            staticen_DYING_ANIMATION_FRAMES[5] = static_enemy_sprite.getSubimage(142,77,38,19);
+            staticen_DYING_ANIMATION_FRAMES[6] = static_enemy_sprite.getSubimage(200,82,49,14);
     }
 
     public static final BufferedImage tank_enemy_sprite = ResourceHandler.loadImage(ResourcePaths.Images.TANK_ENEMY);
-    public static final int TANKEN_WALKING_NUM_FRAMES = 8;
+    public static final int TANKEN_WALKING_NUM_FRAMES = 7;
     public static final int TANKEN_WALKING_FRAME_DURTN = 5;
     public static Image[] tanken_WALKING_ANIMATION_FRAMES;
         static {
             tanken_WALKING_ANIMATION_FRAMES = new Image[TANKEN_WALKING_NUM_FRAMES];
             tanken_WALKING_ANIMATION_FRAMES[0] = tank_enemy_sprite.getSubimage(27,11,41,53);
-            tanken_WALKING_ANIMATION_FRAMES[1] = tank_enemy_sprite.getSubimage(341,11,39,53);
+            tanken_WALKING_ANIMATION_FRAMES[1] = tank_enemy_sprite.getSubimage(347,11,39,53);
             tanken_WALKING_ANIMATION_FRAMES[2] = tank_enemy_sprite.getSubimage(27,76,42,52);
             tanken_WALKING_ANIMATION_FRAMES[3] = tank_enemy_sprite.getSubimage(107,76,41,52);
             tanken_WALKING_ANIMATION_FRAMES[4] = tank_enemy_sprite.getSubimage(187,75,39,53);
             tanken_WALKING_ANIMATION_FRAMES[5] = tank_enemy_sprite.getSubimage(267,76,42,52);
             tanken_WALKING_ANIMATION_FRAMES[6] = tank_enemy_sprite.getSubimage(347,76,41,52);
-            tanken_WALKING_ANIMATION_FRAMES[7] = tank_enemy_sprite.getSubimage(29,142,38,50);
     }
     public static final int TANKEN_DYING_NUM_FRAMES = 8;
     public static final int TANKEN_DYING_FRAME_DURTN = 5;

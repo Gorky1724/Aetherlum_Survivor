@@ -152,8 +152,8 @@ public class EntityData {
     public static final int BASE_ENEMY_EXP_GIVEN = 50;
 
     public static final int FAST_ENEMY_TYPE = 1001;
-    public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*0.7*5);
-    public static final int FAST_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*0.7*5);
+    public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*0.9);
+    public static final int FAST_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*0.9);
     public static final double FAST_ENEMY_SPD = 5;
     public static final double FAST_ENEMY_MAX_HP = 20;
     public static final double FAST_ENEMY_DMG = 10;
