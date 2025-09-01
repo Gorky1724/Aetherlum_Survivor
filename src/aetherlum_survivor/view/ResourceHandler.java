@@ -21,7 +21,7 @@ public class ResourceHandler { //makes use of InputStream
     private static final ConcurrentHashMap<String, Clip> clipCache = new ConcurrentHashMap<>();
 
     //! IMAGES
-    public static BufferedImage loadImage(String path) {
+    public static BufferedImage loadImage(String path) { //get image as stream
         try (InputStream iS = ResourcePaths.getResourceAsStream(path)) {
             return ImageIO.read(iS);
         } catch (IOException e) {
@@ -33,7 +33,7 @@ public class ResourceHandler { //makes use of InputStream
     // dai settings switchando un impostazione a off
     
     //! AUDIO
-    public static Clip loadAudioClip(String path) { //supports .wav
+    public static Clip loadAudioClip(String path) { //supports .wav -- get as stream
         try { 
             InputStream iS = ResourcePaths.getResourceAsStream(path); //gets path
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(iS); //converts to audioInputStream

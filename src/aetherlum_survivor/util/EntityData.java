@@ -170,8 +170,8 @@ public class EntityData {
     public static final int TANK_ENEMY_EXP_GIVEN = 100;
 
     public static final int STATIC_ENEMY_TYPE = 1010;
-    public static final int STATIC_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*3);
-    public static final int STATIC_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*3);
+    public static final int STATIC_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*2);
+    public static final int STATIC_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*2);
     public static final double STATIC_ENEMY_SPD = 0;
     public static final double STATIC_ENEMY_MAX_HP = 30;
     public static final double STATIC_ENEMY_DMG = 15;

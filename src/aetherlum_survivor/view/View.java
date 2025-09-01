@@ -215,6 +215,11 @@ public class View implements InterfaceView {
         this.gamePanel.updateDeathAnimationList(eld);
     }
 
+    @Override
+    public void transmitScenarioToGamePanel(int scenario_selected_num) {
+        this.gamePanel.setScenario(scenario_selected_num);
+    }
+
     // keyListener for GamePanel
     @Override
     public void attachKeyListenerToGamePanel(){

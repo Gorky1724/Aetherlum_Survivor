@@ -2,6 +2,26 @@ package aetherlum_survivor.util;
 
 public class ScenarioData {
 
+    //framedata extracted using: http://www.spritecow.com/
+    //tiles painted using: https://www.spritefusion.com/
+
+    //specific scenario info
+    public static int SCEN_1_X = 0;
+    public static int SCEN_1_Y = 0;
+    public static int SCEN_1_TILE_WIDTH = 480;
+    public static int SCEN_1_TILE_HEIGHT = 560;
+
+    public static int SCEN_2_X = 0;
+    public static int SCEN_2_Y = 0;
+    public static int SCEN_2_TILE_WIDTH = 656;
+    public static int SCEN_2_TILE_HEIGHT = 432;
+
+    public static int SCEN_3_X = 0;
+    public static int SCEN_3_Y = 0;
+    public static int SCEN_3_TILE_WIDTH = 560;
+    public static int SCEN_3_TILE_HEIGHT = 672;
+
+    //
     public static int[] SCENARIO_ENEMIES;
     public static  int SCENARIO_MAX_NUM;
 

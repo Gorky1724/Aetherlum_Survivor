@@ -30,8 +30,10 @@ public class AnimationHandler {
         int frameDuration = stats.frameDuration;
         int animationNumFrames = stats.animationNumFrames;
         long totalAnimationTime = (long) (animationNumFrames * frameDuration);
-        long timeInCycle = elapsed % totalAnimationTime;
-        int currentFrame = (int) (timeInCycle / frameDuration);
+
+        long timeInCycle = elapsed % totalAnimationTime; //the rest is the cycle clock n° of current animation cicle
+        int currentFrame = (int) (timeInCycle / frameDuration); //number of frames of the animation already passed
+
         return currentFrame;
     }
 

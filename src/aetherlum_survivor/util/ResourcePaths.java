@@ -20,6 +20,9 @@ public class ResourcePaths {
 
         //* SCENARIOS
         private static final String SCENARIOS = IMAGES_BASE + "scenarios/";
+        public static final String SCEN_1 = SCENARIOS + "scenario1.png";
+        public static final String SCEN_2 = SCENARIOS + "scenario2.png";
+        public static final String SCEN_3 = SCENARIOS + "scenario3.png";
 
         //* SPRITES
         private static final String SPRITES = IMAGES_BASE + "sprites/";

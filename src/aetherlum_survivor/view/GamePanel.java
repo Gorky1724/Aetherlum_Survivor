@@ -3,8 +3,9 @@ package aetherlum_survivor.view;
 import javax.swing.JPanel;
 
 import aetherlum_survivor.controller.Controller;
-import aetherlum_survivor.model.Model;
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.ResourcePaths;
+import aetherlum_survivor.util.ScenarioData;
 import aetherlum_survivor.util.AnimationData.AnimationStats;
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
@@ -19,10 +20,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel {
 
     public final List<EntityLogicalData> deathAnimations = new ArrayList<>();
+
+    public int scenario_num;
+
+    public BufferedImage tile;
+    public int tile_width;
+    public int tile_height;
+    public int tile_x;
+    public int tile_y;
 
     public GamePanel() {
 
@@ -43,7 +53,7 @@ public class GamePanel extends JPanel {
         //needed to calculate the offset of each element that always centers camera on the player
         EntityLogicalData playerELD = Controller.getInstance().getPlayerELD();
 
-		paintBackground(g2d);
+		paintBackground(g2d, playerELD);
 
         paintPlayer(g2d, playerELD);
         paintEnemies(g2d, playerELD);
@@ -74,17 +84,58 @@ public class GamePanel extends JPanel {
         this.deathAnimations.add(eld);
     }
 
-    //! PAINT ELEMENTS_____________________________
-    //TODO the implementation must be improved with sprites and animation
-    public void paintBackground(Graphics2D g2d) {
-        g2d.setColor(Color.BLACK);
+    //! TO SELECT SCENARIO BAKGROUNDTILES__________________________________
+    public void setScenario(int scenario_selected_num) {
+        this.scenario_num = scenario_selected_num;
 
-        //TODO quando ci saranno delle tile di background questa non andrà più bene:
-        // a quel punto infatti il background non potrà seguire il personaggio ma dovrà restare fermo
-        // e aggiungere tiles pian piano che il personaggio si avvicina ad una direzione, rimuovendo quelle troppo lontane
-        int GAME_PANEL_TOP_LEFT_CORNER_X = 0;
-        int GAME_PANEL_TOP_LEFT_CORNER_Y = 0;
-        g2d.fillRect(GAME_PANEL_TOP_LEFT_CORNER_X, GAME_PANEL_TOP_LEFT_CORNER_Y, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        switch (this.scenario_num) { //assign adeguate values
+            case 1:
+                this.tile_width = ScenarioData.SCEN_1_TILE_WIDTH;
+                this.tile_height = ScenarioData.SCEN_1_TILE_HEIGHT;
+                this.tile_x = ScenarioData.SCEN_1_X;
+                this.tile_y = ScenarioData.SCEN_1_Y;
+                this.tile = ResourceHandler.loadImage(ResourcePaths.Images.SCEN_1);
+                break;
+            case 2:
+                this.tile_width = ScenarioData.SCEN_2_TILE_WIDTH;
+                this.tile_height = ScenarioData.SCEN_2_TILE_HEIGHT;
+                this.tile_x = ScenarioData.SCEN_2_X;
+                this.tile_y = ScenarioData.SCEN_2_Y;
+                this.tile = ResourceHandler.loadImage(ResourcePaths.Images.SCEN_2);
+                break;
+            case 3:
+                this.tile_width = ScenarioData.SCEN_3_TILE_WIDTH;
+                this.tile_height = ScenarioData.SCEN_3_TILE_HEIGHT;
+                this.tile_x = ScenarioData.SCEN_3_X;
+                this.tile_y = ScenarioData.SCEN_3_Y;
+                this.tile = ResourceHandler.loadImage(ResourcePaths.Images.SCEN_3);
+                break;
+        }
+    }
+
+    //! PAINT ELEMENTS_____________________________
+    public void paintBackground(Graphics2D g2d, EntityLogicalData playerELD) {
+
+        double playerX = playerELD.getCoordX();
+        double playerY = playerELD.getCoordY();
+
+        //how much of the player is inside the tile he is over
+        int offsetX = (int) (playerX%this.tile_width);
+        int offsetY = (int) (playerY%this.tile_height);
+
+        //necessary tiles to cover screen + some space extra for movement
+        int tilesNumX = Constants.SCREEN_WIDTH/this.tile_width + 4;
+        int tilesNumY = Constants.SCREEN_HEIGHT/this.tile_height + 4;
+
+        //draws
+        for(int i = -(tilesNumX/2); i <= (tilesNumX/2); i++) {
+            for(int j = -(tilesNumY/2); j <= (tilesNumY/2); j++) {
+                int screenX = i * this.tile_width - offsetX + Constants.SCREEN_WIDTH/2;
+                int screenY = j * this.tile_height - offsetY + Constants.SCREEN_HEIGHT/2;
+
+                g2d.drawImage(this.tile, screenX, screenY, this.tile_width, this.tile_height, null);
+            }
+        }
     }
 
     public void paintPlayer(Graphics2D g2d, EntityLogicalData playerELD) {
@@ -172,7 +223,7 @@ public class GamePanel extends JPanel {
                 }
             } 
 
-            long animationLasted = Model.getInstance().getClockCyle() - eld.getStartingClockOfCondition();
+            long animationLasted = Controller.getInstance().getClockCycle() - eld.getStartingClockOfCondition();
             AnimationStats st = AnimationHandler.getAnimationStatsBasedOnTypeAndCondition(eld.getType(), EntityData.DYING);
             int animDuration = st.animationNumFrames*st.frameDuration - 2; //makes last frame last a little less to avoid redraw of the first
             if(animationLasted >= animDuration) {

@@ -129,7 +129,6 @@ public class ScenarioPanel extends JPanel {
         layout.insets = new Insets(5, 20, 10, 20);
         this.add(scen3_Label, layout);
 
-        //set custom elements aspect
         //to assign buttons custom aspect
         JButton[] buttons = {scen1_Butt, scen2_Butt, scen3_Butt};
         for (JButton b : buttons) {
@@ -139,26 +138,9 @@ public class ScenarioPanel extends JPanel {
 
     private void handleScenarioSelectedEvent() {
         Controller.getInstance().transmitScenarioToModel(scenario_selected_num);
-        //System.out.println(">> SelectedScenario: " + scenario_selected_num);
-        
+        View.getInstance().transmitScenarioToGamePanel(scenario_selected_num);
+
         Controller.getInstance().openGamePanel();
-        //System.out.println(">> ScenarioPanel --> GamePanel");
-
         Controller.getInstance().startGameLoop();
-        //System.out.println(">> New Game Started from Scenario Panel");
-        
-        //TODO to try if needed
-        /*
-        //to grant that UI is updated before starting newGame
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(">> New Game Started from Start Panel");
-                ControllerForView.getInstance().requestStartGameLoop();
-            }
-        });
-        */
     }
-
-    
 }

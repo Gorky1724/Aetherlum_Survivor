@@ -29,6 +29,8 @@ public interface InterfaceView {
 
     public void updateDeathAnimationList(EntityLogicalData eld);
 
+    public void transmitScenarioToGamePanel(int scenario_selected_num);
+
     //keylistener for game panel
     public void attachKeyListenerToGamePanel();
     
