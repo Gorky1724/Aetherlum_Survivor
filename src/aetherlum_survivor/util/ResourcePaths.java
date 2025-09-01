@@ -17,6 +17,10 @@ public class ResourcePaths {
 
         public static final String START_PANEL_BCKG = BACKGROUNDS + "start_panel_bckg.jpg";
 
+        public static final String LEVELUP_PANEL_BCKG = BACKGROUNDS + "levelup_panel_bckg.jpg";
+
+        public static final String SCENARIO_PANEL_BCKG = BACKGROUNDS + "scenario_panel_bckg.jpg";
+
 
         //* SCENARIOS
         private static final String SCENARIOS = IMAGES_BASE + "scenarios/";

@@ -26,7 +26,7 @@ public class StartPanel extends JPanel {
     private JButton settingsMenuButton;
 
     //background data
-    BufferedImage bckgImage;
+    private BufferedImage bckgImage;
 
     //! CONSTRUCTOR
     public StartPanel() {
@@ -88,10 +88,8 @@ public class StartPanel extends JPanel {
         layout.gridy = 3;
         layout.insets = new Insets(5, 80, 5, 80);
         layout.fill = GridBagConstraints.NONE;
-        //layout.ipady = 10;
         this.add(this.settingsMenuButton, layout);
 
-        //set custom elements aspect
         //to assign buttons custom aspect
         JButton[] buttons = {newGameButton, settingsMenuButton};
         for (JButton b : buttons) {
@@ -102,22 +100,21 @@ public class StartPanel extends JPanel {
             b.setForeground(new Color(240, 255, 220)); // Light green color
             b.setBackground(new Color(10,10,10)); //transparent black
             
-            //border with glowing effect
+            //border
             b.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(150, 220, 100, 180), 2, true),
+                BorderFactory.createLineBorder(new Color(150, 220, 100, 180), 2, false),
                 BorderFactory.createEmptyBorder(8, 16, 8, 16)
             ));
             
         }
 
         //load image and scale to fit JPanel dimension
-        this.bckgImage = ResourceHandler.loadImage(ResourcePaths.Images.START_PANEL_BCKG);
-        
+        this.bckgImage = ResourceHandler.loadImage(ResourcePaths.Images.START_PANEL_BCKG);   
     }
 
     //! TO PAINT BACKGROUND
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         if (bckgImage != null) {

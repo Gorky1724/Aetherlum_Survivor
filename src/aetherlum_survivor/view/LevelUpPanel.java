@@ -8,6 +8,7 @@ import java.util.Map;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,8 +21,10 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
+import aetherlum_survivor.util.ResourcePaths;
 import aetherlum_survivor.controller.Controller;
 
 public class LevelUpPanel extends JPanel {
@@ -30,23 +33,25 @@ public class LevelUpPanel extends JPanel {
     private JButton powUp2_Butt;
     private JButton powUp3_Butt;
 
+    private BufferedImage bckgImage;
+
     private Map<Integer, LevelUpOptions> powerUpsAvailable;
 
     private int codeOfSelectedPowUp;
     private LevelUpOptions powerUpSelected;
 
     public LevelUpPanel() {
-        this.setBackground(new Color(120,98,10));
+        this.setBackground(new Color(120,98,10)); //golden
 
         this.setPreferredSize(getPreferredSize());
 
         //off screen drawing buffer, then reported on screen - for rendering fluidity
         this.setDoubleBuffered(true);
 
-        JLabel askLabel = new JLabel("The divine beings bestow their power upon thee.");
+        JLabel askLabel = new JLabel("The Divine bestows its power upon thee.");
         askLabel.setOpaque(true);
-        askLabel.setBackground(new Color(0, 0, 0, 150)); // black, semitransparent
-        askLabel.setForeground(Color.WHITE); //text color
+        askLabel.setBackground(new Color(0, 0, 0, 200)); // black, semitransparent
+        askLabel.setForeground(new Color(171,140,16)); //text color - golden
         askLabel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30)); //extends dimension to extend background
         askLabel.setHorizontalAlignment(SwingConstants.CENTER);
         askLabel.setFont(new Font("Monospaced", Font.BOLD, 14));
@@ -59,14 +64,19 @@ public class LevelUpPanel extends JPanel {
         Dimension buttonSize = new Dimension(300, 50);
         //to assign buttons custom aspect
         for (JButton b : buttons) {
-            b.setBackground(new Color(0,0,0));
-            b.setForeground(Color.WHITE);
+            b.setBackground(new Color(171,140,16));
+            b.setForeground(Color.BLACK);
             b.setFocusPainted(false); //removes sub-rectangle on the button that shows it is clickable
             b.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); //more space if the inserted text needs to occupy it and resize button
-            b.setFont(new Font("Monospaced", Font.PLAIN, 14));
+            b.setFont(new Font("Monospaced", Font.BOLD, 14));
             b.setPreferredSize(buttonSize);
             b.setMinimumSize(buttonSize);
             b.setMaximumSize(buttonSize);
+
+            b.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(216,178,23, 180), 3, false),
+                BorderFactory.createEmptyBorder(12, 24, 12, 24)
+            ));
         }
 
         //define menu layout
@@ -101,6 +111,9 @@ public class LevelUpPanel extends JPanel {
         layout.gridy = 2;
         layout.gridwidth = 2; // takes both columns becoming centered
         this.add(this.powUp3_Butt, layout);
+
+        //background image
+        this.bckgImage = ResourceHandler.loadImage(ResourcePaths.Images.LEVELUP_PANEL_BCKG); 
     }
 
     public void setup(Map<Integer, LevelUpOptions> randomLvlUp) {
@@ -143,5 +156,15 @@ public class LevelUpPanel extends JPanel {
         Controller.getInstance().upgradePlayer(dataPassed);
         Controller.getInstance().resumeGameLoop();
         Controller.getInstance().openGamePanel();
+    }
+
+    //! TO REPAINT BACKGROUND
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
+        if (bckgImage != null) {
+            g.drawImage(bckgImage, 0, 0, getWidth(), getHeight(), null);
+        }
     }
 }
