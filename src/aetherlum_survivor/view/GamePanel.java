@@ -123,10 +123,13 @@ public class GamePanel extends JPanel {
         for(EntityLogicalData prjELD: projectilesELD_list) {
             if(prjELD.isActive()) {
                 Point projectileLoc = convertLogicalToGraphical(prjELD.getCoordX(), prjELD.getCoordY(), playerELD);
-                //System.out.println("Projectile graphical coord: " + projectileLoc.x + ", " + projectileLoc.y + ", " + (int) prjELD.getWidth() + ", " + (int) prjELD.getHeight());
                 
-                g2d.setColor(Color.WHITE);
-                g2d.fillRect(projectileLoc.x, projectileLoc.y, (int) prjELD.getWidth(), (int) prjELD.getHeight());
+                Image frameToDraw = AnimationHandler.getFrameToDraw(prjELD);
+                if(prjELD.getDirection() == EntityData.RIGHT && prjELD.isActive()) {
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, projectileLoc.x, projectileLoc.y, (int) prjELD.getWidth(), (int) prjELD.getHeight());
+                } else if (prjELD.getDirection() == EntityData.LEFT && prjELD.isActive()){
+                    AnimationHandler.drawSprite(g2d, frameToDraw, Constants.FLIPPED, projectileLoc.x, projectileLoc.y, (int) prjELD.getWidth(), (int) prjELD.getHeight());
+                }
             }
         }
     }
@@ -150,12 +153,6 @@ public class GamePanel extends JPanel {
         Iterator<EntityLogicalData> it = this.deathAnimations.iterator();
         while (it.hasNext()) {
             EntityLogicalData eld = it.next();
-
-
-            //TODO temporrary - remove when implemented types
-            if(eld.getType() == EntityData.PIERCING_PROJ_TYPE || eld.getType() == EntityData.FAST_PROJ_TYPE || eld.getType() == EntityData.BASE_PROJ_TYPE) {
-                continue;
-            }//
 
             Image frameToDraw = AnimationHandler.getFrameToDraw(eld);
             Point eldLoc = convertLogicalToGraphical(eld.getCoordX(), eld.getCoordY(), playerELD);

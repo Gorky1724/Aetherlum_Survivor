@@ -123,7 +123,65 @@ public class AnimationData {
 
 
     //! PROJECTILES -------------------------------------------------------------------------------------
-    public static final int PROJECTILES_FRAME_DURTN = 5; //clock cycles
+    public static final int PROJECTILES_NUM_FRAMES = 5;
+    public static final int PROJECTILES_FRAME_DURTN = 3;
+
+    public static final BufferedImage base_proj_sprite = ResourceHandler.loadImage(ResourcePaths.Images.BASE_PROJECTILE);
+    public static Image[] baseprj_WALKING_ANIMATION_FRAMES; 
+        static {
+            baseprj_WALKING_ANIMATION_FRAMES = new Image[PROJECTILES_NUM_FRAMES];
+            baseprj_WALKING_ANIMATION_FRAMES[0] = base_proj_sprite.getSubimage(42,29,16,9);
+            baseprj_WALKING_ANIMATION_FRAMES[1] = base_proj_sprite.getSubimage(104,27,18,12);
+            baseprj_WALKING_ANIMATION_FRAMES[2] = base_proj_sprite.getSubimage(166,28,20,10);
+            baseprj_WALKING_ANIMATION_FRAMES[3] = base_proj_sprite.getSubimage(229,27,21,12);
+            baseprj_WALKING_ANIMATION_FRAMES[4] = base_proj_sprite.getSubimage(295,27,19,12);
+    }
+    public static final int BASEPROJ_DYING_NUM_FRAMES = 2;
+    public static final int BASEPROJ_DYING_FRAME_DURTN = 7;
+    public static Image[] baseprj_DYING_ANIMATION_FRAMES; //death animation 
+        static {
+            baseprj_DYING_ANIMATION_FRAMES = new Image[BASEPROJ_DYING_NUM_FRAMES];
+            baseprj_DYING_ANIMATION_FRAMES[0] = base_proj_sprite.getSubimage(427,20,15,25);
+            baseprj_DYING_ANIMATION_FRAMES[1] = base_proj_sprite.getSubimage(483,13,23,39);
+    }
+
+    public static final BufferedImage fast_proj_sprite = ResourceHandler.loadImage(ResourcePaths.Images.FAST_PROJECTILE);
+    public static Image[] fastprj_WALKING_ANIMATION_FRAMES;
+        static {
+            fastprj_WALKING_ANIMATION_FRAMES = new Image[PROJECTILES_NUM_FRAMES];
+            fastprj_WALKING_ANIMATION_FRAMES[0] = fast_proj_sprite.getSubimage(28,27,10,10);
+            fastprj_WALKING_ANIMATION_FRAMES[1] = fast_proj_sprite.getSubimage(90,19,18,29);
+            fastprj_WALKING_ANIMATION_FRAMES[2] = fast_proj_sprite.getSubimage(155,19,16,24);
+            fastprj_WALKING_ANIMATION_FRAMES[3] = fast_proj_sprite.getSubimage(220,21,14,21);
+            fastprj_WALKING_ANIMATION_FRAMES[4] = fast_proj_sprite.getSubimage(348,23,9,16);
+    }
+    public static final int FASTPROJ_DYING_NUM_FRAMES = 2;
+    public static final int FASTPROJ_DYING_FRAME_DURTN = 7;
+    public static Image[] fastprj_DYING_ANIMATION_FRAMES; 
+        static {
+            fastprj_DYING_ANIMATION_FRAMES = new Image[FASTPROJ_DYING_NUM_FRAMES];
+            fastprj_DYING_ANIMATION_FRAMES[0] = fast_proj_sprite.getSubimage(535,19,18,25);
+            fastprj_DYING_ANIMATION_FRAMES[1] = fast_proj_sprite.getSubimage(406,16,21,30);
+    }
+
+    public static final BufferedImage piercing_proj_sprite = ResourceHandler.loadImage(ResourcePaths.Images.PIERCING_PROJECTILE);
+    public static Image[] piercingprj_WALKING_ANIMATION_FRAMES;
+        static {
+            piercingprj_WALKING_ANIMATION_FRAMES = new Image[PROJECTILES_NUM_FRAMES];
+            piercingprj_WALKING_ANIMATION_FRAMES[0] = piercing_proj_sprite.getSubimage(27,54,29,17);
+            piercingprj_WALKING_ANIMATION_FRAMES[1] = piercing_proj_sprite.getSubimage(89,54,31,18);
+            piercingprj_WALKING_ANIMATION_FRAMES[2] = piercing_proj_sprite.getSubimage(152,54,33,18);
+            piercingprj_WALKING_ANIMATION_FRAMES[3] = piercing_proj_sprite.getSubimage(207,56,42,15);
+            piercingprj_WALKING_ANIMATION_FRAMES[4] = piercing_proj_sprite.getSubimage(278,55,34,17);
+    }
+    public static final int PIERCINGPROJ_DYING_NUM_FRAMES = 2;
+    public static final int PIERCINGPROJ_DYING_FRAME_DURTN = 7;
+    public static Image[] piercingprj_DYING_ANIMATION_FRAMES; 
+        static {
+            piercingprj_DYING_ANIMATION_FRAMES = new Image[PIERCINGPROJ_DYING_NUM_FRAMES];
+            piercingprj_DYING_ANIMATION_FRAMES[0] = piercing_proj_sprite.getSubimage(351,47,25,34);
+            piercingprj_DYING_ANIMATION_FRAMES[1] = piercing_proj_sprite.getSubimage(407,44,22,51);
+    }
 
     //! ENEMIES -------------------------------------------------------------------------------------
     //NOTE: static enemies being idle are consideren in walking status for more semplicity
@@ -252,6 +310,18 @@ public class AnimationData {
         ),
 
         //projectiles
+        EntityData.BASE_PROJ_TYPE, Map.of(
+            EntityData.WALKING, new AnimationStats(PROJECTILES_NUM_FRAMES, PROJECTILES_FRAME_DURTN, baseprj_WALKING_ANIMATION_FRAMES),
+            EntityData.DYING, new AnimationStats(BASEPROJ_DYING_NUM_FRAMES, BASEPROJ_DYING_FRAME_DURTN, baseprj_DYING_ANIMATION_FRAMES)
+        ),
+        EntityData.FAST_PROJ_TYPE, Map.of(
+            EntityData.WALKING, new AnimationStats(PROJECTILES_NUM_FRAMES, PROJECTILES_FRAME_DURTN, fastprj_WALKING_ANIMATION_FRAMES),
+            EntityData.DYING, new AnimationStats(FASTPROJ_DYING_NUM_FRAMES, FASTPROJ_DYING_FRAME_DURTN, fastprj_DYING_ANIMATION_FRAMES)
+        ),
+        EntityData.PIERCING_PROJ_TYPE, Map.of(
+            EntityData.WALKING, new AnimationStats(PROJECTILES_NUM_FRAMES, PROJECTILES_FRAME_DURTN, piercingprj_WALKING_ANIMATION_FRAMES),
+            EntityData.DYING, new AnimationStats(PIERCINGPROJ_DYING_NUM_FRAMES, PIERCINGPROJ_DYING_FRAME_DURTN, piercingprj_DYING_ANIMATION_FRAMES)
+        ),
 
         //enemies
         EntityData.BASE_ENEMY_TYPE, Map.of(

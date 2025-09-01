@@ -46,6 +46,10 @@ public class Projectiles extends Entity{
         this.owner = player;
         //System.out.println(">>> Entity data of type " + type + " set");
 
+        eld.setType(type);
+        eld.setCondition(EntityData.WALKING);
+        eld.setStartingClockOfCondition(Model.getInstance().getClockCyle());
+
         return eld;
     }
 
@@ -136,6 +140,14 @@ public class Projectiles extends Entity{
 
         // angle from proj_center to closest_en_center - if none is found the shot will be directed towards (0,0) of the logical coord axis
         this.angleOfMovement = Math.atan2(minDistanceEnData[2] - projCenterY, minDistanceEnData[1] - projCenterX);
+
+        //sets direction of movement based on angle
+        if(this.angleOfMovement < -Math.PI/2 || this.angleOfMovement > Math.PI/2) {
+            this.eld.setDirection(EntityData.LEFT);
+        } else {
+            eld.setDirection(EntityData.RIGHT);
+        }
+
 
     }
     public void advance() {
