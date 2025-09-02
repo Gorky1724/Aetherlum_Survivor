@@ -23,6 +23,8 @@ public class ResourcePaths {
 
         public static final String PAUSE_PANEL_BCKG = BACKGROUNDS + "pause_panel_bckg.jpg";
 
+        public static final String GAMEOVER_PANEL_BCKG = BACKGROUNDS + "gameover_panel_bckg.jpg";
+
 
         //* SCENARIOS
         private static final String SCENARIOS = IMAGES_BASE + "scenarios/";

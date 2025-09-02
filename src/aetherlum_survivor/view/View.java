@@ -165,6 +165,8 @@ public class View implements InterfaceView {
             public void run() {
                 cardLayout.show(cardPanel, GAME_OVER_PANEL);
 
+                gameOverPanel.updatePanel();
+
                 gameFrame.revalidate();
                 gameFrame.repaint();
                 gameFrame.pack();

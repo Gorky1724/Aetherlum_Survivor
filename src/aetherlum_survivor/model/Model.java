@@ -71,9 +71,9 @@ public class Model implements InterfaceModel {
 			Controller.getInstance().requestViewUpdate();
 		});
 
-		this.gameLoop.start();
-		//System.out.println(">> GameLoop Started");
+		this.secondsPassed = 0;
 
+		this.gameLoop.start();
 
 		//single creation of player instance at the beginning of the game
 		this.player = new Player();
