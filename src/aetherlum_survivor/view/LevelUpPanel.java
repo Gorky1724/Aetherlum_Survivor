@@ -94,7 +94,6 @@ public class LevelUpPanel extends JPanel {
         // reset parameters for other elements
         layout.gridwidth = 1;
         layout.insets = new Insets(10, 20, 10, 20);
-        layout.anchor = GridBagConstraints.CENTER;
 
         // powerButt1 - top left
         layout.gridx = 0;
@@ -154,8 +153,7 @@ public class LevelUpPanel extends JPanel {
         Map<Integer, LevelUpOptions> dataPassed = new HashMap<>(Map.of(this.codeOfSelectedPowUp, this.powerUpSelected));
 
         Controller.getInstance().upgradePlayer(dataPassed);
-        Controller.getInstance().resumeGameLoop();
-        Controller.getInstance().openGamePanel();
+        Controller.getInstance().handleResumeGame();
     }
 
     //! TO REPAINT BACKGROUND

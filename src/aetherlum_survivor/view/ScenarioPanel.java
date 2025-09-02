@@ -167,7 +167,7 @@ public class ScenarioPanel extends JPanel {
             ));
         }
 
-        bckgImage = ResourceHandler.loadImage(ResourcePaths.Images.SCENARIO_PANEL_BCKG);
+        this.bckgImage = ResourceHandler.loadImage(ResourcePaths.Images.SCENARIO_PANEL_BCKG);
     }
 
     private void handleScenarioSelectedEvent() {
@@ -185,12 +185,6 @@ public class ScenarioPanel extends JPanel {
 
         if (bckgImage != null) {
             g.drawImage(bckgImage, 0, 0, getWidth(), getHeight(), null);
-
-            /* 
-            Color overlay = new Color(0, 0, 0, 120);
-            g.setColor(overlay);
-            g.fillRect(0, 0, getWidth(), getHeight());
-            */
         }
     }
 }

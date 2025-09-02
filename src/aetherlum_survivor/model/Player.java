@@ -105,6 +105,12 @@ public class Player extends Entity {
     public double getMaxHP() {
         return this.maxHitPoints;
     }
+    public double getSpeed() {
+        return this.speed;
+    }
+    public double getDamageResistance() {
+        return this.damageResistance;
+    }
     
     //! PUBLIC METHODS - update
     //move

@@ -257,10 +257,12 @@ public class Model implements InterfaceModel {
 
 	@Override
 	public double[] getPlayerInfo() {
-		double [] bar_level_hp = {this.player.getCurrentXp(), this.player.getXpBar(), (double) this.player.getLevel(),
-									this.player.getCurrentHP(), this.player.getMaxHP()
+		double [] playerData = {this.player.getCurrentXp(), this.player.getXpBar(), (double) this.player.getLevel(),
+									this.player.getCurrentHP(), this.player.getMaxHP(),
+									this.player.getSpeed(), this.player.getDamage(), this.player.getDamageResistance(),
+									this.player.getFireRate()	
 								};
-		return bar_level_hp;
+		return playerData;
 	}
 
     //---------------------------------------------------------------
