@@ -3,10 +3,12 @@ package aetherlum_survivor.model;
 import java.util.Iterator;
 import java.util.List;
 
+import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityData.EntityStats;
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.ResourcePaths;
 
 public class Projectiles extends Entity{
 
@@ -107,12 +109,21 @@ public class Projectiles extends Entity{
                         prj.findAndSetAngleOfMovement(enemies);
 
                         prj.setActive();
+
+                        //sfx
+                        if (projType == EntityData.BASE_PROJ_TYPE) {
+                            Controller.getInstance().requestSoundEffect(ResourcePaths.Audio.BASEPROJ_SHOT_SFX);
+                        } else if (projType == EntityData.FAST_PROJ_TYPE) {
+                            Controller.getInstance().requestSoundEffect(ResourcePaths.Audio.FASTPROJ_SHOT_SFX);
+                        } else if (projType == EntityData.PIERCING_PROJ_TYPE) {
+                            Controller.getInstance().requestSoundEffect(ResourcePaths.Audio.PIERCINGPROJ_SHOT_SFX);
+                        }
+
                         break;
                     }
                 }
             }
         }
-
         return projectiles;
     }
 

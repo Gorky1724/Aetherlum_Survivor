@@ -74,8 +74,12 @@ public class ResourcePaths {
 
         //* SFX
         private static final String SFX = AUDIO_BASE + "sfx/";
-        public static final String PROJECTILE_FIRED_SFX = SFX + "projectile_fired.wav";
-        public static final String COLLECTIBLE_TAKEN_SFX = SFX + "collectible_taken.wav";
+        public static final String BASEPROJ_SHOT_SFX = SFX + "baseprj_shot_sfx.wav";
+        public static final String FASTPROJ_SHOT_SFX = SFX + "fastprj_shot_sfx.wav";
+        public static final String PIERCINGPROJ_SHOT_SFX = SFX + "piercingprj_shot_sfx.wav";
+        public static final String COLLECTIBLE_TAKEN_SFX = SFX + "collectible_taken_sfx.wav";
+        public static final String PANEL_CHANGE_SFX = SFX + "panel_change_sfx.wav";
+        public static final String LEVEL_UP_SFX = SFX + "level_up_sfx.wav";
         
     }
 

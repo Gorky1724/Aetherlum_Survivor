@@ -11,6 +11,7 @@ import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityLogicalData;
 import aetherlum_survivor.util.LevelUpData;
 import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
+import aetherlum_survivor.util.ResourcePaths;
 
 public class Player extends Entity {
 
@@ -214,6 +215,8 @@ public class Player extends Entity {
 
             //System.out.println("code: " + code + "\n descr: "+ randomLvlUp.get(code).description);
         }
+
+        Controller.getInstance().requestSoundEffect(ResourcePaths.Audio.LEVEL_UP_SFX);
 
         Controller.getInstance().handleLevelUp(randomLvlUp);
     }

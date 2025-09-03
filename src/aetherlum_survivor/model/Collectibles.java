@@ -2,9 +2,11 @@ package aetherlum_survivor.model;
 
 import java.util.List;
 
+import aetherlum_survivor.controller.Controller;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.EntityData.EntityStats;
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.ResourcePaths;
 
 public class Collectibles extends Entity {
 
@@ -109,6 +111,7 @@ public class Collectibles extends Entity {
     public void onCollision(Entity ent) {
         if(Player.class.isInstance(ent)) {
             this.takeDamage(ent.getDamage());
+            Controller.getInstance().requestSoundEffect(ResourcePaths.Audio.COLLECTIBLE_TAKEN_SFX);
             if(!this.isAlive()) {
                 this.death();
             }

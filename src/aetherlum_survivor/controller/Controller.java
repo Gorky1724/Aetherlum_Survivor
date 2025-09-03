@@ -118,6 +118,11 @@ public class Controller implements InterfaceController{
         View.getInstance().updateDeathAnimationList(eld);
     }
 
+    @Override
+    public void requestSoundEffect(String sfxPath) {
+        View.getInstance().generateSoundEffect(sfxPath);
+    }
+
     // EXPOSES DATA_____________________________
     @Override
     public EntityLogicalData getPlayerELD() {

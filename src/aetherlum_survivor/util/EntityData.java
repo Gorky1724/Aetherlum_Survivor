@@ -89,7 +89,7 @@ public class EntityData {
     public static final double XP_BAR = 200;
     public static final int MAX_LEVEL = 20;
 
-    public static final int PLAYER_FIRE_RATE = 1 * Constants.BASE_CADENCE;
+    public static final int PLAYER_FIRE_RATE = 2 * Constants.BASE_CADENCE;
 
     //! COLLECTIBLES -------------------------------------------------------------------------------------
     public static final int[] COLLECTIBLES_TYPE_RANGE = {10,100}; //included
@@ -117,7 +117,7 @@ public class EntityData {
     public static final int BASE_PROJ_WIDTH = (int) (Constants.TILE_SIZE*0.5);
     public static final int BASE_PROJ_HEIGHT = (int) (Constants.TILE_SIZE*0.5);
     public static final double BASE_PROJ_RATE_MOD = 1; //doesen't alter fire rate
-    public static final double BASE_PROJ_DMG_MOD = 1;
+    public static final double BASE_PROJ_DMG_MOD = 2;
     public static final double BASE_PROJ_SPD = PLAYER_SPD*2; //initial value based on initial player spd value
     public static final double BASE_PROJ_MAX_HP = 1; //destroyed when hits first enemy
     //dmg is based on player damage value
@@ -129,7 +129,7 @@ public class EntityData {
     public static final double PIERCING_PROJ_RATE_MOD = 1.5; //slower fire rate
     public static final double PIERCING_PROJ_DMG_MOD = 0.8; //deals less dmg
     public static final double PIERCING_PROJ_SPD = PLAYER_SPD*1.4; 
-    public static final double PIERCING_PROJ_MAX_HP = PLAYER_MAX_HP*0.3; //based on player base hp value
+    public static final double PIERCING_PROJ_MAX_HP = PLAYER_MAX_HP*0.5; //based on player base hp value
 
     public static final int FAST_PROJ_TYPE = 420;
     public static final int FAST_PROJ_WIDTH = (int) (Constants.TILE_SIZE*0.4);
@@ -152,11 +152,11 @@ public class EntityData {
     public static final int BASE_ENEMY_EXP_GIVEN = 50;
 
     public static final int FAST_ENEMY_TYPE = 1001;
-    public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*0.9);
-    public static final int FAST_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*0.9);
+    public static final int FAST_ENEMY_WIDTH = (int) (Constants.TILE_SIZE*1.1);
+    public static final int FAST_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*1.1);
     public static final double FAST_ENEMY_SPD = 5;
     public static final double FAST_ENEMY_MAX_HP = 20;
-    public static final double FAST_ENEMY_DMG = 10;
+    public static final double FAST_ENEMY_DMG = 9;
     public static final double FAST_ENEMY_DMG_RST = 0;
     public static final int FAST_ENEMY_EXP_GIVEN = 100;
 
@@ -165,7 +165,7 @@ public class EntityData {
     public static final int TANK_ENEMY_HEIGHT = (int) (Constants.TILE_SIZE*1.5);
     public static final double TANK_ENEMY_SPD = 3;
     public static final double TANK_ENEMY_MAX_HP = 50;
-    public static final double TANK_ENEMY_DMG = 7;
+    public static final double TANK_ENEMY_DMG = 12;
     public static final double TANK_ENEMY_DMG_RST = 0.2;
     public static final int TANK_ENEMY_EXP_GIVEN = 100;
 
@@ -176,7 +176,7 @@ public class EntityData {
     public static final double STATIC_ENEMY_MAX_HP = 30;
     public static final double STATIC_ENEMY_DMG = 15;
     public static final double STATIC_ENEMY_DMG_RST = 0.3;
-    public static final int STATIC_ENEMY_EXP_GIVEN = 20;
+    public static final int STATIC_ENEMY_EXP_GIVEN = 50;
 
     //! STATS OF ALL ENTITY mapped with the type as the key
     //  to easily extract data when assignign them to spawned enemies

@@ -43,6 +43,8 @@ public interface InterfaceController {
 
     public void updateDeathAnimationList(EntityLogicalData eld);
 
+    public void requestSoundEffect(String sfxPath);
+
     //exposes data
     public EntityLogicalData getPlayerELD();
 

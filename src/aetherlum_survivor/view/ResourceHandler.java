@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ResourceHandler { //makes use of InputStream
+public class ResourceHandler {
 
-    //map where all the instanciated clips are saved - in this way they can be reused and must not be reinstanciated every time
+    //map to save clips with the path as the key, to reuse them
     private static ConcurrentHashMap<String, Clip> clipCache = new ConcurrentHashMap<>();
 
     private static Clip activeMusicClip = null;
@@ -67,13 +67,12 @@ public class ResourceHandler { //makes use of InputStream
         loadAndCacheClip(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
         loadAndCacheClip(ResourcePaths.Audio.GAME_PANEL_MUSIC);
         //sfx
-        //loadAndCacheClip(ResourcePaths.Audio.PROJECTILE_FIRED_SFX);
-        //loadAndCacheClip(ResourcePaths.Audio.PROJECTILE_HIT_SFX);
-        //loadAndCacheClip(ResourcePaths.Audio.COLLECTIBLE_TAKEN_SFX);
+        loadAndCacheClip(ResourcePaths.Audio.BASEPROJ_SHOT_SFX);
+        loadAndCacheClip(ResourcePaths.Audio.FASTPROJ_SHOT_SFX);
+        loadAndCacheClip(ResourcePaths.Audio.PIERCINGPROJ_SHOT_SFX);
+        loadAndCacheClip(ResourcePaths.Audio.COLLECTIBLE_TAKEN_SFX);
         //loadAndCacheClip(ResourcePaths.Audio.PANEL_CHANGE_SFX);
-        //loadAndCacheClip(ResourcePaths.Audio.LEVEL_UP_SFX);
-
-        System.out.println(">> Audio preload Completed");
+        loadAndCacheClip(ResourcePaths.Audio.LEVEL_UP_SFX);
     }
 
     //stops all audio
@@ -130,6 +129,9 @@ public class ResourceHandler { //makes use of InputStream
                 clip.stop();
             }
 
+            //to grant that the sounds are replayed
+            clip.flush(); // clears internal buffers
+            clip.drain(); //waits that the flush is executed before proceding 
             clip.setFramePosition(0); //to replay it from the start
             
             clip.start();

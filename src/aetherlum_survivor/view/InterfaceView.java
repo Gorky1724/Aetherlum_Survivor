@@ -14,6 +14,8 @@ public interface InterfaceView {
 
     public boolean getAudioStatus();
 
+    public void generateSoundEffect(String sfxPath);
+
     //panel handling
     public void openGameFrame();
 

@@ -63,6 +63,11 @@ public class View implements InterfaceView {
         return this.audioEnabled;
     }
 
+    @Override
+    public void generateSoundEffect(String sfxPath) {
+        ResourceHandler.playSfx(sfxPath);
+    }
+
     //panel handling
     @Override
     public void openGameFrame() {
