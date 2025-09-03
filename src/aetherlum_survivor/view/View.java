@@ -34,6 +34,8 @@ public class View implements InterfaceView {
     private JPanel cardPanel;
     private CardLayout cardLayout;
 
+    private boolean audioEnabled = true;
+
     //---------------------------------------------------------------
 
 
@@ -49,6 +51,16 @@ public class View implements InterfaceView {
     @Override
     public void preloadClips() {
         ResourceHandler.preloadAll();
+    }
+
+    @Override
+    public void setAudioStatus(boolean audioStatus) {
+        this.audioEnabled = audioStatus;
+    }
+
+    @Override
+    public boolean getAudioStatus() {
+        return this.audioEnabled;
     }
 
     //panel handling
@@ -104,7 +116,7 @@ public class View implements InterfaceView {
             public void run() {
                 cardLayout.show(cardPanel, Constants.START_PANEL);
 
-                ResourceHandler.playClip(ResourcePaths.Audio.START_PANEL_MUSIC, Constants.LOOPED);
+                ResourceHandler.playMusic(ResourcePaths.Audio.START_PANEL_MUSIC);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();
@@ -122,7 +134,7 @@ public class View implements InterfaceView {
 
                 settingsPanel.setParentPanel(openedFrom);
 
-                ResourceHandler.playClip(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC, Constants.LOOPED);
+                ResourceHandler.playMusic(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();
@@ -138,7 +150,7 @@ public class View implements InterfaceView {
             public void run() {
                 cardLayout.show(cardPanel, Constants.SCENARIO_PANEL);
 
-                ResourceHandler.playClip(ResourcePaths.Audio.SCENARIO_PANEL_MUSIC, Constants.LOOPED);
+                ResourceHandler.playMusic(ResourcePaths.Audio.SCENARIO_PANEL_MUSIC);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();

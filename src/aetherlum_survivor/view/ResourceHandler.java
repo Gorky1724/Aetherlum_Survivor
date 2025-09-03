@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -18,7 +17,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ResourceHandler { //makes use of InputStream
 
     //map where all the instanciated clips are saved - in this way they can be reused and must not be reinstanciated every time
-    private static final ConcurrentHashMap<String, Clip> clipCache = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, Clip> clipCache = new ConcurrentHashMap<>();
+
+    private static Clip activeMusicClip = null;
 
     //! IMAGES
     public static BufferedImage loadImage(String path) { //get image as stream
@@ -67,10 +68,30 @@ public class ResourceHandler { //makes use of InputStream
         //sfx
         //loadAndCacheClip(ResourcePaths.Audio.PROJECTILE_FIRED_SFX);
         //loadAndCacheClip(ResourcePaths.Audio.COLLECTIBLE_TAKEN_SFX);
+
+        System.out.println(">> Audio preload Completed");
     }
 
-    //reproduces once or loops the audio .wav associated with the path
-    public static void playClip(String path, boolean loop) {
+    //stops all audio
+    public static void stopAudio() {
+        for (Clip clip : clipCache.values()) {
+            if (clip != null && clip.isRunning()) {
+                clip.stop();
+            }
+        }
+    }
+
+    //automatically loops music
+    public static void playMusic(String path) {
+
+        boolean audioEnabled = View.getInstance().getAudioStatus();
+        if(!audioEnabled) { //if disabled nothing will play
+            return;
+        }
+
+        if(activeMusicClip != null && activeMusicClip.isRunning()) {
+            activeMusicClip.stop();
+        }
         
         Clip clip = clipCache.get(path);
 
@@ -80,15 +101,38 @@ public class ResourceHandler { //makes use of InputStream
             }
 
             clip.setFramePosition(0); //to replay it from the start
+            
+            clip.loop(Clip.LOOP_CONTINUOUSLY); //loop
 
-            if (loop) {
-                clip.loop(Clip.LOOP_CONTINUOUSLY); //loop
-            } else {
-                clip.start(); //once
-            }
+            activeMusicClip = clip;
+
         } else {
-            System.err.println("!!!> Clip not found in cache: " + path);
+            System.err.println("!!!> Music clip not found in cache: " + path);
         }
+    }
+
+    //plays once effect
+    public static void playSfx(String path) {
+
+        boolean audioEnabled = View.getInstance().getAudioStatus();
+        if(!audioEnabled) { //if disabled nothing will play
+            return;
+        }
+
+        Clip clip = clipCache.get(path);
+
+        if (clip != null) {
+            if (clip.isRunning()) { //stops clip if it was already running
+                clip.stop();
+            }
+
+            clip.setFramePosition(0); //to replay it from the start
+            
+            clip.start();
+        } else {
+            System.err.println("!!!> Sound effect clip not found in cache: " + path);
+        }
+
     }
     
 }

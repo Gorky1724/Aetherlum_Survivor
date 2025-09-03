@@ -97,7 +97,17 @@ public class SettingsPanel extends JPanel {
 
     //! BUTTON METHODS
     private void toggleAudio() {
-        //View.getInstance().setAudioStatus(audioEnabled);
+        audioEnabled = !audioEnabled;
+        if(audioEnabled) {
+            this.audio_Butt.setText("Audio: ON");
+            
+            ResourceHandler.playMusic(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
+        } else {
+            this.audio_Butt.setText("Audio: OFF");
+
+            ResourceHandler.stopAudio();
+        }
+        View.getInstance().setAudioStatus(audioEnabled);
     }
 
     private void back() { //back to panel where settings where opened from

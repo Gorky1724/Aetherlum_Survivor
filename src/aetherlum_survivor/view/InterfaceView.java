@@ -10,6 +10,10 @@ public interface InterfaceView {
     //audio handling
     public void preloadClips();
 
+    public void setAudioStatus(boolean audioStatus);
+
+    public boolean getAudioStatus();
+
     //panel handling
     public void openGameFrame();
 

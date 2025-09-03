@@ -44,8 +44,4 @@ public class Constants {
     public static final boolean FLIPPED = true;
     public static final boolean NOT_FLIPPED = false;
 
-    //! AUDIO REPRODUCTION
-    public static final boolean LOOPED = true;
-    public static final boolean NOT_LOOPED = false;
-
 }
