@@ -14,16 +14,12 @@ public class ResourcePaths {
     public static class Images { //inner class for more subdivision
         //* BACKGROUND
         private static final String BACKGROUNDS = IMAGES_BASE + "backgrounds/";
-
         public static final String START_PANEL_BCKG = BACKGROUNDS + "start_panel_bckg.jpg";
-
         public static final String LEVELUP_PANEL_BCKG = BACKGROUNDS + "levelup_panel_bckg.jpg";
-
         public static final String SCENARIO_PANEL_BCKG = BACKGROUNDS + "scenario_panel_bckg.jpg";
-
         public static final String PAUSE_PANEL_BCKG = BACKGROUNDS + "pause_panel_bckg.jpg";
-
         public static final String GAMEOVER_PANEL_BCKG = BACKGROUNDS + "gameover_panel_bckg.jpg";
+        public static final String SETTINGS_PANEL_BCKG = BACKGROUNDS + "settings_panel_bckg.jpg";
 
 
         //* SCENARIOS
@@ -67,10 +63,18 @@ public class ResourcePaths {
     //! AUDIO
     public static class Audio {
         //* MUSIC
-        private static final String MUSIC_BASE = AUDIO_BASE + "music/";
+        private static final String MUSIC = AUDIO_BASE + "music/";
+        public static final String START_PANEL_MUSIC = MUSIC + "start_panel_music.wav";
+        public static final String LEVELUP_PANEL_MUSIC = MUSIC + "levelup_panel_music.wav";
+        public static final String SCENARIO_PANEL_MUSIC = MUSIC + "scenario_panel_music.wav";
+        public static final String PAUSE_PANEL_MUSIC = MUSIC + "pause_panel_music.wav";
+        public static final String GAMEOVER_PANEL_MUSIC = MUSIC + "gameover_panel_music.wav";
+        public static final String SETTINGS_PANEL_MUSIC = MUSIC + "settings_panel_music.wav";
 
         //* SFX
-        private static final String SFX_BASE = AUDIO_BASE + "sfx/";
+        private static final String SFX = AUDIO_BASE + "sfx/";
+        public static final String PROJECTILE_FIRED_SFX = SFX + "projectile_fired.wav";
+        public static final String COLLECTIBLE_TAKEN_SFX = SFX + "collectible_taken.wav";
         
     }
 

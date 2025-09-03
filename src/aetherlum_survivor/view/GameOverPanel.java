@@ -51,12 +51,13 @@ public class GameOverPanel extends JPanel {
         gameOverLabel.setBorder(BorderFactory.createEmptyBorder(40, 0, 20, 0));
         gameOverLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        memoryLabel.setFont(new Font("Serif", Font.ITALIC, 14));
+        memoryLabel.setFont(new Font("Monospaced", Font.ITALIC, 14));
         memoryLabel.setOpaque(true);
         memoryLabel.setBackground(new Color(180, 200, 170,100));
         memoryLabel.setForeground(Color.BLACK);
         memoryLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
         memoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        memoryLabel.setVerticalAlignment(SwingConstants.CENTER);
 
         mainMenu_Butt.setFont(new Font("Monospaced", Font.BOLD, 17));
         mainMenu_Butt.setBackground(new Color(130, 150, 140));
@@ -78,8 +79,6 @@ public class GameOverPanel extends JPanel {
         this.layout.insets = new Insets(20, 40, 20, 40);
         this.layout.fill = GridBagConstraints.BOTH;
         this.layout.weighty = 1; // to ocupy central vertical space
-        memoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        memoryLabel.setVerticalAlignment(SwingConstants.CENTER);
         this.add(memoryLabel, this.layout);
 
         this.layout.gridy = 2;

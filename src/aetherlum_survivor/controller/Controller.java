@@ -26,6 +26,7 @@ public class Controller implements InterfaceController{
 
     @Override
     public void startApplication() {
+        View.getInstance().preloadClips(); //preloads all the clips to avoid lags during the game
         View.getInstance().openGameFrame(); //only one frame with all the panels 
         openStartPanel();
     }
@@ -37,8 +38,8 @@ public class Controller implements InterfaceController{
     }
 
     @Override
-    public void openSettingsPanel() {
-        View.getInstance().openSettingsPanel();
+    public void openSettingsPanel(String openedFrom) {
+        View.getInstance().openSettingsPanel(openedFrom);
     }
 
     @Override

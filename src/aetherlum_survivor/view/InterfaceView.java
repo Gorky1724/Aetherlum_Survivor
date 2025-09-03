@@ -7,12 +7,15 @@ import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 public interface InterfaceView {
 
+    //audio handling
+    public void preloadClips();
+
     //panel handling
     public void openGameFrame();
 
     public void openStartPanel();
 
-    public void openSettingsPanel();
+    public void openSettingsPanel(String openedFrom);
 
     public void openScenarioPanel();
     

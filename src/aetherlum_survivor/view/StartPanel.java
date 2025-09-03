@@ -1,6 +1,7 @@
 package aetherlum_survivor.view;
 
 import aetherlum_survivor.controller.Controller;
+import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.ResourcePaths;
 
 import javax.swing.JPanel;
@@ -14,8 +15,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -125,14 +126,10 @@ public class StartPanel extends JPanel {
     //! BUTTON EVENT HANDLERS
     private void handleNewGameEvent() {
         Controller.getInstance().openScenarioPanel();
-        
-        //System.out.println(">> StartPanel --> ScenarioPanel");
     }
     
     private void handleSettingsMenuEvent() {
-        Controller.getInstance().openSettingsPanel();
-
-        //System.out.println(">> Settings Menu Opened from Main Menu");
+        Controller.getInstance().openSettingsPanel(Constants.START_PANEL);
     }
 
     

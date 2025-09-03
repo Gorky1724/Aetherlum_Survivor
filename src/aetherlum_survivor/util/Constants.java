@@ -2,9 +2,17 @@ package aetherlum_survivor.util;
 
 public class Constants {
 
-    //---------------------------------------------------------------
-	//! GRAPHICAL GAMEPANEL DATA
+    //! PANEL HANDLING
+    //strings to refer for the JPanel switch via CardLayout
+    public static final String START_PANEL = "START";
+    public static final String SETTINGS_PANEL = "SETTINGS";
+    public static final String GAME_PANEL = "GAME";
+    public static final String SCENARIO_PANEL = "SCENARIO";
+    public static final String GAME_OVER_PANEL = "GAMEOVER";
+    public static final String PAUSE_PANEL = "PAUSE";
+    public static final String LEVEL_UP_PANEL = "LEVEL_UP";
 
+	//! GRAPHICAL GAMEPANEL DATA
     public static final int originalTileSize = 16; //16x16 pixel tile
     public static final int rescale = 2;
 
@@ -36,6 +44,8 @@ public class Constants {
     public static final boolean FLIPPED = true;
     public static final boolean NOT_FLIPPED = false;
 
-    //---------------------------------------------------------------
+    //! AUDIO REPRODUCTION
+    public static final boolean LOOPED = true;
+    public static final boolean NOT_LOOPED = false;
 
 }

@@ -28,9 +28,6 @@ public class ResourceHandler { //makes use of InputStream
             throw new RuntimeException("!!!> Error in loading image: " + path, e);
         }
     }
-
-    //TODO- imposta quando lavori su audio sin da subito il fatto che possano essere disattivati
-    // dai settings switchando un impostazione a off
     
     //! AUDIO
     public static Clip loadAudioClip(String path) { //supports .wav -- get as stream
@@ -47,45 +44,51 @@ public class ResourceHandler { //makes use of InputStream
         }
     }
 
-    //reproduces once the audio .wav associated with the path
-    public static void playAudio(String path) {
-        try {
-            Clip clip = clipCache.computeIfAbsent(path, p -> { //if not present adds to map (key = path, value = loadClip())
-                Clip c = loadAudioClip(p);
-
-                // return clip index to the start -- allows it to be replayes
-                c.addLineListener(event -> {
-                    if (event.getType() == LineEvent.Type.STOP) { //when the clip stops
-                        c.setFramePosition(0); //resets
-                    }
-                });
-
-                return c;
-            });
-
-            // if clip is running stop it and
-            if (clip.isRunning()) {
-                clip.stop();
+    private static void loadAndCacheClip(String path) {
+        if (!clipCache.containsKey(path)) {
+            try {
+                Clip clip = loadAudioClip(path);
+                clipCache.put(path, clip); //adds to preloaded audioclips
+            } catch (Exception e) {
+                System.err.println("!!!> Error in loading audio: " + path);
+                e.printStackTrace();
             }
-
-            //starts clip
-            clip.start();
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
-    public static void releaseAll() {
-        
-        for (Clip clip : clipCache.values()) {
-            if (clip != null) {
-                clip.close(); // close clip resources
-            }
-        }
+    public static void preloadAll() {
+        //music
+        loadAndCacheClip(ResourcePaths.Audio.START_PANEL_MUSIC);
+        //loadAndCacheClip(ResourcePaths.Audio.LEVELUP_PANEL_MUSIC);
+        loadAndCacheClip(ResourcePaths.Audio.SCENARIO_PANEL_MUSIC);
+        //loadAndCacheClip(ResourcePaths.Audio.PAUSE_PANEL_MUSIC);
+        //loadAndCacheClip(ResourcePaths.Audio.GAMEOVER_PANEL_MUSIC);
+        //loadAndCacheClip(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
+        //sfx
+        //loadAndCacheClip(ResourcePaths.Audio.PROJECTILE_FIRED_SFX);
+        //loadAndCacheClip(ResourcePaths.Audio.COLLECTIBLE_TAKEN_SFX);
+    }
 
-        // empty cache
-        clipCache.clear();
+    //reproduces once or loops the audio .wav associated with the path
+    public static void playClip(String path, boolean loop) {
+        
+        Clip clip = clipCache.get(path);
+
+        if (clip != null) {
+            if (clip.isRunning()) { //stops clip if it was already running
+                clip.stop();
+            }
+
+            clip.setFramePosition(0); //to replay it from the start
+
+            if (loop) {
+                clip.loop(Clip.LOOP_CONTINUOUSLY); //loop
+            } else {
+                clip.start(); //once
+            }
+        } else {
+            System.err.println("!!!> Clip not found in cache: " + path);
+        }
     }
     
 }

@@ -1,6 +1,7 @@
 package aetherlum_survivor.view;
 
 import aetherlum_survivor.controller.Controller;
+import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityData;
 import aetherlum_survivor.util.ResourcePaths;
 
@@ -77,7 +78,7 @@ public class PausePanel extends JPanel {
         this.settings_Butt = new JButton("Settings");
         this.settings_Butt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                View.getInstance().openSettingsPanel(); //TODO - differenciate if opened from Start or Pause to know where to return
+                View.getInstance().openSettingsPanel(Constants.PAUSE_PANEL);
 			}
 		});
 
@@ -88,7 +89,7 @@ public class PausePanel extends JPanel {
             }
 		});
 
-        this.interrupt_Butt = new JButton("Quit Game");
+        this.interrupt_Butt = new JButton("Commit Suicide");
         this.interrupt_Butt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 Controller.getInstance().handleGameOver();

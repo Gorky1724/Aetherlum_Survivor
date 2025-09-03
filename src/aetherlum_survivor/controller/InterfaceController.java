@@ -13,7 +13,7 @@ public interface InterfaceController {
     //panels management
     public void openStartPanel();
 
-    public void openSettingsPanel();
+    public void openSettingsPanel(String openedFrom);
 
     public void openScenarioPanel();
 

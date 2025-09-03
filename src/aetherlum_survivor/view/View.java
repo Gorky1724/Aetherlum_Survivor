@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.EntityLogicalData;
+import aetherlum_survivor.util.ResourcePaths;
 import aetherlum_survivor.util.LevelUpData.LevelUpOptions;
 
 import java.awt.Dimension;
@@ -32,15 +33,6 @@ public class View implements InterfaceView {
 
     private JPanel cardPanel;
     private CardLayout cardLayout;
-    
-    //strings to refer for the JPanel switch via CardLayout
-    private static final String START_PANEL = "START";
-    private static final String SETTINGS_PANEL = "SETTINGS";
-    private static final String GAME_PANEL = "GAME";
-    private static final String SCENARIO_PANEL = "SCENARIO";
-    private static final String GAME_OVER_PANEL = "GAMEOVER";
-    private static final String PAUSE_PANEL = "PAUSE";
-    private static final String LEVEL_UP_PANEL = "LEVEL_UP";
 
     //---------------------------------------------------------------
 
@@ -52,6 +44,12 @@ public class View implements InterfaceView {
 
     //---------------------------------------------------------------
 	//! PUBLIC INSTANCE METHODS
+
+    //audio handling - to avoid lags and UI blocks during game
+    @Override
+    public void preloadClips() {
+        ResourceHandler.preloadAll();
+    }
 
     //panel handling
     @Override
@@ -84,13 +82,13 @@ public class View implements InterfaceView {
                     pausePanel = new PausePanel();
                     levelUpPanel = new LevelUpPanel();
                     
-                    cardPanel.add(startPanel, START_PANEL);
-                    cardPanel.add(gamePanel, GAME_PANEL);
-                    cardPanel.add(settingsPanel, SETTINGS_PANEL);
-                    cardPanel.add(scenarioPanel, SCENARIO_PANEL);
-                    cardPanel.add(gameOverPanel, GAME_OVER_PANEL);
-                    cardPanel.add(pausePanel, PAUSE_PANEL);
-                    cardPanel.add(levelUpPanel, LEVEL_UP_PANEL);
+                    cardPanel.add(startPanel, Constants.START_PANEL);
+                    cardPanel.add(gamePanel, Constants.GAME_PANEL);
+                    cardPanel.add(settingsPanel, Constants.SETTINGS_PANEL);
+                    cardPanel.add(scenarioPanel, Constants.SCENARIO_PANEL);
+                    cardPanel.add(gameOverPanel, Constants.GAME_OVER_PANEL);
+                    cardPanel.add(pausePanel, Constants.PAUSE_PANEL);
+                    cardPanel.add(levelUpPanel, Constants.LEVEL_UP_PANEL);
 
                     gameFrame.add(cardPanel);
                     gameFrame.setVisible(true);
@@ -104,7 +102,9 @@ public class View implements InterfaceView {
         SwingUtilities.invokeLater(new Runnable() { 
             @Override
             public void run() {
-                cardLayout.show(cardPanel, START_PANEL);
+                cardLayout.show(cardPanel, Constants.START_PANEL);
+
+                ResourceHandler.playClip(ResourcePaths.Audio.START_PANEL_MUSIC, Constants.LOOPED);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();
@@ -114,11 +114,15 @@ public class View implements InterfaceView {
     }
 
     @Override
-    public void openSettingsPanel(){
+    public void openSettingsPanel(String openedFrom){
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                cardLayout.show(cardPanel, SETTINGS_PANEL);
+                cardLayout.show(cardPanel, Constants.SETTINGS_PANEL);
+
+                settingsPanel.setParentPanel(openedFrom);
+
+                ResourceHandler.playClip(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC, Constants.LOOPED);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();
@@ -132,7 +136,9 @@ public class View implements InterfaceView {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                cardLayout.show(cardPanel, SCENARIO_PANEL);
+                cardLayout.show(cardPanel, Constants.SCENARIO_PANEL);
+
+                ResourceHandler.playClip(ResourcePaths.Audio.SCENARIO_PANEL_MUSIC, Constants.LOOPED);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();
@@ -146,7 +152,7 @@ public class View implements InterfaceView {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                cardLayout.show(cardPanel, GAME_PANEL);
+                cardLayout.show(cardPanel, Constants.GAME_PANEL);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();
@@ -163,7 +169,7 @@ public class View implements InterfaceView {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                cardLayout.show(cardPanel, GAME_OVER_PANEL);
+                cardLayout.show(cardPanel, Constants.GAME_OVER_PANEL);
 
                 gameOverPanel.updatePanel();
 
@@ -179,7 +185,7 @@ public class View implements InterfaceView {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                cardLayout.show(cardPanel, PAUSE_PANEL);
+                cardLayout.show(cardPanel, Constants.PAUSE_PANEL);
 
                 pausePanel.updatePlayerData();
 
@@ -195,7 +201,7 @@ public class View implements InterfaceView {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                cardLayout.show(cardPanel, LEVEL_UP_PANEL);
+                cardLayout.show(cardPanel, Constants.LEVEL_UP_PANEL);
 
                 levelUpPanel.setup(randomLvlUp);
 

@@ -62,7 +62,7 @@ public class AnimationData {
     }
 
     public static final BufferedImage player_dying_sprite = ResourceHandler.loadImage(ResourcePaths.Images.PLAYER_DYING);
-    public static final int PL_DYING_NUM_FRAMES = 6; //num frames
+    public static final int PL_DYING_NUM_FRAMES = 5; //num frames
     public static final int PL_DYING_FRAME_DURTN = 7; //clock cycles
     public static Image[] pl_DYING_ANIMATION_FRAMES; // {xUpperLeftCorner, yUpperLeftCorner, width, height}
         static {//initialized animationframes
@@ -72,7 +72,7 @@ public class AnimationData {
             pl_DYING_ANIMATION_FRAMES[2] = player_dying_sprite.getSubimage(285,74,35,54);
             pl_DYING_ANIMATION_FRAMES[3] = player_dying_sprite.getSubimage(415,84,38,44);
             pl_DYING_ANIMATION_FRAMES[4] = player_dying_sprite.getSubimage(543,107,54,21);
-            pl_DYING_ANIMATION_FRAMES[5] = player_dying_sprite.getSubimage(671,117,62,11);
+            //pl_DYING_ANIMATION_FRAMES[5] = player_dying_sprite.getSubimage(671,117,62,11);
     }
 
     //! COLLECTIBLES -------------------------------------------------------------------------------------
