@@ -60,14 +60,18 @@ public class ResourceHandler { //makes use of InputStream
     public static void preloadAll() {
         //music
         loadAndCacheClip(ResourcePaths.Audio.START_PANEL_MUSIC);
-        //loadAndCacheClip(ResourcePaths.Audio.LEVELUP_PANEL_MUSIC);
+        loadAndCacheClip(ResourcePaths.Audio.LEVELUP_PANEL_MUSIC);
         loadAndCacheClip(ResourcePaths.Audio.SCENARIO_PANEL_MUSIC);
-        //loadAndCacheClip(ResourcePaths.Audio.PAUSE_PANEL_MUSIC);
-        //loadAndCacheClip(ResourcePaths.Audio.GAMEOVER_PANEL_MUSIC);
-        //loadAndCacheClip(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
+        loadAndCacheClip(ResourcePaths.Audio.PAUSE_PANEL_MUSIC);
+        loadAndCacheClip(ResourcePaths.Audio.GAMEOVER_PANEL_MUSIC);
+        loadAndCacheClip(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
+        loadAndCacheClip(ResourcePaths.Audio.GAME_PANEL_MUSIC);
         //sfx
         //loadAndCacheClip(ResourcePaths.Audio.PROJECTILE_FIRED_SFX);
+        //loadAndCacheClip(ResourcePaths.Audio.PROJECTILE_HIT_SFX);
         //loadAndCacheClip(ResourcePaths.Audio.COLLECTIBLE_TAKEN_SFX);
+        //loadAndCacheClip(ResourcePaths.Audio.PANEL_CHANGE_SFX);
+        //loadAndCacheClip(ResourcePaths.Audio.LEVEL_UP_SFX);
 
         System.out.println(">> Audio preload Completed");
     }

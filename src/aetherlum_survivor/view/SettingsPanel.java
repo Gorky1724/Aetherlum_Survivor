@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import aetherlum_survivor.util.Constants;
 import aetherlum_survivor.util.ResourcePaths;
@@ -100,8 +101,14 @@ public class SettingsPanel extends JPanel {
         audioEnabled = !audioEnabled;
         if(audioEnabled) {
             this.audio_Butt.setText("Audio: ON");
+
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    ResourceHandler.playMusic(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
+                }
+            });
             
-            ResourceHandler.playMusic(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
         } else {
             this.audio_Butt.setText("Audio: OFF");
 

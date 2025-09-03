@@ -70,6 +70,7 @@ public class ResourcePaths {
         public static final String PAUSE_PANEL_MUSIC = MUSIC + "pause_panel_music.wav";
         public static final String GAMEOVER_PANEL_MUSIC = MUSIC + "gameover_panel_music.wav";
         public static final String SETTINGS_PANEL_MUSIC = MUSIC + "settings_panel_music.wav";
+        public static final String GAME_PANEL_MUSIC = MUSIC + "game_panel_music.wav";
 
         //* SFX
         private static final String SFX = AUDIO_BASE + "sfx/";

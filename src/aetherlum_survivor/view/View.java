@@ -166,6 +166,8 @@ public class View implements InterfaceView {
             public void run() {
                 cardLayout.show(cardPanel, Constants.GAME_PANEL);
 
+                ResourceHandler.playMusic(ResourcePaths.Audio.GAME_PANEL_MUSIC);
+
                 gameFrame.revalidate();
                 gameFrame.repaint();
                 gameFrame.pack();
@@ -185,6 +187,8 @@ public class View implements InterfaceView {
 
                 gameOverPanel.updatePanel();
 
+                ResourceHandler.playMusic(ResourcePaths.Audio.GAMEOVER_PANEL_MUSIC);
+
                 gameFrame.revalidate();
                 gameFrame.repaint();
                 gameFrame.pack();
@@ -201,6 +205,8 @@ public class View implements InterfaceView {
 
                 pausePanel.updatePlayerData();
 
+                ResourceHandler.playMusic(ResourcePaths.Audio.PAUSE_PANEL_MUSIC);
+
                 gameFrame.revalidate();
                 gameFrame.repaint();
                 gameFrame.pack();
@@ -216,6 +222,8 @@ public class View implements InterfaceView {
                 cardLayout.show(cardPanel, Constants.LEVEL_UP_PANEL);
 
                 levelUpPanel.setup(randomLvlUp);
+
+                ResourceHandler.playMusic(ResourcePaths.Audio.LEVELUP_PANEL_MUSIC);
 
                 gameFrame.revalidate();
                 gameFrame.repaint();
