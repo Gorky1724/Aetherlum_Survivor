@@ -71,7 +71,7 @@ public class ResourceHandler {
         loadAndCacheClip(ResourcePaths.Audio.FASTPROJ_SHOT_SFX);
         loadAndCacheClip(ResourcePaths.Audio.PIERCINGPROJ_SHOT_SFX);
         loadAndCacheClip(ResourcePaths.Audio.COLLECTIBLE_TAKEN_SFX);
-        //loadAndCacheClip(ResourcePaths.Audio.PANEL_CHANGE_SFX);
+        loadAndCacheClip(ResourcePaths.Audio.PANEL_CHANGE_SFX);
         loadAndCacheClip(ResourcePaths.Audio.LEVEL_UP_SFX);
     }
 

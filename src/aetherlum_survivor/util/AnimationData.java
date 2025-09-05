@@ -71,8 +71,7 @@ public class AnimationData {
             pl_DYING_ANIMATION_FRAMES[1] = player_dying_sprite.getSubimage(158,72,34,56);
             pl_DYING_ANIMATION_FRAMES[2] = player_dying_sprite.getSubimage(285,74,35,54);
             pl_DYING_ANIMATION_FRAMES[3] = player_dying_sprite.getSubimage(415,84,38,44);
-            pl_DYING_ANIMATION_FRAMES[4] = player_dying_sprite.getSubimage(543,107,54,21);
-            //pl_DYING_ANIMATION_FRAMES[5] = player_dying_sprite.getSubimage(671,117,62,11);
+            pl_DYING_ANIMATION_FRAMES[4] = player_dying_sprite.getSubimage(415,84,38,44); //remains static on his knee before gameOver screen
     }
 
     //! COLLECTIBLES -------------------------------------------------------------------------------------
@@ -205,8 +204,6 @@ public class AnimationData {
             baseen_DYING_ANIMATION_FRAMES[1] = base_enemy_sprite.getSubimage(491,476,60,36);
             baseen_DYING_ANIMATION_FRAMES[2] = base_enemy_sprite.getSubimage(10,548,61,28);
             baseen_DYING_ANIMATION_FRAMES[3] = base_enemy_sprite.getSubimage(106,558,61,18);
-            //baseen_DYING_ANIMATION_FRAMES[4] = base_enemy_sprite.getSubimage(199,566,65,10);
-            //baseen_DYING_ANIMATION_FRAMES[5] = base_enemy_sprite.getSubimage(288,571,73,5);
 
     }
 
@@ -232,8 +229,6 @@ public class AnimationData {
             fasten_DYING_ANIMATION_FRAMES[3] = fast_enemy_sprite.getSubimage(440,136,27,34);
             fasten_DYING_ANIMATION_FRAMES[4] = fast_enemy_sprite.getSubimage(57,196,23,37);
             fasten_DYING_ANIMATION_FRAMES[5] = fast_enemy_sprite.getSubimage(183,209,24,25);
-            //fasten_DYING_ANIMATION_FRAMES[6] = fast_enemy_sprite.getSubimage(442,218,21,16);
-            //fasten_DYING_ANIMATION_FRAMES[7] = fast_enemy_sprite.getSubimage(310,314,21,6);
     }
 
     public static final BufferedImage static_enemy_sprite = ResourceHandler.loadImage(ResourcePaths.Images.STATIC_ENEMY);

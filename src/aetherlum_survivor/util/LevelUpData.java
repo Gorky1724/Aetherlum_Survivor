@@ -44,7 +44,7 @@ public class LevelUpData {
     public static final int[] LVL_UP_RANGE = {0,5}; //included
 
     public static final int CODE_SPD_FV = 0;
-    public static final double SPD_FV = 1;
+    public static final double SPD_FV = 0.5;
     public static final String SPD_FV_DESCR = "SPEED: +" + SPD_FV;
 
     public static final int CODE_MAX_HP_FV = 1;

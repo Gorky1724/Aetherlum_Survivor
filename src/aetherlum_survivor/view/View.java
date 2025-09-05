@@ -121,6 +121,7 @@ public class View implements InterfaceView {
             public void run() {
                 cardLayout.show(cardPanel, Constants.START_PANEL);
 
+                ResourceHandler.playSfx(ResourcePaths.Audio.PANEL_CHANGE_SFX);
                 ResourceHandler.playMusic(ResourcePaths.Audio.START_PANEL_MUSIC);
 
                 gameFrame.revalidate();
@@ -139,6 +140,7 @@ public class View implements InterfaceView {
 
                 settingsPanel.setParentPanel(openedFrom);
 
+                ResourceHandler.playSfx(ResourcePaths.Audio.PANEL_CHANGE_SFX);
                 ResourceHandler.playMusic(ResourcePaths.Audio.SETTINGS_PANEL_MUSIC);
 
                 gameFrame.revalidate();
@@ -155,6 +157,7 @@ public class View implements InterfaceView {
             public void run() {
                 cardLayout.show(cardPanel, Constants.SCENARIO_PANEL);
 
+                ResourceHandler.playSfx(ResourcePaths.Audio.PANEL_CHANGE_SFX);
                 ResourceHandler.playMusic(ResourcePaths.Audio.SCENARIO_PANEL_MUSIC);
 
                 gameFrame.revalidate();
@@ -171,6 +174,7 @@ public class View implements InterfaceView {
             public void run() {
                 cardLayout.show(cardPanel, Constants.GAME_PANEL);
 
+                ResourceHandler.playSfx(ResourcePaths.Audio.PANEL_CHANGE_SFX);
                 ResourceHandler.playMusic(ResourcePaths.Audio.GAME_PANEL_MUSIC);
 
                 gameFrame.revalidate();
@@ -192,6 +196,7 @@ public class View implements InterfaceView {
 
                 gameOverPanel.updatePanel();
 
+                ResourceHandler.playSfx(ResourcePaths.Audio.PANEL_CHANGE_SFX);
                 ResourceHandler.playMusic(ResourcePaths.Audio.GAMEOVER_PANEL_MUSIC);
 
                 gameFrame.revalidate();
@@ -210,6 +215,7 @@ public class View implements InterfaceView {
 
                 pausePanel.updatePlayerData();
 
+                ResourceHandler.playSfx(ResourcePaths.Audio.PANEL_CHANGE_SFX);
                 ResourceHandler.playMusic(ResourcePaths.Audio.PAUSE_PANEL_MUSIC);
 
                 gameFrame.revalidate();
