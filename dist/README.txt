@@ -1,0 +1,1 @@
+To start the application use the <.jar> or run the Main class in <aetherlum_survivor.controller.Main>

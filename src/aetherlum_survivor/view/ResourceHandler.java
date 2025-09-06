@@ -10,6 +10,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,12 +33,17 @@ public class ResourceHandler {
     
     //! AUDIO
     public static Clip loadAudioClip(String path) { //supports .wav -- get as stream
-        try { 
-            InputStream iS = ResourcePaths.getResourceAsStream(path); //gets path
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(iS); //converts to audioInputStream
+        try {
+            InputStream rawStream = ResourcePaths.class.getResourceAsStream(path); //gets path
+            if (rawStream == null) {
+                throw new RuntimeException("!!!> Audio resource not found: " + path);
+            }
+
+            BufferedInputStream bufStream = new BufferedInputStream(rawStream); //converts to BufferedInputStream
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufStream); //converts to audioInputStream
 
             Clip clip = AudioSystem.getClip(); //creates void audioclip
-            clip.open(audioStream); //adds audio
+            clip.open(audioStream);
             return clip;
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
