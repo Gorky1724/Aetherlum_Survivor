@@ -58,9 +58,5 @@ public class AnimationHandler {
         } else {
             g2d.drawImage(ftd,x,y,width,height,null);
         }
-    }
-
-    //! utilities for View
-    //TODO - something to adequately rescale death animation when they happens
-    
+    }    
 }

@@ -1,0 +1,67 @@
+Qua è indicato il workflow e l'ordine di cose che stai facendo / lasciando in sospeso
+___________________________________________________________________________________________________________________________
+>> ERRORI E PROBLEMATICHE RISCONTRATE
+___________________________________________________________________________________________________________________________
+
+---Ogni tanto non runna il codice correttamente e appare il seguente errore, poi risolto con il solo rerun dell'applicazione
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.awt.Container.setLayout(java.awt.LayoutManager)" because "this.contPane" 
+is null
+        at aetherlum_survivor.view.View.openStartPanel(View.java:51)
+        at aetherlum_survivor.controller.ControllerForView.openStartPanel(ControllerForView.java:29)
+        at aetherlum_survivor.controller.ControllerForView.startApplication(ControllerForView.java:24)
+        at aetherlum_survivor.controller.Main.main(Main.java:6)
+>>>risolto: il multithreading esegue startApplication() e openGamePanel(); openGamePanel è eseguito subito mentre startApplication ogni tanto attende un attimo
+            dunque trova il contPane = null
+---
+
+---A non far interferire il thread del GameLoop con l'apertura del GamePanel
+Ho risolto usando un timer
+---
+
+---Su ControllerForView e ControllerForModel erano separati, come nell'app JTetris fornita dal professore
+Poiché erano così presenti alcuni metodi che non facevano altro che rimandare da un Controller ad un altro
+in un primo momento ho fatto si che il ControllerForX vedesse sempre solo comandi da X ma potesse interagire direttametne con Y
+Poi ho unito i 2 Controller in un controller unico valido sia per Model che per View
+---
+
+---Inizialmente volevo usare il KeyListener: Mettere il keylistener su Controller non lo faceva poi riconoscere da attachKeyListenerToGamePanel() come KeyListener ma solo come InterfaceController
+Più che fare un cast esplicito a KeyListener ho deciso di creare una seconda classe del controller 'KeyHandler'
+Poiché necessitavo della possibilità di dichiarare altri metodi per prendere le pressioni di tasti, ho comunque dovuto fare con cast esplicito a KeyHandler in quanto ne ho dovuto fare InterfaceKeyHandler
+---
+
+---Comprendere bene le relazioni tra componenti dell MVC
+In particolare bene come in teoria il Model potrebbe notificare direttamente alla View tramite il pattern Observer di aggiornarsi.
+Ho però deciso di utilizzare la variante dell'MVC Controller presentata dal professore sul jtetris per
+far intermediare tale passaggio al Controller, semplificando così l'interazione
+---
+
+---creazione di pool di oggetti per la creazione di entità
+minimizzare così il numero di oggetti creati per appesantire il meno possibile le operazioni
+---
+
+---velocità di aggiornamento delle creature non costante
+causata probabilmente dal fatto che il GameLoop sia un JavaSwingTimer, dunque ogni operazione e aggiornamento sia fatto dall'EDT.
+Possibili soluzioni:
+ > passare ad un GameLoop con Thread separato
+ +aggiungere un deltaTime
+ +far sì che le liste modificate non siano le stesse lette dal repaint evidanto l'errore di modifica e lettura contemporanea di un documento
+---
+
+---trovare sprite
+Alla fine mi sono accontentato di sprite per i nemici con un contorno bianco, in quanto molto complicato trovare sprite gratuite e coerenti
+le une con le altre.
+---
+
+---dover risistemare l'ampiezza di ciascun frame di ciascuno sprite di morte, dove le dimensioni cambiano notevolmente da un frame al seguente
+Spero di averne avuto voglia e alla fine averlo fatto
+---
+
+---la deathAnimationList
+cioò che prima si voleva fare uno stadio intermezzo DYING in cui era attivo ma non si muoveva, poi vedendo che non
+conveniva e veniva complicato ho finito per salvare semplicemente chea vviene l'animazione e poi toglierla
+---
+___________________________________________________________________________________________________________________________
+>> COSE USATE FORSE NON FATTE A LEZIONE
+___________________________________________________________________________________________________________________________
+
+<CardLayout> per alternare con pulizia trai vari panel

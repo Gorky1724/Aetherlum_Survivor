@@ -79,8 +79,8 @@ public class EntityData {
 
     //! PLAYER -------------------------------------------------------------------------------------
     public static final int PLAYER_TYPE = 0;
-    public static final int PLAYER_WIDTH = (int) (Constants.TILE_SIZE/1.7); //based on sprite model
-    public static final int PLAYER_HEIGHT = Constants.TILE_SIZE;
+    public static final int PLAYER_WIDTH = (int) (Constants.TILE_SIZE/1.7*1.2); //based on sprite model
+    public static final int PLAYER_HEIGHT = (int) (Constants.TILE_SIZE*1.2);
     public static final double PLAYER_SPD = 7;
     public static final double PLAYER_MAX_HP = 1000;
     public static final double PLAYER_DMG = 10;

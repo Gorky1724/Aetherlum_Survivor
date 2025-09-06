@@ -208,7 +208,6 @@ public class GamePanel extends JPanel {
             Image frameToDraw = AnimationHandler.getFrameToDraw(eld);
             Point eldLoc = convertLogicalToGraphical(eld.getCoordX(), eld.getCoordY(), playerELD);
 
-            //TODO - should be fixed width and height based on each different animation
             if(eld.getType() >= EntityData.ENEMIES_TYPE_RANGE[0] && eld.getType() <= EntityData.ENEMIES_TYPE_RANGE[1]) { //enemies have sprites in opposite direction
                 if(eld.getDirection() == EntityData.LEFT) {
                     AnimationHandler.drawSprite(g2d, frameToDraw, Constants.NOT_FLIPPED, eldLoc.x, eldLoc.y, (int) eld.getWidth(), (int) eld.getHeight());
